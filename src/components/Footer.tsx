@@ -103,7 +103,7 @@ export function Footer() {
             <div className="pt-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-2.5 py-1 text-[10px] text-zinc-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                <span>Staging Operational • Fase 4C</span>
+                <span>Staging Operational • Fase 5</span>
               </span>
             </div>
           </div>

@@ -27,8 +27,8 @@ export function RoadmapStatus() {
     {
       id: 2,
       phase: "Fase 4C (Current)",
-      status: "active",
-      statusLabel: "Active Development",
+      status: "done",
+      statusLabel: "Completed",
       title: "Semester recap & export",
       desc: "Automated aggregation engine across all 14 lecture sessions, formula configuration for SIAKAD grading rubrics, and high-performance Excel/CSV batch export.",
       deliverables: ["SIAKAD 1-click exporter", "Faculty aggregate recap", "PJ verification signature hashes"],
@@ -36,8 +36,8 @@ export function RoadmapStatus() {
     {
       id: 3,
       phase: "Fase 5",
-      status: "next",
-      statusLabel: "Upcoming",
+      status: "active",
+      statusLabel: "Active Development",
       title: "Security hardening",
       desc: "Penetration testing, rate-limiting guards against high-concurrency classroom submission spikes, and UNTIDAR SSO SAML integration audits.",
       deliverables: ["Cloudflare Turnstile token guards", "Zero-trust session revocations", "Load testing at 5,000 req/min"],
@@ -87,17 +87,17 @@ export function RoadmapStatus() {
             </h2>
 
             <p className="mt-4 text-base text-zinc-600 font-sans leading-relaxed">
-              Karsa is currently in <strong className="text-zinc-900 font-semibold">Fase 4C of 6</strong>. The core ledger and mobile awarding engines are operational, with pilot testing scheduled for upcoming semester cohorts at Universitas Tidar.
+              Karsa is currently in <strong className="text-zinc-900 font-semibold">Fase 5 of 6</strong>. The core ledger and mobile awarding engines are operational, with pilot testing scheduled for upcoming semester cohorts at Universitas Tidar.
             </p>
 
             {/* Current Phase Card */}
             <div className="mt-8 rounded-xl border border-zinc-200 bg-zinc-50/80 p-4">
               <div className="flex items-center justify-between text-xs font-mono mb-2">
                 <span className="text-zinc-500">Overall Progress</span>
-                <span className="font-semibold text-[#CF6A12]">72% completed</span>
+                <span className="font-semibold text-[#CF6A12]">83% completed</span>
               </div>
               <div className="h-1.5 w-full bg-zinc-200 rounded-full overflow-hidden">
-                <div className="h-full bg-[#CF6A12] rounded-full w-[72%]" />
+                <div className="h-full bg-[#CF6A12] rounded-full w-[83%]" />
               </div>
 
               <div className="mt-4 flex items-center justify-between text-xs font-mono text-zinc-500">

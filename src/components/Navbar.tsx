@@ -47,7 +47,7 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
 
             <div className="hidden lg:flex items-center gap-1.5 rounded-full border border-zinc-200/80 bg-zinc-50/80 px-2.5 py-0.5 text-[11px] font-mono text-zinc-600">
               <span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" />
-              <span>Fase 4C • 2026/2027</span>
+              <span>Fase 5 • 2026/2027</span>
             </div>
           </div>
 
