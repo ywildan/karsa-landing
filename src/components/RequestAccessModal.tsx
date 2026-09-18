@@ -8,6 +8,8 @@ interface RequestAccessModalProps {
 
 export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,9 +20,40 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          service_id: "service_1wcs92m",
+          template_id: "template_hh0nz7r",
+          user_id: "lRgEONaUTgn1AyioL",
+          template_params: {
+            from_name: formData.name,
+            from_email: formData.email,
+            role: formData.role,
+            faculty: formData.faculty,
+            course: formData.course,
+            submission_time: new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" }),
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`EmailJS responded with status ${response.status}`);
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Failed to submit. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
@@ -174,19 +207,39 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
                     <button
                       type="button"
                       onClick={resetForm}
-                      className="rounded-lg px-3.5 py-2 text-xs font-medium text-zinc-600 hover:bg-zinc-100 transition-colors"
+                      disabled={isSubmitting}
+                      className="rounded-lg px-3.5 py-2 text-xs font-medium text-zinc-600 hover:bg-zinc-100 transition-colors disabled:opacity-50"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-[#CF6A12] px-4 py-2 text-xs font-medium text-white shadow-xs hover:bg-[#B85B0D] transition-colors"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-[#CF6A12] px-4 py-2 text-xs font-medium text-white shadow-xs hover:bg-[#B85B0D] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      Submit request
-                      <ArrowRight className="h-3.5 w-3.5" />
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                          </svg>
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Submit request</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
+
+                {submitError && (
+                  <div className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700 font-mono">
+                    <span className="font-semibold">Error:</span> {submitError}
+                  </div>
+                )}
               </form>
             </div>
           ) : (
