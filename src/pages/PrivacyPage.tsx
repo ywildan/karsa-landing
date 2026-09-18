@@ -237,8 +237,7 @@ export default function PrivacyPage() {
               </BulletItem>
               <BulletItem>
                 <strong className="text-zinc-900">Data Teknis:</strong>{" "}
-                Session token (JWT), channel preference (mobile/desktop), dan
-                audit log akses.
+                Session token (JWT), preferensi tampilan (mobile/desktop) via cookie, dan audit log akses untuk verifikasi keamanan.
               </BulletItem>
             </div>
             <p className="mt-4 text-zinc-500 italic">
@@ -263,11 +262,10 @@ export default function PrivacyPage() {
                 Membuat rapor keaktifan individual yang dapat diakses mahasiswa.
               </BulletItem>
               <BulletItem>
-                Mengekspor data ke format Excel/CSV untuk integrasi dengan
-                SIAKAD UNTIDAR.
+                Mengekspor rekap ke format Excel (.xlsx) untuk keperluan pelaporan admin.
               </BulletItem>
               <BulletItem>
-                Audit trail untuk verifikasi dan transparansi akademik.
+                Audit trail untuk verifikasi dan transparansi perubahan poin.
               </BulletItem>
             </div>
             <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
@@ -295,14 +293,15 @@ export default function PrivacyPage() {
                 kelasnya sendiri. Tidak bisa melihat kelas lain.
               </BulletItem>
               <BulletItem>
-                <strong className="text-zinc-900">Immutable Ledger:</strong>{" "}
-                Setiap poin yang tercatat bersifat permanen dan tidak dapat
-                diubah — hanya PJ yang mencatat yang dapat menghapus.
+                <strong className="text-zinc-900">Audit Trail:</strong>{" "}
+                Setiap input dan penghapusan poin tercatat permanen — siapa,
+                kapan, dan apa yang berubah. PJ dapat menghapus poin yang mereka
+                input, tapi penghapusan tercatat dan dapat diverifikasi admin.
               </BulletItem>
               <BulletItem>
                 <strong className="text-zinc-900">Audit Trail:</strong> Setiap
-                aksi tercatat dengan timestamp, identitas PJ, dan hash
-                verifikasi.
+                input dan penghapusan poin tercatat dengan timestamp WIB,
+                identitas PJ, dan referensi ke data asli.
               </BulletItem>
             </div>
           </PrivacySection>
@@ -398,8 +397,9 @@ export default function PrivacyPage() {
                 akademik akan dihapus secara otomatis oleh sistem.
               </BulletItem>
               <BulletItem>
-                Data yang di-export ke SIAKAD menjadi tanggung jawab sistem
-                SIAKAD UNTIDAR — di luar scope Karsa.
+                <strong className="text-zinc-900">Export Data:</strong> Data
+                yang di-export dari Karsa (format Excel) menjadi tanggung jawab
+                admin yang mengunduh.
               </BulletItem>
             </div>
           </PrivacySection>
@@ -420,13 +420,15 @@ export default function PrivacyPage() {
               </BulletItem>
               <BulletItem>
                 <strong className="text-zinc-900">Right to Erasure:</strong>{" "}
-                Hubungi tim akademik UNTIDAR untuk penghapusan data (sesuai
-                kebijakan universitas).
+                Ajukan permohonan penghapusan data dengan mengirim email ke{" "}
+                yuwiaffa@gmail.com. Permohonan akan diproses dalam 7 hari kerja{" "}
+                sesuai kebijakan universitas dan UU PDP.
               </BulletItem>
               <BulletItem>
                 <strong className="text-zinc-900">Right to Portability:</strong>{" "}
-                Data dapat di-export dalam format Excel/CSV untuk keperluan
-                akademik.
+                Data poin Anda dapat diminta dalam format Excel dengan mengirim{" "}
+                email ke yuwiaffa@gmail.com. Fitur self-service export untuk{" "}
+                mahasiswa direncanakan pada Fase 6.
               </BulletItem>
             </div>
           </PrivacySection>
@@ -545,21 +547,16 @@ export default function PrivacyPage() {
             </p>
             <div className="space-y-2.5 mt-3">
               <BulletItem>
-                <strong className="text-zinc-900">FERPA</strong> — Family
-                Educational Rights and Privacy Act (US). Prinsip transparansi dan
-                hak akses ke data pendidikan di-adopt sesuai konteks
-                Universitas Tidar.
-              </BulletItem>
-              <BulletItem>
-                <strong className="text-zinc-900">GDPR Principles</strong> —
-                Data minimization, purpose limitation, dan storage limitation
-                diimplementasikan sesuai prinsip GDPR.
-              </BulletItem>
-              <BulletItem>
                 <strong className="text-zinc-900">UU PDP Indonesia</strong> —
-                Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data
+                Undang-Undang Nomor 27 Tahun 2022 tentang Perlindungan Data
                 Pribadi. Karsa berkomitmen untuk memenuhi standar perlindungan
                 data sesuai regulasi Indonesia.
+              </BulletItem>
+              <BulletItem>
+                <strong className="text-zinc-900">Prinsip Umum Perlindungan
+                Data</strong> — Data minimization, purpose limitation, dan
+                storage limitation diterapkan sesuai prinsip universal perlindungan
+                data pribadi.
               </BulletItem>
             </div>
           </PrivacySection>
