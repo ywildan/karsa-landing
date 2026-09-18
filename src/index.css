@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --color-karsa-orange: #CF6A12;
+  --color-karsa-orange-hover: #B85B0D;
+  --color-karsa-orange-light: #FBF4EE;
+  --color-karsa-dark: #0A0A0A;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #18181b;
+    background-color: #FAFAFA;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #CF6A12;
+    color: #FFFFFF;
+  }
+}
+
+.font-serif {
+  font-family: 'Instrument Serif', Georgia, serif !important;
+}
+
+.font-sans {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Custom subtle glass and border helpers */
+.border-subtle {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.dark .border-subtle,
+.border-dark-subtle {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Editorial typography utilities */
+.tracking-tighter-editorial {
+  letter-spacing: -0.035em;
+}
+
+.tracking-tight-editorial {
+  letter-spacing: -0.02em;
+}
+
+/* Custom scrollbar for clean UI */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
