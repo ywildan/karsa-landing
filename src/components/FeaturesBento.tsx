@@ -29,7 +29,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
   const [testEmail, setTestEmail] = useState("budi.santoso@students.untidar.ac.id");
 
   // State for multi-role selector
-  const [activeRole, setActiveRole] = useState<"admin" | "pj" | "student">("pj");
+  const [activeRole, setActiveRole] = useState<"pj" | "student">("pj");
 
   const isEmailValid = testEmail.endsWith("@students.untidar.ac.id") || testEmail.endsWith("@untidar.ac.id");
 
@@ -268,14 +268,14 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
               </h3>
 
               <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans">
-                Admin. PJ. Student. One system.
+                PJ. Student. One system.
               </p>
             </div>
 
             {/* Interactive Role Pills */}
             <div className="mt-5 space-y-2">
               <div className="flex rounded-lg bg-zinc-100 p-1 font-mono text-[11px]">
-                {(["admin", "pj", "student"] as const).map((r) => (
+                {(["pj", "student"] as const).map((r) => (
                   <button
                     key={r}
                     onClick={() => setActiveRole(r)}
@@ -289,12 +289,6 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
               </div>
 
               <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-3 font-mono text-xs text-zinc-600">
-                {activeRole === "admin" && (
-                  <div>
-                    <div className="font-semibold text-zinc-900">Admin Authority</div>
-                    <p className="mt-0.5 text-[11px] text-zinc-500">Manage semesters, assign PJs to course sections, audit logs.</p>
-                  </div>
-                )}
                 {activeRole === "pj" && (
                   <div>
                     <div className="font-semibold text-zinc-900">PJ Penanggung Jawab</div>
