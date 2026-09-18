@@ -71,7 +71,7 @@ export function Footer() {
                   href="#status"
                   className="hover:text-zinc-950 transition-colors"
                 >
-                  Fase 4C Roadmap & Changelog
+                  Fase 5 Roadmap & Changelog
                 </a>
               </li>
               <li>
