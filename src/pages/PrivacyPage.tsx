@@ -65,14 +65,29 @@ function PrivacyNav() {
   );
 }
 
+function createSlideVariants(index: number) {
+  const fromX = index % 2 === 0 ? 100 : -100;
+  return {
+    hidden: { opacity: 0, x: fromX, y: 16 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+    },
+  };
+}
+
 function PrivacySection({
   id,
+  index,
   icon: Icon,
   title,
   children,
   dark = false,
 }: {
   id: string;
+  index: number;
   icon: React.ElementType;
   title: string;
   children: React.ReactNode;
@@ -81,7 +96,7 @@ function PrivacySection({
   return (
     <motion.section
       id={id}
-      variants={fadeUp}
+      variants={createSlideVariants(index)}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
@@ -198,7 +213,7 @@ export default function PrivacyPage() {
 
         {/* Sections */}
         <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-6">
-          <PrivacySection id="collection" icon={Database} title="Data Collection">
+          <PrivacySection id="collection" index={0} icon={Database} title="Data Collection">
             <p>
               Karsa hanya mengumpulkan data yang relevan dengan kegiatan
               akademik di Universitas Tidar. Data kami simpan di database
@@ -232,7 +247,7 @@ export default function PrivacyPage() {
             </p>
           </PrivacySection>
 
-          <PrivacySection id="usage" icon={FileCheck} title="Data Usage">
+          <PrivacySection id="usage" index={1} icon={FileCheck} title="Data Usage">
             <p>
               Data yang dikumpulkan digunakan secara eksklusif untuk keperluan
               akademik di Universitas Tidar:
@@ -262,7 +277,7 @@ export default function PrivacyPage() {
             </div>
           </PrivacySection>
 
-          <PrivacySection id="protection" icon={EyeOff} title="Data Protection">
+          <PrivacySection id="protection" index={2} icon={EyeOff} title="Data Protection">
             <p>
               Karsa menerapkan beberapa lapisan perlindungan untuk menjaga privasi
               mahasiswa:
@@ -292,7 +307,7 @@ export default function PrivacyPage() {
             </div>
           </PrivacySection>
 
-          <PrivacySection id="security" icon={Lock} title="Security Measures">
+          <PrivacySection id="security" index={3} icon={Lock} title="Security Measures">
             <p>
               Keamanan data dijaga di beberapa level — dari transport hingga
               storage:
@@ -330,7 +345,7 @@ export default function PrivacyPage() {
             </div>
           </PrivacySection>
 
-          <PrivacySection id="roles" icon={Users} title="Roles & Access">
+          <PrivacySection id="roles" index={4} icon={Users} title="Roles & Access">
             <p>
               Sistem Karsa memiliki 2 role utama dengan batasan akses yang
               jelas:
@@ -368,7 +383,7 @@ export default function PrivacyPage() {
             </p>
           </PrivacySection>
 
-          <PrivacySection id="retention" icon={Clock} title="Data Retention">
+          <PrivacySection id="retention" index={5} icon={Clock} title="Data Retention">
             <p>
               Kebijakan retensi data Karsa dirancang untuk menyeimbangkan
               kebutuhan akademik dan privasi mahasiswa:
@@ -389,7 +404,7 @@ export default function PrivacyPage() {
             </div>
           </PrivacySection>
 
-          <PrivacySection id="rights" icon={Shield} title="Your Rights">
+          <PrivacySection id="rights" index={6} icon={Shield} title="Your Rights">
             <p>
               Sebagai pengguna, Anda memiliki hak-hak berikut terkait data
               pribadi Anda:
@@ -416,7 +431,7 @@ export default function PrivacyPage() {
             </div>
           </PrivacySection>
 
-          <PrivacySection id="roadmap" icon={Server} title="Security Roadmap" dark>
+          <PrivacySection id="roadmap" index={7} icon={Server} title="Security Roadmap" dark>
             <p className="text-zinc-300">
               Karsa sedang dalam <strong className="text-white">Fase 5</strong>{" "}
               pengembangan. Langkah-langkah keamanan berikut sedang dan akan
@@ -478,7 +493,7 @@ export default function PrivacyPage() {
             </div>
           </PrivacySection>
 
-          <PrivacySection id="third-party" icon={Server} title="Third-Party Services">
+          <PrivacySection id="third-party" index={8} icon={Server} title="Third-Party Services">
             <p>
               Karsa menggunakan beberapa layanan pihak ketiga untuk operasional:
             </p>
@@ -523,7 +538,7 @@ export default function PrivacyPage() {
             </div>
           </PrivacySection>
 
-          <PrivacySection id="legal" icon={FileCheck} title="Legal Compliance">
+          <PrivacySection id="legal" index={9} icon={FileCheck} title="Legal Compliance">
             <p>
               Kebijakan privasi Karsa selaras dengan prinsip-prinsip regulasi
               perlindungan data:
@@ -549,7 +564,7 @@ export default function PrivacyPage() {
             </div>
           </PrivacySection>
 
-          <PrivacySection id="contact" icon={Mail} title="Contact & Privacy Concerns">
+          <PrivacySection id="contact" index={10} icon={Mail} title="Contact & Privacy Concerns">
             <p>
               Jika Anda memiliki pertanyaan, kekhawatiran, atau permintaan
               terkait privasi dan keamanan data Anda, silakan hubungi:
