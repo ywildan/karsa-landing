@@ -102,7 +102,8 @@ export function TheIdea() {
                 <span>Institutional Trust</span>
               </div>
               <p className="text-xs text-zinc-500 leading-relaxed">
-                Seamless handoff to official UNTIDAR SIAKAD semester archives.
+                Karsa guarantees data security in compliance with Indonesian
+                data protection regulations (UU PDP No. 27/2022).
               </p>
             </div>
           </motion.div>
