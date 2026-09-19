@@ -223,7 +223,8 @@ export default function PrivacyPage() {
               <BulletItem>
                 <strong className="text-zinc-900">Identitas Dasar:</strong>{" "}
                 Nama, email UNTIDAR (@students.untidar.ac.id / @untidar.ac.id),
-                NIM, dan foto profil dari Google OAuth.
+                dan foto profil dari Google OAuth. NIM diinput oleh admin saat
+                pendaftaran mahasiswa ke kelas.
               </BulletItem>
               <BulletItem>
                 <strong className="text-zinc-900">Data Akademik:</strong>{" "}
@@ -294,14 +295,10 @@ export default function PrivacyPage() {
               </BulletItem>
               <BulletItem>
                 <strong className="text-zinc-900">Audit Trail:</strong>{" "}
-                Setiap input dan penghapusan poin tercatat permanen — siapa,
-                kapan, dan apa yang berubah. PJ dapat menghapus poin yang mereka
-                input, tapi penghapusan tercatat dan dapat diverifikasi admin.
-              </BulletItem>
-              <BulletItem>
-                <strong className="text-zinc-900">Audit Trail:</strong> Setiap
-                input dan penghapusan poin tercatat dengan timestamp WIB,
-                identitas PJ, dan referensi ke data asli.
+                Setiap input dan penghapusan poin tercatat dengan timestamp WIB,
+                identitas PJ, dan referensi ke data asli. PJ dapat menghapus poin
+                yang mereka input, tapi penghapusan tercatat dan dapat diverifikasi
+                admin.
               </BulletItem>
             </div>
           </PrivacySection>
@@ -393,8 +390,9 @@ export default function PrivacyPage() {
                 mahasiswa aktif terdaftar di Universitas Tidar.
               </BulletItem>
               <BulletItem>
-                Setelah mahasiswa dinyatakan lulus atau tidak aktif, data
-                akademik akan dihapus secara otomatis oleh sistem.
+                Setelah mahasiswa dinyatakan lulus atau tidak aktif, penghapusan
+                data dapat diajukan melalui email ke admin dan diproses manual
+                dalam 7 hari kerja.
               </BulletItem>
               <BulletItem>
                 <strong className="text-zinc-900">Export Data:</strong> Data
@@ -505,9 +503,7 @@ export default function PrivacyPage() {
                   EmailJS
                 </div>
                 <p className="text-xs text-zinc-600">
-                  Layanan untuk mengirim notifikasi email dari form request
-                  access di landing page. Hanya email dan nama pengirim yang
-                  dikirim.
+                  Layanan untuk mengirim notifikasi email dari form 'Request Pilot Access' di landing page Karsa. Data yang dikirim: nama lengkap, email, role, fakultas, dan target course dari form. Digunakan HANYA di landing page — tidak ada data akademik mahasiswa yang melewati EmailJS.
                 </p>
               </div>
               <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
