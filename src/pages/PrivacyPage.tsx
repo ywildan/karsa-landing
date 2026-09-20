@@ -266,7 +266,9 @@ export default function PrivacyPage() {
                 Mengekspor rekap ke format Excel (.xlsx) untuk keperluan pelaporan admin.
               </BulletItem>
               <BulletItem>
-                Audit trail untuk verifikasi dan transparansi perubahan poin.
+                Audit trail untuk verifikasi dan transparansi perubahan data
+                akademik — termasuk input poin, penugasan PJ, dan modifikasi
+                data master.
               </BulletItem>
             </div>
             <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
@@ -295,10 +297,10 @@ export default function PrivacyPage() {
               </BulletItem>
               <BulletItem>
                 <strong className="text-zinc-900">Audit Trail:</strong>{" "}
-                Setiap input dan penghapusan poin tercatat dengan timestamp WIB,
-                identitas PJ, dan referensi ke data asli. PJ dapat menghapus poin
-                yang mereka input, tapi penghapusan tercatat dan dapat diverifikasi
-                admin.
+                Setiap aksi administratif (input poin, penugasan PJ, perubahan
+                data) tercatat dengan timestamp WIB, identitas aktor, dan detail
+                perubahan. Data audit disimpan sebagai snapshot — tetap akurat
+                meski data master berubah.
               </BulletItem>
             </div>
           </PrivacySection>
@@ -395,6 +397,10 @@ export default function PrivacyPage() {
                 dalam 7 hari kerja.
               </BulletItem>
               <BulletItem>
+                <strong className="text-zinc-900">Audit Log (AuditLog):</strong>{" "}
+                5 tahun dari tanggal pencatatan, lalu dihapus permanen.
+              </BulletItem>
+              <BulletItem>
                 <strong className="text-zinc-900">Export Data:</strong> Data
                 yang di-export dari Karsa (format Excel) menjadi tanggung jawab
                 admin yang mengunduh.
@@ -433,11 +439,25 @@ export default function PrivacyPage() {
 
           <PrivacySection id="roadmap" index={7} icon={Server} title="Security Roadmap" dark>
             <p className="text-zinc-300">
-              Karsa sedang dalam <strong className="text-white">Fase 5</strong>{" "}
+              Karsa sedang dalam <strong className="text-white">Fase 6 (Hardening)</strong>{" "}
               pengembangan. Langkah-langkah keamanan berikut sedang dan akan
               diterapkan:
             </p>
             <div className="space-y-3 mt-3">
+              <div className="flex items-start gap-3">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#CF6A12]">
+                  <CheckCircle className="h-3.5 w-3.5 text-white" />
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-white">
+                    Audit Trail System
+                  </div>
+                  <div className="text-xs text-zinc-400">
+                    Setiap aksi administratif tercatat dengan snapshot, filter,
+                    dan retensi 5 tahun (SELESAI — Fase 6A-1).
+                  </div>
+                </div>
+              </div>
               <div className="flex items-start gap-3">
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#CF6A12]">
                   <CheckCircle className="h-3.5 w-3.5 text-white" />
