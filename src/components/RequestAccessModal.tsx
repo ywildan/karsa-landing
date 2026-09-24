@@ -201,7 +201,7 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
                 <div className="mt-6 pt-2 flex items-center justify-between">
                   <span className="text-[11px] text-zinc-400 flex items-center gap-1 font-mono">
                     <ShieldCheck className="h-3.5 w-3.5 text-zinc-400" />
-                    Encrypted submission
+                    Sent over HTTPS
                   </span>
                   <div className="flex gap-2">
                     <button

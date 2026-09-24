@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Check, Clock, Calendar, ChevronRight } from "lucide-react";
 
 export function RoadmapStatus() {
-  const [selectedMilestone, setSelectedMilestone] = useState<number | null>(2);
+  const [selectedMilestone, setSelectedMilestone] = useState<number | null>(3);
 
   const timelineItems = [
     {
@@ -12,7 +12,7 @@ export function RoadmapStatus() {
       status: "done",
       statusLabel: "Completed",
       title: "Foundation, auth, admin panel, point input",
-      desc: "Core PostgreSQL schema, Google Workspace OAuth restricted to @students.untidar.ac.id, admin course/class roster builder, and mobile PJ input bottom sheet.",
+      desc: "Core PostgreSQL schema, Google OAuth restricted to approved UNTIDAR domains, admin course/class roster builder, and PJ point input.",
       deliverables: ["Next.js App Router API", "Role-based authorization", "Single-tap point scoring engine"],
     },
     {
@@ -21,17 +21,17 @@ export function RoadmapStatus() {
       status: "done",
       statusLabel: "Completed",
       title: "Student report, class leaderboard",
-      desc: "Student personal rapor view with course-level drilldown, masked leaderboard ranking, and encrypted session audit receipts.",
+      desc: "Student personal rapor view with course-level drilldown, class-scoped access, and masked leaderboard ranking.",
       deliverables: ["Privacy-preserving masking", "Weighted activity distribution", "Responsive desktop rapor"],
     },
     {
       id: 2,
-      phase: "Fase 4C (Current)",
+      phase: "Fase 4C",
       status: "done",
       statusLabel: "Completed",
       title: "Semester recap & export",
-      desc: "Automated aggregation engine across all 14 lecture sessions, formula configuration for SIAKAD grading rubrics, and high-performance Excel/CSV batch export.",
-      deliverables: ["SIAKAD 1-click exporter", "Faculty aggregate recap", "PJ verification signature hashes"],
+      desc: "Class and semester aggregation with an Excel recap that administrators can review and use in the approved academic workflow.",
+      deliverables: ["Excel recap export", "Class and semester aggregation", "Administrative audit trail"],
     },
     {
       id: 3,
@@ -39,8 +39,8 @@ export function RoadmapStatus() {
       status: "active",
       statusLabel: "Active Development",
       title: "Security hardening",
-      desc: "Penetration testing, rate-limiting guards against high-concurrency classroom submission spikes, and UNTIDAR SSO SAML integration audits.",
-      deliverables: ["Cloudflare Turnstile token guards", "Zero-trust session revocations", "Load testing at 5,000 req/min"],
+      desc: "Least-privilege database access, encrypted backup and restore testing, browser hardening, native authentication safeguards, and fail-closed authorization.",
+      deliverables: ["RLS and runtime role", "Encrypted backup and restore test", "Security headers and WAF observation"],
     },
     {
       id: 4,
@@ -48,8 +48,8 @@ export function RoadmapStatus() {
       status: "launch",
       statusLabel: "Target Launch",
       title: "Academic year 2026/2027",
-      desc: "Official university-wide deployment across all 6 faculties (Teknik, Ekonomi, FKIP, FISIPOL, FAPERTA) at Universitas Tidar Magelang.",
-      deliverables: ["University-wide onboarding", "Dosen training guidelines", "Production deployment"],
+      desc: "Potential institutional rollout after formal review, approval, data-governance alignment, and a successful limited pilot.",
+      deliverables: ["Institutional approval", "Documented data governance", "Phased onboarding"],
     },
   ];
 

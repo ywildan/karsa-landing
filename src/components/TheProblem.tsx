@@ -58,7 +58,7 @@ export function TheProblem() {
             </h2>
 
             <p className="mt-6 text-base text-zinc-400 leading-relaxed font-sans max-w-sm">
-              Across 6 faculties and hundreds of classroom sections at Universitas Tidar, informal tally sheets fail both lecturers and active students.
+              In classroom workflows, informal tally sheets make participation difficult to verify, review, and carry consistently into an academic recap.
             </p>
 
             {/* Micro audit callout */}
@@ -68,7 +68,7 @@ export function TheProblem() {
                 <span>The Traditional Ledger Gap</span>
               </div>
               <p className="text-[11px] leading-relaxed text-zinc-500">
-                A single missed tally sheet at Week 11 affects up to 15% of a student&apos;s final participation component.
+                The core risk is not paper itself. It is a record that cannot be checked by the student, scoped by role, or traced when a correction is needed.
               </p>
             </div>
           </motion.div>

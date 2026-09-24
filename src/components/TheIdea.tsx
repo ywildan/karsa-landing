@@ -44,11 +44,11 @@ export function TheIdea() {
             className="mt-8 space-y-6 text-lg sm:text-xl text-zinc-600 leading-relaxed"
           >
             <p>
-              Karsa was built on one principle: every act of participation — a question, an answer, a presentation — deserves a permanent, transparent record. Not a grade. Not a metric. A record.
+              Karsa was built on one principle: every act of participation — a question, an answer, a presentation — deserves a clear, accountable record. Not a grade. Not a metric. A record.
             </p>
 
             <p className="text-base sm:text-lg text-zinc-500">
-              When a student raises their hand in an amphitheater at UNTIDAR Magelang, that courage should not evaporate when the lecture bell rings. It should sit in an immutable class record accessible to the student that same afternoon.
+              When a student raises their hand in an amphitheater at UNTIDAR Magelang, that courage should not evaporate when the lecture bell rings. It should appear in a class record the student can review.
             </p>
           </motion.div>
 
@@ -102,8 +102,8 @@ export function TheIdea() {
                 <span>Institutional Trust</span>
               </div>
               <p className="text-xs text-zinc-500 leading-relaxed">
-                Karsa guarantees data security in compliance with Indonesian
-                data protection regulations (UU PDP No. 27/2022).
+                Karsa applies data minimization, scoped access, and auditable
+                changes with reference to Indonesia&apos;s data protection principles.
               </p>
             </div>
           </motion.div>

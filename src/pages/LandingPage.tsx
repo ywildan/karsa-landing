@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { TheProblem } from "@/components/TheProblem";
 import { TheIdea } from "@/components/TheIdea";
 import { HowItWorks } from "@/components/HowItWorks";
+import { SecurityArchitecture } from "@/components/SecurityArchitecture";
 import { FeaturesBento } from "@/components/FeaturesBento";
 import { TheNumbers } from "@/components/TheNumbers";
 import { RoadmapStatus } from "@/components/RoadmapStatus";
@@ -40,6 +41,16 @@ export default function LandingPage() {
     };
   }, []);
 
+  useEffect(() => {
+    const targetId = window.location.hash.slice(1);
+    if (!targetId) return;
+
+    const frameId = requestAnimationFrame(() => {
+      document.getElementById(targetId)?.scrollIntoView();
+    });
+    return () => cancelAnimationFrame(frameId);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-zinc-900 selection:bg-[#CF6A12] selection:text-white font-sans antialiased">
       <Navbar onRequestAccess={() => setRequestModalOpen(true)} />
@@ -49,6 +60,7 @@ export default function LandingPage() {
         <TheProblem />
         <TheIdea />
         <HowItWorks />
+        <SecurityArchitecture />
         <InteractiveSandbox />
         <FeaturesBento onOpenExportPreview={() => setExportModalOpen(true)} />
         <TheNumbers />

@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ArrowRight, CheckCircle, ShieldCheck, Sparkles } from "lucide-react";
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   // Parallax on mouse move
   const mouseX = useMotionValue(0);
@@ -21,9 +29,16 @@ export function Hero() {
 
   const card3X = useTransform(smoothX, [-300, 300], [-4, 4]);
   const card3Y = useTransform(smoothY, [-300, 300], [5, -5]);
+  const card1Transform = useMotionTemplate`translate3d(${card1X}px, ${card1Y}px, 0)`;
+  const card2Transform = useMotionTemplate`translate3d(${card2X}px, ${card2Y}px, 0) rotate(-1deg)`;
+  const card3Transform = useMotionTemplate`translate3d(${card3X}px, ${card3Y}px, 0)`;
 
   useEffect(() => {
     setMounted(true);
+    if (reduceMotion || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return;
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
@@ -33,7 +48,7 @@ export function Hero() {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, reduceMotion]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -47,10 +62,10 @@ export function Hero() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 18 },
+    hidden: { opacity: 0, transform: "translateY(18px)" },
     visible: {
       opacity: 1,
-      y: 0,
+      transform: "translateY(0px)",
       transition: {
         duration: 0.7,
         ease: [0.22, 1, 0.36, 1] as const,
@@ -82,7 +97,7 @@ export function Hero() {
             <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1 font-mono text-xs uppercase tracking-widest text-zinc-600 shadow-2xs">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" />
-                KARSA / EST. 2026 / UNTIDAR
+                KARSA / INDEPENDENT PILOT / 2026
               </span>
             </motion.div>
 
@@ -101,7 +116,7 @@ export function Hero() {
               variants={itemVariants}
               className="mt-6 sm:mt-8 text-lg sm:text-xl text-zinc-600 leading-relaxed max-w-[540px] font-normal"
             >
-              Karsa is the activity tracking system for Universitas Tidar. It replaces paper logs and spreadsheets with a single source of truth — for students, instructors, and administrators.
+              Karsa is an independent classroom-participation pilot designed for the UNTIDAR environment. It gives students, PJ, and administrators one accountable record instead of scattered paper notes.
             </motion.p>
 
             {/* CTAs */}
@@ -110,7 +125,7 @@ export function Hero() {
               className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4"
             >
               <a
-                href="https://karsa-one.vercel.app/login"
+                href="https://www.sikarsa.id/login"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2.5 rounded-lg bg-[#CF6A12] px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-[#B85B0D] hover:shadow hover:scale-[1.01] active:scale-[0.99]"
@@ -152,9 +167,9 @@ export function Hero() {
               
               {/* Fragment 1: Point Award Card */}
               <motion.div
-                style={{ x: card1X, y: card1Y }}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
+                style={{ transform: reduceMotion ? "none" : card1Transform }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 className="relative rounded-xl border border-zinc-200/80 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
               >
@@ -184,11 +199,11 @@ export function Hero() {
 
               {/* Fragment 2: Class Leaderboard Row */}
               <motion.div
-                style={{ x: card2X, y: card2Y }}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
+                style={{ transform: reduceMotion ? "none" : card2Transform }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="relative -rotate-1 rounded-xl border border-zinc-200/80 bg-white p-4 shadow-md hover:rotate-0 transition-transform duration-300"
+                className="relative rounded-xl border border-zinc-200/80 bg-white p-4 shadow-md"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -223,9 +238,9 @@ export function Hero() {
 
               {/* Fragment 3: System Validation Tag */}
               <motion.div
-                style={{ x: card3X, y: card3Y }}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
+                style={{ transform: reduceMotion ? "none" : card3Transform }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 className="relative translate-x-2 rounded-xl border border-zinc-200/70 bg-zinc-900 text-white p-3.5 shadow-sm"
               >
@@ -234,11 +249,11 @@ export function Hero() {
                     <CheckCircle className="h-4 w-4 text-emerald-400" />
                     <span className="text-zinc-200">Server Guard Validated</span>
                   </div>
-                  <span className="text-zinc-400 text-[10px]">UNTIDAR SSO</span>
+                  <span className="text-zinc-400 text-[10px]">SERVER AUTHZ</span>
                 </div>
                 <div className="mt-2 text-[11px] font-mono text-zinc-400 flex items-center justify-between border-t border-zinc-800 pt-2">
-                  <span>Session Hash: 4e9a...81f</span>
-                  <span className="text-emerald-400 font-medium">0.04s latency</span>
+                  <span>Authorization: current role</span>
+                  <span className="text-emerald-400 font-medium">Fail-closed</span>
                 </div>
               </motion.div>
 
@@ -250,7 +265,7 @@ export function Hero() {
                 className="flex items-center justify-center gap-2 text-[11px] font-mono text-zinc-400 pt-1"
               >
                 <Sparkles className="h-3 w-3 text-[#CF6A12]" />
-                <span>Zero paper logs • Zero post-exam guesswork</span>
+                <span>Scoped access • Auditable changes</span>
               </motion.div>
 
             </div>

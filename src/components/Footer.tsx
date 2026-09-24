@@ -42,7 +42,7 @@ export function Footer() {
             <ul className="space-y-2.5 text-xs text-zinc-600">
               <li>
                 <a
-                  href="https://karsa-one.vercel.app/login"
+                  href="https://www.sikarsa.id/login"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 hover:text-zinc-950 transition-colors"
@@ -92,19 +92,19 @@ export function Footer() {
           {/* Column 3: Institutional Stamp (3 cols) */}
           <div className="md:col-span-3 space-y-3 font-mono text-xs text-zinc-500">
             <h4 className="uppercase tracking-wider text-zinc-900 font-semibold">
-              Institution
+              Academic Context
             </h4>
             <div>
               <div className="font-medium text-zinc-800">Universitas Tidar</div>
               <div className="text-[11px] text-zinc-500 mt-0.5">
-                Jl. Kapten Suparman No.39, Tuguran, Potrobangsan, Kec. Magelang Utara, Kota Magelang, Jawa Tengah 56116
+                Designed independently for classroom participation workflows in the UNTIDAR environment. Not yet an official university service.
               </div>
             </div>
 
             <div className="pt-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-2.5 py-1 text-[10px] text-zinc-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                <span>Staging Operational • Fase 5</span>
+                <span>Independent Pilot • Fase 5</span>
               </span>
             </div>
           </div>
@@ -114,7 +114,7 @@ export function Footer() {
         {/* Bottom Bar: Copyright & Privacy */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-400">
           <div>
-            © 2026 Karsa. Universitas Tidar. All rights reserved.
+            © 2026 Karsa. Independent project for the UNTIDAR environment.
           </div>
           <Link
             to="/privacy"
@@ -123,7 +123,7 @@ export function Footer() {
             <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
-            <span>Privacy Policy</span>
+            <span>Privasi & Keamanan</span>
           </Link>
         </div>
 

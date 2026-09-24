@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 export function TheNumbers() {
   const stats = [
     {
-      number: "1",
-      label: "record per act",
-      sub: "Atomic logging for every question, answer, and presentation",
-    },
-    {
       number: "3",
-      label: "taps to input",
-      sub: "Zero friction in active classrooms during live lectures",
+      label: "scoped roles",
+      sub: "Student, PJ, and admin permissions are enforced on the server",
     },
     {
-      number: "0",
-      label: "spreadsheets",
-      sub: "No manual tallying, no lost attendance binder pages",
+      number: "15",
+      label: "minute access token",
+      sub: "Short-lived native access with revocable refresh sessions",
+    },
+    {
+      number: "30",
+      label: "day backup retention",
+      sub: "Daily encrypted artifacts with restore tested in isolation",
     },
   ];
 
@@ -57,7 +57,7 @@ export function TheNumbers() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight-editorial text-white"
           >
-            Three architectural invariants.
+            Security facts, not vanity metrics.
           </motion.h2>
         </div>
 
@@ -95,7 +95,7 @@ export function TheNumbers() {
         {/* Note below */}
         <div className="mt-8 text-center sm:text-left">
           <span className="font-mono text-xs text-zinc-500">
-            No synthetic uptime badges. No inflated volume claims. Purpose-built for Universitas Tidar.
+            Current implementation values. Institutional policies may refine retention before formal adoption.
           </span>
         </div>
 

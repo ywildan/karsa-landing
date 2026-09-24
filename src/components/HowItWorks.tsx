@@ -60,7 +60,7 @@ export function HowItWorks() {
           >
             Three steps from question
             <br />
-            <span className="italic font-normal text-zinc-700">to permanent ledger.</span>
+            <span className="italic font-normal text-zinc-700">to accountable record.</span>
           </motion.h2>
 
           <motion.p
@@ -231,7 +231,7 @@ export function HowItWorks() {
                     <div className="flex items-center justify-between font-medium text-emerald-900">
                       <div className="flex items-center gap-1.5">
                         <CheckCircle className="h-3.5 w-3.5 text-emerald-600" />
-                        <span>UNTIDAR SSO Guard</span>
+                        <span>Domain &amp; Role Guard</span>
                       </div>
                       <span className="text-[9px] font-mono text-emerald-700">200 OK</span>
                     </div>
@@ -244,18 +244,18 @@ export function HowItWorks() {
                     <span className="text-xs">↓</span>
                   </div>
 
-                  {/* Flow Item 3: Immutable Ledger Record */}
+                  {/* Flow Item 3: Audited Point Record */}
                   <div className="rounded-lg border border-zinc-200 bg-white p-2.5">
                     <div className="flex items-center justify-between text-[11px] text-zinc-900">
                       <div className="flex items-center gap-1.5">
                         <Layers className="h-3.5 w-3.5 text-zinc-600" />
-                        <span className="font-semibold">Immutable Ledger Commit</span>
+                        <span className="font-semibold">Audited Point Record</span>
                       </div>
                       <span className="text-[10px] font-mono text-zinc-400">0.038s</span>
                     </div>
                     <div className="mt-1 flex items-center justify-between text-[10px] text-zinc-500">
-                      <span>Hash: sha256:d8a...1c</span>
-                      <span className="text-[#CF6A12] font-semibold">+2 points locked</span>
+                      <span>PJ + class context recorded</span>
+                      <span className="text-[#CF6A12] font-semibold">+2 points saved</span>
                     </div>
                   </div>
                 </div>

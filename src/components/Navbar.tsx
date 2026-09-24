@@ -47,7 +47,7 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
 
             <div className="hidden lg:flex items-center gap-1.5 rounded-full border border-zinc-200/80 bg-zinc-50/80 px-2.5 py-0.5 text-[11px] font-mono text-zinc-600">
               <span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" />
-              <span>Fase 5 • 2026/2027</span>
+              <span>Independent Pilot • Fase 5</span>
             </div>
           </div>
 
@@ -78,6 +78,12 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
               Capabilities
             </a>
             <a
+              href="#security"
+              className="transition-colors hover:text-zinc-950"
+            >
+              Security
+            </a>
+            <a
               href="#status"
               className="transition-colors hover:text-zinc-950"
             >
@@ -95,7 +101,7 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
             </button>
 
             <a
-              href="https://karsa-one.vercel.app/login"
+              href="https://www.sikarsa.id/login"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 rounded-lg bg-zinc-900 px-3.5 py-1.5 text-xs font-medium text-white transition-all hover:bg-zinc-800 hover:shadow-xs active:scale-[0.99]"
@@ -151,6 +157,13 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
               className="block rounded-md px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
             >
               Capabilities
+            </a>
+            <a
+              href="#security"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block rounded-md px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
+            >
+              Security
             </a>
             <a
               href="#status"

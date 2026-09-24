@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { X, FileSpreadsheet, Download, Check, Shield } from "lucide-react";
+import { X, FileSpreadsheet, Shield } from "lucide-react";
 
 interface ExportPreviewModalProps {
   isOpen: boolean;
@@ -7,24 +6,14 @@ interface ExportPreviewModalProps {
 }
 
 export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps) {
-  const [downloaded, setDownloaded] = useState(false);
-  const [activeTab, setActiveTab] = useState<"summary" | "session">("summary");
-
   if (!isOpen) return null;
 
-  const handleDownload = () => {
-    setDownloaded(true);
-    setTimeout(() => setDownloaded(false), 3000);
-  };
-
   const sampleRows = [
-    { npm: "2210501001", name: "Aditya Pratama Nugraha", q: 8, a: 6, p: 4, total: 36, grade: "A (10%)" },
-    { npm: "2210501002", name: "Bima Arya Wicaksono", q: 5, a: 4, p: 2, total: 24, grade: "A (10%)" },
-    { npm: "2210501003", name: "Citra Dewi Lestari", q: 6, a: 5, p: 3, total: 29, grade: "A (10%)" },
-    { npm: "2210501004", name: "Dimas Suryo Prasetyo", q: 3, a: 2, p: 1, total: 14, grade: "B+ (8.5%)" },
-    { npm: "2210501005", name: "Eka Putri Rahmawati", q: 7, a: 4, p: 2, total: 28, grade: "A (10%)" },
-    { npm: "2210501006", name: "Fajar Hidayatullah", q: 4, a: 3, p: 0, total: 15, grade: "B+ (8.5%)" },
-    { npm: "2210501007", name: "Gita Maharani", q: 6, a: 7, p: 4, total: 38, grade: "A (10%)" },
+    { nim: "2210501001", name: "Aditya Pratama Nugraha", bahasa: 12, statistik: 8, pajak: 7, total: 27 },
+    { nim: "2210501002", name: "Bima Arya Wicaksono", bahasa: 9, statistik: 6, pajak: 8, total: 23 },
+    { nim: "2210501003", name: "Citra Dewi Lestari", bahasa: 14, statistik: 10, pajak: 5, total: 29 },
+    { nim: "2210501004", name: "Dimas Suryo Prasetyo", bahasa: 6, statistik: 7, pajak: 4, total: 17 },
+    { nim: "2210501005", name: "Eka Putri Rahmawati", bahasa: 11, statistik: 9, pajak: 6, total: 26 },
   ];
 
   return (
@@ -44,14 +33,14 @@ export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps)
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-serif text-lg font-medium text-zinc-900">
-                  UNTIDAR SIAKAD Export Preview
+                  Karsa Excel Recap Preview
                 </h3>
                 <span className="rounded-full bg-zinc-200/80 px-2 py-0.5 font-mono text-[10px] text-zinc-700">
                   .xlsx format
                 </span>
               </div>
               <p className="font-mono text-xs text-zinc-500">
-                IF2204 • Struktur Data (Kelas 02) • Semester Genap 2025/2026
+                Kelas K1 • Akuntansi Perpajakan • Semester Ganjil 2026/2027
               </p>
             </div>
           </div>
@@ -66,32 +55,13 @@ export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps)
         {/* Content */}
         <div className="p-6">
           <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-1 rounded-lg bg-zinc-100 p-1 font-mono text-xs">
-              <button
-                onClick={() => setActiveTab("summary")}
-                className={`rounded-md px-3 py-1 transition-colors ${
-                  activeTab === "summary"
-                    ? "bg-white text-zinc-900 shadow-xs font-medium"
-                    : "text-zinc-600 hover:text-zinc-900"
-                }`}
-              >
-                Semester Summary
-              </button>
-              <button
-                onClick={() => setActiveTab("session")}
-                className={`rounded-md px-3 py-1 transition-colors ${
-                  activeTab === "session"
-                    ? "bg-white text-zinc-900 shadow-xs font-medium"
-                    : "text-zinc-600 hover:text-zinc-900"
-                }`}
-              >
-                Session Breakdown (1-14)
-              </button>
+            <div className="rounded-lg bg-zinc-100 px-3 py-1.5 font-mono text-xs font-medium text-zinc-700">
+              Rekap poin per mata kuliah
             </div>
 
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
               <Shield className="h-3.5 w-3.5 text-zinc-400" />
-              <span>Verified PJ Signature: 0x8F9...C2</span>
+              <span>Admin-only export</span>
             </div>
           </div>
 
@@ -100,28 +70,24 @@ export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps)
             <table className="w-full border-collapse text-left text-xs">
               <thead>
                 <tr className="bg-zinc-50 font-mono text-zinc-500 border-b border-zinc-200">
-                  <th className="py-2.5 px-3 font-medium">NPM</th>
                   <th className="py-2.5 px-3 font-medium">Nama Mahasiswa</th>
-                  <th className="py-2.5 px-3 font-medium text-center">Tanya (1pt)</th>
-                  <th className="py-2.5 px-3 font-medium text-center">Jawab (2pt)</th>
-                  <th className="py-2.5 px-3 font-medium text-center">Presentasi (4pt)</th>
+                  <th className="py-2.5 px-3 font-medium">NIM</th>
+                  <th className="py-2.5 px-3 font-medium text-center">Bahasa Indonesia</th>
+                  <th className="py-2.5 px-3 font-medium text-center">Statistik</th>
+                  <th className="py-2.5 px-3 font-medium text-center">Perpajakan</th>
                   <th className="py-2.5 px-3 font-medium text-right text-zinc-900">Total Poin</th>
-                  <th className="py-2.5 px-3 font-medium text-right text-[#CF6A12]">Konversi SIAKAD</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100 font-sans">
                 {sampleRows.map((row) => (
-                  <tr key={row.npm} className="hover:bg-zinc-50/70 transition-colors">
-                    <td className="py-2.5 px-3 font-mono text-zinc-600">{row.npm}</td>
+                  <tr key={row.nim} className="hover:bg-zinc-50/70 transition-colors">
                     <td className="py-2.5 px-3 font-medium text-zinc-900">{row.name}</td>
-                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.q}</td>
-                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.a}</td>
-                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.p}</td>
+                    <td className="py-2.5 px-3 font-mono text-zinc-600">{row.nim}</td>
+                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.bahasa}</td>
+                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.statistik}</td>
+                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.pajak}</td>
                     <td className="py-2.5 px-3 text-right font-mono font-semibold text-zinc-900">
                       {row.total}
-                    </td>
-                    <td className="py-2.5 px-3 text-right font-mono font-medium text-[#CF6A12]">
-                      {row.grade}
                     </td>
                   </tr>
                 ))}
@@ -130,25 +96,8 @@ export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps)
           </div>
 
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-zinc-500 font-mono">
-            <span>Formula standard: Keaktifan = (Poin Mahasiswa / Max Poin Kelas) × 100%</span>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleDownload}
-                className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 font-sans text-xs font-medium text-white hover:bg-zinc-800 transition-colors"
-              >
-                {downloaded ? (
-                  <>
-                    <Check className="h-3.5 w-3.5 text-emerald-400" />
-                    <span>File exported (Sample)</span>
-                  </>
-                ) : (
-                  <>
-                    <Download className="h-3.5 w-3.5" />
-                    <span>Download sample .xlsx</span>
-                  </>
-                )}
-              </button>
-            </div>
+            <span>Layout preview only — export asli dibuat dari kelas yang dipilih admin.</span>
+            <span className="rounded-md bg-zinc-100 px-2.5 py-1 text-zinc-600">Nama · NIM · Matkul · Total</span>
           </div>
         </div>
       </div>

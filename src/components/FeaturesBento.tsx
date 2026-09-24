@@ -195,7 +195,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center justify-between font-mono text-xs text-zinc-500 mb-2">
                 <span className="text-emerald-700 font-semibold flex items-center gap-1">
-                  <ShieldCheck className="h-3.5 w-3.5" /> FERPA & PRIVACY COMPLIANT
+                  <ShieldCheck className="h-3.5 w-3.5" /> PRIVACY BY DESIGN
                 </span>
                 <button
                   onClick={() => setMaskNames(!maskNames)}
@@ -316,7 +316,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
                 <FileSpreadsheet className="h-3.5 w-3.5 text-emerald-700" />
-                <span>SIAKAD COMPLIANCE</span>
+                <span>ACADEMIC RECAP</span>
               </div>
 
               <h3 className="font-serif text-2xl text-zinc-950 tracking-tight">
@@ -331,11 +331,11 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div className="mt-5">
               <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-3 font-mono text-xs">
                 <div className="flex items-center justify-between text-zinc-700">
-                  <span>UNTIDAR_SIAKAD_2026.xlsx</span>
-                  <span className="text-emerald-700 font-semibold">100%</span>
+                  <span>KARSA_REKAP_2026.xlsx</span>
+                  <span className="text-emerald-700 font-semibold">READY</span>
                 </div>
                 <div className="mt-1 text-[11px] text-zinc-500">
-                  Pre-formatted column weights for direct import into faculty grading portal.
+                  Structured recap for review and follow-up by the academic administrator.
                 </div>
               </div>
 
@@ -360,7 +360,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
                 <Lock className="h-3.5 w-3.5 text-[#CF6A12]" />
-                <span>GOOGLE WORKSPACE SSO</span>
+                <span>GOOGLE OAUTH</span>
               </div>
 
               <h3 className="font-serif text-2xl sm:text-3xl text-zinc-950 tracking-tight">
@@ -415,7 +415,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
                 <DatabaseZap className="h-3.5 w-3.5 text-[#CF6A12]" />
-                <span>PERMANENT ARCHIVE</span>
+                <span>AUDITABLE HISTORY</span>
               </div>
 
               <h3 className="font-serif text-2xl text-zinc-950 tracking-tight">
@@ -423,17 +423,17 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
               </h3>
 
               <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans">
-                Every record. Permanent.
+                Every important change, traceable.
               </p>
             </div>
 
             <div className="mt-5 rounded-lg border border-zinc-200 bg-white p-3 font-mono text-xs">
               <div className="flex items-center justify-between text-zinc-700 text-[11px]">
                 <span>Ledger Integrity</span>
-                <span className="text-emerald-700 font-bold">100% Immutable</span>
+                <span className="text-emerald-700 font-bold">Snapshot-backed</span>
               </div>
               <div className="mt-1.5 text-[10px] text-zinc-400">
-                Each point entry contains timestamp, PJ identity, course section ID, and category cryptographic hash.
+                Point activity records timestamp, PJ identity, class context, and an audit snapshot for important changes.
               </div>
             </div>
           </motion.div>

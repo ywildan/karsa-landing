@@ -28,7 +28,7 @@ interface AuditLog {
   category: string;
   points: number;
   time: string;
-  hash: string;
+  reference: string;
 }
 
 export function InteractiveSandbox() {
@@ -52,7 +52,7 @@ export function InteractiveSandbox() {
       category: "Pertanyaan (Tanya)",
       points: 1,
       time: "10:32 WIB",
-      hash: "0x4a9b...7e1",
+      reference: "EVT-1032-A",
     },
     {
       id: "log-2",
@@ -60,7 +60,7 @@ export function InteractiveSandbox() {
       category: "Presentasi Kelompok",
       points: 4,
       time: "10:15 WIB",
-      hash: "0x88c1...99a",
+      reference: "EVT-1015-B",
     },
   ]);
 
@@ -74,7 +74,7 @@ export function InteractiveSandbox() {
       category: catName,
       points: pts,
       time: new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) + " WIB",
-      hash: `0x${Math.random().toString(16).substring(2, 8)}...${Math.random().toString(16).substring(2, 5)}`,
+      reference: `EVT-${Date.now().toString().slice(-6)}`,
     };
 
     setAuditLogs([newLogs, ...auditLogs.slice(0, 4)]);
@@ -401,7 +401,7 @@ export function InteractiveSandbox() {
                   <History className="h-4 w-4 text-[#CF6A12]" />
                   <span>Real-Time Audit Ledger</span>
                 </div>
-                <span className="text-[10px] text-zinc-500 uppercase">Immutable Log</span>
+                <span className="text-[10px] text-zinc-500 uppercase">Audit Snapshot</span>
               </div>
 
               <div className="space-y-2.5">
@@ -413,7 +413,7 @@ export function InteractiveSandbox() {
                     <div>
                       <div className="text-zinc-200 font-medium">{log.studentName}</div>
                       <div className="text-[11px] text-zinc-500 mt-0.5">
-                        {log.category} • <span className="text-zinc-400">{log.hash}</span>
+                        {log.category} • <span className="text-zinc-400">{log.reference}</span>
                       </div>
                     </div>
                     <div className="text-right">
@@ -425,14 +425,14 @@ export function InteractiveSandbox() {
               </div>
             </div>
 
-            {/* UNTIDAR SIAKAD Compliance Badge */}
+            {/* Academic workflow note */}
             <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/30 p-4 font-mono text-xs text-zinc-400">
               <div className="flex items-center gap-2 text-zinc-300 mb-1 font-medium">
                 <Sparkles className="h-3.5 w-3.5 text-[#CF6A12]" />
-                <span>UNTIDAR Academic Standard</span>
+                <span>Academic Review Workflow</span>
               </div>
               <p className="text-[11px] text-zinc-500 leading-relaxed font-sans">
-                Activity records are locked directly to the semester syllabus. At the conclusion of Week 14, records are signed and converted to official SIAKAD grades.
+                Activity records remain available for class and semester review. Any use in official grading remains subject to the lecturer and university&apos;s approved process.
               </p>
             </div>
 
