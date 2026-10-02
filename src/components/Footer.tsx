@@ -41,6 +41,11 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs text-zinc-600">
               <li>
+                <Link to="/download" className="inline-flex items-center gap-1 hover:text-[#CF6A12] transition-colors">
+                  Download Karsa Mobile <ArrowUpRight className="h-3 w-3" />
+                </Link>
+              </li>
+              <li>
                 <a
                   href="https://www.sikarsa.id/login"
                   target="_blank"
