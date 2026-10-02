@@ -27,6 +27,7 @@ type GithubRelease = {
   published_at: string | null;
   draft: boolean;
   prerelease: boolean;
+  body: string | null;
   assets: GithubAsset[];
 };
 
@@ -83,6 +84,96 @@ function DownloadLink({ release, prominent = false }: { release: MobileRelease; 
       <Download className="h-4 w-4" aria-hidden="true" />
       Unduh APK {prominent ? "terbaru" : ""}
     </a>
+  );
+}
+
+function renderInline(text: string, keyPrefix: string): ReactNode[] {
+  const parts: ReactNode[] = [];
+  const pattern = /(\*\*[^*]+\*\*)|(https?:\/\/[^\s)]+)/g;
+  let lastIndex = 0;
+  let key = 0;
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
+    if (match[1]) {
+      parts.push(
+        <strong key={`${keyPrefix}-b${key++}`} className="font-semibold text-zinc-900">
+          {match[1].slice(2, -2)}
+        </strong>
+      );
+    } else {
+      const url = match[2];
+      const prMatch = url.match(/\/pull\/(\d+)/);
+      const label = prMatch ? `#${prMatch[1]}` : url.replace(/^https?:\/\/(www\.)?/, "");
+      parts.push(
+        <a
+          key={`${keyPrefix}-a${key++}`}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-[#CF6A12] underline decoration-[#CF6A12]/40 underline-offset-2 hover:decoration-[#CF6A12]"
+        >
+          {label}
+        </a>
+      );
+    }
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+  return parts;
+}
+
+function ReleaseNotes({ body }: { body: string | null }) {
+  if (!body || !body.trim()) return null;
+
+  const blocks: ReactNode[] = [];
+  let listItems: ReactNode[] = [];
+  const flushList = () => {
+    if (listItems.length > 0) {
+      blocks.push(
+        <ul key={`notes-ul-${blocks.length}`} className="mt-4 space-y-2.5">
+          {listItems}
+        </ul>
+      );
+      listItems = [];
+    }
+  };
+
+  body.split("\n").forEach((rawLine, index) => {
+    const line = rawLine.trim();
+    if (!line) return;
+    if (line.startsWith("## ")) {
+      flushList();
+      blocks.push(
+        <h4 key={`notes-h-${index}`} className="font-serif text-xl tracking-tight text-zinc-950">
+          {renderInline(line.slice(3), `h${index}`)}
+        </h4>
+      );
+    } else if (line.startsWith("* ") || line.startsWith("- ")) {
+      listItems.push(
+        <li key={`notes-li-${index}`} className="flex gap-2.5 text-sm leading-6 text-zinc-600">
+          <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-[#CF6A12]" aria-hidden="true" />
+          <span>{renderInline(line.slice(2), `li${index}`)}</span>
+        </li>
+      );
+    } else {
+      flushList();
+      blocks.push(
+        <p key={`notes-p-${index}`} className="mt-4 text-sm leading-7 text-zinc-600">
+          {renderInline(line, `p${index}`)}
+        </p>
+      );
+    }
+  });
+  flushList();
+  if (blocks.length === 0) return null;
+
+  return (
+    <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-8 sm:p-10">
+      <div className="font-mono text-[11px] uppercase tracking-widest text-[#CF6A12]">Catatan rilis</div>
+      <h3 className="mt-3 font-serif text-3xl tracking-tight text-zinc-950 sm:text-4xl">Yang berubah di versi ini.</h3>
+      <div className="mt-6 border-t border-zinc-100 pt-6">{blocks}</div>
+    </div>
   );
 }
 
@@ -180,7 +271,7 @@ export default function DownloadPage() {
         <section className="border-b border-zinc-200/70 bg-white py-6"><div className="mx-auto grid max-w-7xl gap-5 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">{[[ShieldCheck, "Sumber resmi", "APK dari rilis proyek Karsa"], [FileClock, "Riwayat versi", "Pembaruan terdokumentasi"], [Smartphone, "Android", "Satu aplikasi untuk kelas dan Karsa Lib"]].map(([Icon, title, detail]) => { const IconComponent = Icon as typeof ShieldCheck; return <div key={title as string} className="flex items-center gap-3"><IconComponent className="h-5 w-5 text-[#CF6A12]" /><div><strong className="block text-xs text-zinc-900">{title as string}</strong><span className="text-[11px] text-zinc-500">{detail as string}</span></div></div>; })}</div></section>
 
         <section id="rilis" className="scroll-mt-20 py-24 lg:py-28"><div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><Reveal><div className="font-mono text-[11px] uppercase tracking-widest text-[#CF6A12]">01 / RILIS TERBARU</div><h2 className="mt-3 font-serif text-5xl leading-none tracking-tight text-zinc-950 sm:text-6xl">Versi yang siap dipakai.</h2><p className="mt-4 max-w-xl text-sm leading-7 text-zinc-500">Gunakan rilis terbaru untuk fitur dan perbaikan Karsa Mobile yang paling lengkap.</p></Reveal>
-          {loading ? <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-10 text-sm text-zinc-500" role="status">Memuat rilis resmi...</div> : latest ? <Reveal delay={0.08}><div className="mt-8 grid overflow-hidden rounded-2xl bg-[#101012] text-white shadow-[0_20px_50px_rgba(20,20,25,0.15)] lg:grid-cols-[1.25fr_.75fr]"><div className="p-8 sm:p-10"><span className="inline-flex items-center gap-2 rounded border border-[#654226] bg-[#332215] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-orange-200"><span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" />Recommended release</span><h3 className="mt-6 font-serif text-6xl leading-none tracking-tight sm:text-7xl">Karsa {version(latest)}</h3><p className="mt-4 max-w-lg text-sm leading-7 text-zinc-400">Rilis Android terbaru yang tersedia dari proyek Karsa. Detail perubahan dan aset lengkap dapat dilihat di halaman rilis GitHub.</p><div className="mt-7 flex flex-wrap items-center gap-4"><DownloadLink release={latest} prominent /><span className="font-mono text-xs text-zinc-400">{formatSize(latest.apk.size)} · APK Android</span></div><a href={latest.html_url} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white">Lihat catatan rilis <ArrowUpRight className="h-3.5 w-3.5" /></a></div><div className="border-t border-white/10 bg-white/[0.035] p-8 sm:p-10 lg:border-l lg:border-t-0"><dl className="space-y-5">{[["Platform", "Android"], ["Versi", version(latest)], ["Dirilis", formatDate(latest.published_at)], ["Ukuran APK", formatSize(latest.apk.size)]].map(([label, value]) => <div key={label} className="flex justify-between gap-5 border-b border-white/10 pb-4 text-sm"><dt className="text-zinc-500">{label}</dt><dd className="text-right text-zinc-200">{value}</dd></div>)}</dl><div className="mt-6 flex gap-3 rounded-lg border border-white/10 p-4 text-xs leading-6 text-zinc-400"><ShieldCheck className="mt-1 h-4 w-4 shrink-0 text-[#CF6A12]" /><span>{latest.apk.digest?.startsWith("sha256:") ? <>SHA-256: <code className="break-all text-[10px] text-zinc-200">{latest.apk.digest.slice(7)}</code></> : "Unduh hanya dari tautan rilis resmi. Periksa sumber berkas sebelum memasang APK."}</span></div></div></div></Reveal> : <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-8 text-sm leading-7 text-zinc-700"><strong className="block text-base text-zinc-900">{error ? "Rilis belum bisa dimuat" : "Belum ada APK publik"}</strong><span>{error ? "Koneksi ke daftar rilis GitHub sedang bermasalah. Coba buka halaman rilis proyek secara langsung." : "APK yang ditandatangani akan muncul di sini setelah rilis resmi diterbitkan."}</span><a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center gap-1 font-medium text-[#CF6A12]">Buka rilis GitHub <ArrowUpRight className="h-4 w-4" /></a></div>}
+          {loading ? <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-10 text-sm text-zinc-500" role="status">Memuat rilis resmi...</div> : latest ? <Reveal delay={0.08}><div className="mt-8 grid overflow-hidden rounded-2xl bg-[#101012] text-white shadow-[0_20px_50px_rgba(20,20,25,0.15)] lg:grid-cols-[1.25fr_.75fr]"><div className="p-8 sm:p-10"><span className="inline-flex items-center gap-2 rounded border border-[#654226] bg-[#332215] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-orange-200"><span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" />Recommended release</span><h3 className="mt-6 font-serif text-6xl leading-none tracking-tight sm:text-7xl">Karsa {version(latest)}</h3><p className="mt-4 max-w-lg text-sm leading-7 text-zinc-400">Rilis Android terbaru yang tersedia dari proyek Karsa. Detail perubahan dan aset lengkap dapat dilihat di halaman rilis GitHub.</p><div className="mt-7 flex flex-wrap items-center gap-4"><DownloadLink release={latest} prominent /><span className="font-mono text-xs text-zinc-400">{formatSize(latest.apk.size)} · APK Android</span></div><a href={latest.html_url} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white">Lihat catatan rilis <ArrowUpRight className="h-3.5 w-3.5" /></a></div><div className="border-t border-white/10 bg-white/[0.035] p-8 sm:p-10 lg:border-l lg:border-t-0"><dl className="space-y-5">{[["Platform", "Android"], ["Versi", version(latest)], ["Dirilis", formatDate(latest.published_at)], ["Ukuran APK", formatSize(latest.apk.size)]].map(([label, value]) => <div key={label} className="flex justify-between gap-5 border-b border-white/10 pb-4 text-sm"><dt className="text-zinc-500">{label}</dt><dd className="text-right text-zinc-200">{value}</dd></div>)}</dl><div className="mt-6 flex gap-3 rounded-lg border border-white/10 p-4 text-xs leading-6 text-zinc-400"><ShieldCheck className="mt-1 h-4 w-4 shrink-0 text-[#CF6A12]" /><span>{latest.apk.digest?.startsWith("sha256:") ? <>SHA-256: <code className="break-all text-[10px] text-zinc-200">{latest.apk.digest.slice(7)}</code></> : "Unduh hanya dari tautan rilis resmi. Periksa sumber berkas sebelum memasang APK."}</span></div></div></div><ReleaseNotes body={latest.body} /></Reveal> : <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-8 text-sm leading-7 text-zinc-700"><strong className="block text-base text-zinc-900">{error ? "Rilis belum bisa dimuat" : "Belum ada APK publik"}</strong><span>{error ? "Koneksi ke daftar rilis GitHub sedang bermasalah. Coba buka halaman rilis proyek secara langsung." : "APK yang ditandatangani akan muncul di sini setelah rilis resmi diterbitkan."}</span><a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center gap-1 font-medium text-[#CF6A12]">Buka rilis GitHub <ArrowUpRight className="h-4 w-4" /></a></div>}
         </div></section>
 
         <section id="arsip" className="scroll-mt-20 border-y border-zinc-200/70 bg-white py-24"><div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-8"><Reveal><div className="font-mono text-[11px] uppercase tracking-widest text-[#CF6A12]">02 / RIWAYAT RILIS</div><h2 className="mt-3 font-serif text-5xl leading-none tracking-tight text-zinc-950">Versi sebelumnya.</h2><p className="mt-4 max-w-sm text-sm leading-7 text-zinc-500">Arsip untuk kompatibilitas atau pengujian. Jika tidak ada alasan khusus, gunakan rilis terbaru.</p><div className="mt-7 max-w-sm border-l-2 border-[#CF6A12] pl-4 text-xs leading-6 text-zinc-500">Versi lama mungkin tidak mendukung semua fitur baru. Hindari APK dari sumber yang tidak dikenal.</div></Reveal><Reveal delay={0.08}><div className="divide-y divide-zinc-200 border-y border-zinc-200">{loading ? <p className="py-8 text-sm text-zinc-500">Memuat arsip...</p> : releases.slice(1, 6).length ? releases.slice(1, 6).map((release) => <div key={release.id} className="flex flex-wrap items-center gap-x-6 gap-y-3 py-5 sm:flex-nowrap"><span className="min-w-20 font-serif text-2xl text-zinc-900">{version(release)}</span><div className="min-w-0 flex-1"><strong className="block truncate text-xs font-semibold text-zinc-900">{release.name || `Karsa Mobile ${version(release)}`}</strong><span className="font-mono text-[10px] text-zinc-500">{formatDate(release.published_at)} · {formatSize(release.apk.size)}</span></div><a href={release.apk.browser_download_url} aria-label={`Unduh Karsa Mobile ${version(release)}`} className="inline-flex items-center gap-2 text-xs font-medium text-[#CF6A12] hover:text-[#B85B0D]">Unduh <Download className="h-3.5 w-3.5" /></a></div>) : <p className="py-8 text-sm text-zinc-500">Belum ada versi lama yang tersedia.</p>}</div><a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-xs font-medium text-zinc-700 hover:text-[#CF6A12]">Lihat semua rilis di GitHub <ArrowUpRight className="h-4 w-4" /></a></Reveal></div></section>
