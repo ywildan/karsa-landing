@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -177,6 +177,51 @@ function ReleaseNotes({ body }: { body: string | null }) {
   );
 }
 
+const FAQS: [string, string][] = [
+  ["Haruskah menghapus aplikasi lama sebelum memperbarui?", "Biasanya tidak. APK baru bisa memperbarui aplikasi lama jika identitas paket dan kunci penandatanganannya sama. Gunakan rilis resmi."],
+  ["Apakah versi lama masih tersedia?", "Jika sudah pernah diterbitkan sebagai rilis GitHub dengan APK, versi lama akan muncul di bagian arsip."],
+  ["Apakah unduhan membutuhkan akun Karsa?", "Tidak. Halaman ini terbuka untuk umum. Akun mahasiswa UNTIDAR diperlukan saat menggunakan aplikasi."],
+  ["Bagaimana memastikan APK tidak berubah?", "Lihat sumber rilis resmi dan, jika tersedia, bandingkan checksum SHA-256 berkas yang diunduh."],
+  ["Apakah tersedia untuk iPhone (iOS)?", "Belum. Karsa dibangun dengan Flutter sehingga versi iOS secara teknis sudah siap, tetapi tayang di App Store mewajibkan keanggotaan Apple Developer Program seharga $99 per tahun (sekitar Rp1,6 juta) serta perangkat Apple untuk pengujian. Selama kendala biaya dan perangkat ini belum teratasi, Karsa Mobile tersedia untuk Android."],
+];
+
+function FaqItem({ index, question, answer, open, onToggle }: { index: number; question: string; answer: string; open: boolean; onToggle: () => void }) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <div className="py-5">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls={`faq-panel-${index}`}
+        id={`faq-button-${index}`}
+        className="flex w-full cursor-pointer items-center justify-between gap-5 text-left text-sm font-medium text-zinc-900"
+      >
+        <span>{question}</span>
+        <span className={`text-xl text-[#CF6A12] transition-transform duration-300 ${open ? "rotate-45" : ""}`} aria-hidden="true">+</span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="panel"
+            id={`faq-panel-${index}`}
+            role="region"
+            aria-labelledby={`faq-button-${index}`}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.3, ease }}
+            className="overflow-hidden"
+          >
+            <p className="max-w-xl pt-3 text-xs leading-7 text-zinc-500">{answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function PhonePreview() {
   return (
     <div className="relative mx-auto w-full max-w-[430px] select-none" aria-hidden="true">
@@ -213,6 +258,7 @@ export default function DownloadPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const latest = releases[0];
 
   useEffect(() => {
@@ -274,11 +320,7 @@ export default function DownloadPage() {
           {loading ? <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-10 text-sm text-zinc-500" role="status">Memuat rilis resmi...</div> : latest ? <Reveal delay={0.08}><div className="mt-8 grid overflow-hidden rounded-2xl bg-[#101012] text-white shadow-[0_20px_50px_rgba(20,20,25,0.15)] lg:grid-cols-[1.25fr_.75fr]"><div className="p-8 sm:p-10"><span className="inline-flex items-center gap-2 rounded border border-[#654226] bg-[#332215] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-wider text-orange-200"><span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" />Recommended release</span><h3 className="mt-6 font-serif text-6xl leading-none tracking-tight sm:text-7xl">Karsa {version(latest)}</h3><p className="mt-4 max-w-lg text-sm leading-7 text-zinc-400">Rilis Android terbaru yang tersedia dari proyek Karsa. Detail perubahan dan aset lengkap dapat dilihat di halaman rilis GitHub.</p><div className="mt-7 flex flex-wrap items-center gap-4"><DownloadLink release={latest} prominent /><span className="font-mono text-xs text-zinc-400">{formatSize(latest.apk.size)} · APK Android</span></div><a href={latest.html_url} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white">Lihat catatan rilis <ArrowUpRight className="h-3.5 w-3.5" /></a></div><div className="border-t border-white/10 bg-white/[0.035] p-8 sm:p-10 lg:border-l lg:border-t-0"><dl className="space-y-5">{[["Platform", "Android"], ["Versi", version(latest)], ["Dirilis", formatDate(latest.published_at)], ["Ukuran APK", formatSize(latest.apk.size)]].map(([label, value]) => <div key={label} className="flex justify-between gap-5 border-b border-white/10 pb-4 text-sm"><dt className="text-zinc-500">{label}</dt><dd className="text-right text-zinc-200">{value}</dd></div>)}</dl><div className="mt-6 flex gap-3 rounded-lg border border-white/10 p-4 text-xs leading-6 text-zinc-400"><ShieldCheck className="mt-1 h-4 w-4 shrink-0 text-[#CF6A12]" /><span>{latest.apk.digest?.startsWith("sha256:") ? <>SHA-256: <code className="break-all text-[10px] text-zinc-200">{latest.apk.digest.slice(7)}</code></> : "Unduh hanya dari tautan rilis resmi. Periksa sumber berkas sebelum memasang APK."}</span></div></div></div><ReleaseNotes body={latest.body} /></Reveal> : <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-8 text-sm leading-7 text-zinc-700"><strong className="block text-base text-zinc-900">{error ? "Rilis belum bisa dimuat" : "Belum ada APK publik"}</strong><span>{error ? "Koneksi ke daftar rilis GitHub sedang bermasalah. Coba buka halaman rilis proyek secara langsung." : "APK yang ditandatangani akan muncul di sini setelah rilis resmi diterbitkan."}</span><a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center gap-1 font-medium text-[#CF6A12]">Buka rilis GitHub <ArrowUpRight className="h-4 w-4" /></a></div>}
         </div></section>
 
-        <section id="arsip" className="scroll-mt-20 border-y border-zinc-200/70 bg-white py-24"><div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-8"><Reveal><div className="font-mono text-[11px] uppercase tracking-widest text-[#CF6A12]">02 / RIWAYAT RILIS</div><h2 className="mt-3 font-serif text-5xl leading-none tracking-tight text-zinc-950">Versi sebelumnya.</h2><p className="mt-4 max-w-sm text-sm leading-7 text-zinc-500">Arsip untuk kompatibilitas atau pengujian. Jika tidak ada alasan khusus, gunakan rilis terbaru.</p><div className="mt-7 max-w-sm border-l-2 border-[#CF6A12] pl-4 text-xs leading-6 text-zinc-500">Versi lama mungkin tidak mendukung semua fitur baru. Hindari APK dari sumber yang tidak dikenal.</div></Reveal><Reveal delay={0.08}><div className="divide-y divide-zinc-200 border-y border-zinc-200">{loading ? <p className="py-8 text-sm text-zinc-500">Memuat arsip...</p> : releases.slice(1, 6).length ? releases.slice(1, 6).map((release) => <div key={release.id} className="flex flex-wrap items-center gap-x-6 gap-y-3 py-5 sm:flex-nowrap"><span className="min-w-20 font-serif text-2xl text-zinc-900">{version(release)}</span><div className="min-w-0 flex-1"><strong className="block truncate text-xs font-semibold text-zinc-900">{release.name || `Karsa Mobile ${version(release)}`}</strong><span className="font-mono text-[10px] text-zinc-500">{formatDate(release.published_at)} · {formatSize(release.apk.size)}</span></div><a href={release.apk.browser_download_url} aria-label={`Unduh Karsa Mobile ${version(release)}`} className="inline-flex items-center gap-2 text-xs font-medium text-[#CF6A12] hover:text-[#B85B0D]">Unduh <Download className="h-3.5 w-3.5" /></a></div>) : <p className="py-8 text-sm text-zinc-500">Belum ada versi lama yang tersedia.</p>}</div><a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-xs font-medium text-zinc-700 hover:text-[#CF6A12]">Lihat semua rilis di GitHub <ArrowUpRight className="h-4 w-4" /></a></Reveal></div></section>
-
-        <section id="panduan" className="scroll-mt-20 bg-[#101012] py-24 text-white lg:py-28"><div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8"><Reveal><div className="font-mono text-[11px] uppercase tracking-widest text-[#CF6A12]">03 / MULAI GUNAKAN</div><h2 className="mt-3 font-serif text-5xl leading-none tracking-tight sm:text-6xl">Dari unduh<br />ke kelas.</h2><p className="mt-5 max-w-md text-sm leading-7 text-zinc-400">Kamu baru perlu akun mahasiswa UNTIDAR ketika membuka aplikasinya.</p><div className="mt-9 flex max-w-md gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-5 text-xs leading-6 text-zinc-300"><ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[#CF6A12]" />Android mungkin meminta izin memasang aplikasi dari browser. Beri izin hanya untuk APK yang diunduh dari sumber resmi Karsa.</div></Reveal><div className="space-y-0">{[["01", "Unduh APK terbaru", "Gunakan tombol rilis utama dan tunggu berkas selesai diunduh."], ["02", "Buka berkas dan pasang", "Ikuti petunjuk Android. Jika diminta, izinkan pemasangan dari browser yang kamu gunakan."], ["03", "Masuk dengan akun mahasiswa", "Buka aplikasi dan masuk menggunakan @students.untidar.ac.id."]].map(([number, title, detail], index) => <Reveal key={number} delay={index * 0.08}><div className="flex gap-6 border-b border-white/10 py-6"><span className="font-mono text-xs text-[#CF6A12]">{number} /</span><div><h3 className="text-base font-medium">{title}</h3><p className="mt-2 text-xs leading-6 text-zinc-400">{detail}</p></div></div></Reveal>)}</div></div></section>
-
-        <section className="py-24 lg:py-28"><div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-8"><Reveal><div className="font-mono text-[11px] uppercase tracking-widest text-[#CF6A12]">04 / BANTUAN</div><h2 className="mt-3 font-serif text-5xl leading-none tracking-tight text-zinc-950">Pertanyaan singkat.</h2></Reveal><div className="divide-y divide-zinc-200 border-y border-zinc-200">{[["Haruskah menghapus aplikasi lama sebelum memperbarui?", "Biasanya tidak. APK baru bisa memperbarui aplikasi lama jika identitas paket dan kunci penandatanganannya sama. Gunakan rilis resmi."], ["Apakah versi lama masih tersedia?", "Jika sudah pernah diterbitkan sebagai rilis GitHub dengan APK, versi lama akan muncul di bagian arsip."], ["Apakah unduhan membutuhkan akun Karsa?", "Tidak. Halaman ini terbuka untuk umum. Akun mahasiswa UNTIDAR diperlukan saat menggunakan aplikasi."], ["Bagaimana memastikan APK tidak berubah?", "Lihat sumber rilis resmi dan, jika tersedia, bandingkan checksum SHA-256 berkas yang diunduh."], ["Apakah tersedia untuk iPhone (iOS)?", "Belum. Karsa dibangun dengan Flutter sehingga versi iOS secara teknis sudah siap, tetapi tayang di App Store mewajibkan keanggotaan Apple Developer Program seharga $99 per tahun (sekitar Rp1,6 juta) serta perangkat Apple untuk pengujian. Selama kendala biaya dan perangkat ini belum teratasi, Karsa Mobile tersedia untuk Android."]].map(([question, answer]) => <details key={question} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-sm font-medium text-zinc-900 marker:hidden"><span>{question}</span><span className="text-xl text-[#CF6A12] transition-transform duration-300 group-open:rotate-45">+</span></summary><div className="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-out group-open:grid-rows-[1fr] group-open:opacity-100"><div className="overflow-hidden"><p className="max-w-xl pt-3 text-xs leading-7 text-zinc-500">{answer}</p></div></div></details>)}</div></div></section>
+        <section id="arsip" className="scroll-mt-20 border-y border-zinc-200/70 bg-white py-24"><div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-8"><Reveal><div className="font-mono text-[11px] uppercase tracking-widest text-[#CF6A12]">02 / RIWAYAT RILIS</div><h2 className="mt-3 font-serif text-5xl leading-none tracking-tight text-zinc-950">Versi sebelumnya.</h2><p className="mt-4 max-w-sm text-sm leading-7 text-zinc-500">Arsip untuk kompatibilitas atau pengujian. Jika tidak ada alasan khusus, gunakan rilis terbaru.</p><div className="mt-7 max-w-sm border-l-2 border-[#CF6A12] pl-4 text-xs leading-6 text-zinc-500">Versi lama mungkin tidak mendukung semua fitur baru. Hindari APK dari sumber yang tidak dikenal.</div></Reveal><Reveal delay={0.08}><div className="divide-y divide-zinc-200 border-y border-zinc-200">{FAQS.map(([question, answer], index) => <FaqItem key={question} index={index} question={question} answer={answer} open={openFaq === index} onToggle={() => setOpenFaq(openFaq === index ? null : index)} />)}</div></div></section>
       </main>
 
       <footer className="border-t border-zinc-200 bg-white py-12"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-4 sm:flex-row sm:px-6 lg:px-8"><div><div className="flex items-baseline gap-2"><span className="font-serif text-3xl text-zinc-950">karsa</span><span className="font-mono text-[10px] tracking-widest text-[#CF6A12]">UNTIDAR</span></div><p className="mt-2 font-serif text-lg italic text-zinc-700">“Every karsa, one point.”</p><p className="mt-4 max-w-md text-xs leading-6 text-zinc-500">Karsa adalah proyek independen untuk lingkungan pembelajaran UNTIDAR, bukan layanan resmi universitas.</p></div><div className="flex flex-col gap-3 text-xs text-zinc-600"><Link to="/" className="hover:text-[#CF6A12]">Karsa Landing</Link><a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#CF6A12]">Rilis GitHub ↗</a><Link to="/privacy" className="hover:text-[#CF6A12]">Privasi & Keamanan</Link><a href="#rilis" className="hover:text-[#CF6A12]">Kembali ke rilis ↑</a></div></div><div className="mx-auto mt-10 max-w-7xl border-t border-zinc-100 px-4 pt-6 font-mono text-[10px] text-zinc-400 sm:px-6 lg:px-8">© 2026 Karsa. Independent project for the UNTIDAR environment.</div></footer>
