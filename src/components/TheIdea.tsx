@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { motion } from "framer-motion";
 import { Compass, BookCheck, Shield } from "lucide-react";
 
@@ -17,9 +18,9 @@ export function TheIdea() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 mb-6"
           >
-            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase">
+            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
               02 — The Idea
-            </span>
+            </LocalizedText></span>
           </motion.div>
 
           {/* Headline */}
@@ -29,10 +30,10 @@ export function TheIdea() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight-editorial text-zinc-950"
-          >
+          ><LocalizedText>
             A single record.
-            <br />
-            <span className="italic font-normal text-zinc-700">Built with intention.</span>
+            </LocalizedText><br />
+            <span className="italic font-normal text-zinc-700"><LocalizedText>Built with intention.</LocalizedText></span>
           </motion.h2>
 
           {/* Core Body Paragraph */}
@@ -43,13 +44,13 @@ export function TheIdea() {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="mt-8 space-y-6 text-lg sm:text-xl text-zinc-600 leading-relaxed"
           >
-            <p>
+            <p><LocalizedText>
               Karsa was built on one principle: every act of participation — a question, an answer, a presentation — deserves a clear, accountable record. Not a grade. Not a metric. A record.
-            </p>
+            </LocalizedText></p>
 
-            <p className="text-base sm:text-lg text-zinc-500">
+            <p className="text-base sm:text-lg text-zinc-500"><LocalizedText>
               When a student raises their hand in an amphitheater at UNTIDAR Magelang, that courage should not evaporate when the lecture bell rings. It should appear in a class record the student can review.
-            </p>
+            </LocalizedText></p>
           </motion.div>
 
           {/* Pull Quote */}
@@ -60,12 +61,12 @@ export function TheIdea() {
             transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="my-10 relative border-l-2 border-[#CF6A12] pl-6 sm:pl-8 py-3 bg-[#FBF4EE]/40 rounded-r-xl"
           >
-            <blockquote className="font-serif text-2xl sm:text-3xl text-zinc-900 leading-snug italic">
+            <blockquote className="font-serif text-2xl sm:text-3xl text-zinc-900 leading-snug italic"><LocalizedText>
               &ldquo;The word karsa comes from Sanskrit — it means will, intention, the spirit to create.&rdquo;
-            </blockquote>
-            <cite className="mt-3 block font-mono text-xs uppercase tracking-wider text-[#CF6A12] not-italic">
+            </LocalizedText></blockquote>
+            <cite className="mt-3 block font-mono text-xs uppercase tracking-wider text-[#CF6A12] not-italic"><LocalizedText>
               Etymology & Design Philosophy
-            </cite>
+            </LocalizedText></cite>
           </motion.div>
 
           {/* Three Foundational Pillars (Editorial Style) */}
@@ -79,32 +80,32 @@ export function TheIdea() {
             <div className="space-y-1.5">
               <div className="flex items-center gap-2 text-zinc-900 font-medium text-sm">
                 <Compass className="h-4 w-4 text-[#CF6A12]" />
-                <span>Simplicity of Act</span>
+                <span><LocalizedText>Simplicity of Act</LocalizedText></span>
               </div>
-              <p className="text-xs text-zinc-500 leading-relaxed">
+              <p className="text-xs text-zinc-500 leading-relaxed"><LocalizedText>
                 Recording takes seconds so the classroom rhythm is never broken.
-              </p>
+              </LocalizedText></p>
             </div>
 
             <div className="space-y-1.5">
               <div className="flex items-center gap-2 text-zinc-900 font-medium text-sm">
                 <BookCheck className="h-4 w-4 text-[#CF6A12]" />
-                <span>Radical Clarity</span>
+                <span><LocalizedText>Radical Clarity</LocalizedText></span>
               </div>
-              <p className="text-xs text-zinc-500 leading-relaxed">
+              <p className="text-xs text-zinc-500 leading-relaxed"><LocalizedText>
                 No hidden rubrics. Every student verifies their point audit in real-time.
-              </p>
+              </LocalizedText></p>
             </div>
 
             <div className="space-y-1.5">
               <div className="flex items-center gap-2 text-zinc-900 font-medium text-sm">
                 <Shield className="h-4 w-4 text-[#CF6A12]" />
-                <span>Institutional Trust</span>
+                <span><LocalizedText>Institutional Trust</LocalizedText></span>
               </div>
-              <p className="text-xs text-zinc-500 leading-relaxed">
+              <p className="text-xs text-zinc-500 leading-relaxed"><LocalizedText>
                 Karsa applies data minimization, scoped access, and auditable
                 changes with reference to Indonesia&apos;s data protection principles.
-              </p>
+              </LocalizedText></p>
             </div>
           </motion.div>
 

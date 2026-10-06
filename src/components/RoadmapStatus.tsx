@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Clock, Calendar, ChevronRight } from "lucide-react";
@@ -77,24 +78,24 @@ export function RoadmapStatus() {
             className="lg:col-span-5 sticky lg:top-28"
           >
             <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase">
+              <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
                 05 — Status
-              </span>
+              </LocalizedText></span>
             </div>
 
-            <h2 className="font-serif text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] tracking-tight-editorial text-zinc-950">
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] tracking-tight-editorial text-zinc-950"><LocalizedText>
               In active development.
-            </h2>
+            </LocalizedText></h2>
 
-            <p className="mt-4 text-base text-zinc-600 font-sans leading-relaxed">
-              Karsa is currently in <strong className="text-zinc-900 font-semibold">Fase 5 of 6</strong>. The core ledger and mobile awarding engines are operational, with pilot testing scheduled for upcoming semester cohorts at Universitas Tidar.
-            </p>
+            <p className="mt-4 text-base text-zinc-600 font-sans leading-relaxed"><LocalizedText>
+              Karsa is currently in </LocalizedText><strong className="text-zinc-900 font-semibold"><LocalizedText>Fase 5 of 6</LocalizedText></strong><LocalizedText>. The core ledger and mobile awarding engines are operational, with pilot testing scheduled for upcoming semester cohorts at Universitas Tidar.
+            </LocalizedText></p>
 
             {/* Current Phase Card */}
             <div className="mt-8 rounded-xl border border-zinc-200 bg-zinc-50/80 p-4">
               <div className="flex items-center justify-between text-xs font-mono mb-2">
-                <span className="text-zinc-500">Overall Progress</span>
-                <span className="font-semibold text-[#CF6A12]">83% completed</span>
+                <span className="text-zinc-500"><LocalizedText>Overall Progress</LocalizedText></span>
+                <span className="font-semibold text-[#CF6A12]"><LocalizedText>83% completed</LocalizedText></span>
               </div>
               <div className="h-1.5 w-full bg-zinc-200 rounded-full overflow-hidden">
                 <div className="h-full bg-[#CF6A12] rounded-full w-[83%]" />
@@ -102,9 +103,9 @@ export function RoadmapStatus() {
 
               <div className="mt-4 flex items-center justify-between text-xs font-mono text-zinc-500">
                 <span className="flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5 text-[#CF6A12]" />
+                  <Calendar className="h-3.5 w-3.5 text-[#CF6A12]" /><LocalizedText>
                   Launch: Semester Ganjil 2026/2027
-                </span>
+                </LocalizedText></span>
               </div>
             </div>
           </motion.div>
@@ -155,7 +156,7 @@ export function RoadmapStatus() {
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 font-semibold">
-                            {item.phase}
+                            <LocalizedText>{item.phase}</LocalizedText>
                           </span>
                           <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[10px] font-medium ${
                             item.status === "done"
@@ -165,7 +166,7 @@ export function RoadmapStatus() {
                               : "bg-zinc-100 text-zinc-500"
                           }`}>
                             {item.status === "active" && <Clock className="h-2.5 w-2.5 animate-spin" />}
-                            {item.statusLabel}
+                            <LocalizedText>{item.statusLabel}</LocalizedText>
                           </span>
                         </div>
 
@@ -173,11 +174,11 @@ export function RoadmapStatus() {
                       </div>
 
                       <h3 className="font-serif text-xl sm:text-2xl text-zinc-900 tracking-tight">
-                        {item.title}
+                        <LocalizedText>{item.title}</LocalizedText>
                       </h3>
 
                       <p className="mt-1.5 text-sm text-zinc-600 font-sans leading-relaxed">
-                        {item.desc}
+                        <LocalizedText>{item.desc}</LocalizedText>
                       </p>
 
                       {/* Expandable deliverables on click */}
@@ -188,14 +189,14 @@ export function RoadmapStatus() {
                           transition={{ duration: 0.3 }}
                           className="mt-4 pt-4 border-t border-zinc-200/70"
                         >
-                          <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider mb-2">
+                          <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider mb-2"><LocalizedText>
                             Key Deliverables & Specifications:
-                          </div>
+                          </LocalizedText></div>
                           <ul className="space-y-1.5 font-mono text-xs text-zinc-700">
                             {item.deliverables.map((d) => (
                               <li key={d} className="flex items-center gap-2">
                                 <span className="h-1 w-1 rounded-full bg-[#CF6A12]" />
-                                <span>{d}</span>
+                                <span><LocalizedText>{d}</LocalizedText></span>
                               </li>
                             ))}
                           </ul>

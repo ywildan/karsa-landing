@@ -1,3 +1,4 @@
+import { LocalizedText, useLanguage } from "../i18n/LanguageContext";
 import React, { useState } from "react";
 import { X, CheckCircle2, ShieldCheck, ArrowRight, Mail, User, BookOpen } from "lucide-react";
 
@@ -7,6 +8,7 @@ interface RequestAccessModalProps {
 }
 
 export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps) {
+  const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -82,14 +84,14 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
         <div className="flex items-center justify-between border-b border-zinc-100 px-6 py-4">
           <div className="flex items-center gap-2">
             <span className="inline-block h-2 w-2 rounded-full bg-[#CF6A12]" />
-            <span className="font-mono text-xs uppercase tracking-wider text-zinc-500">
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-500"><LocalizedText>
               Pilot Access / 2026 Academic Year
-            </span>
+            </LocalizedText></span>
           </div>
           <button
             onClick={resetForm}
             className="rounded-md p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 transition-colors"
-            aria-label="Close modal"
+            aria-label={t("Close modal")}
           >
             <X className="h-4 w-4" />
           </button>
@@ -99,25 +101,25 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
           {!submitted ? (
             <div>
               <div className="mb-6">
-                <h3 className="font-serif text-2xl font-normal text-zinc-900 tracking-tight">
+                <h3 className="font-serif text-2xl font-normal text-zinc-900 tracking-tight"><LocalizedText>
                   Request Pilot Access for UNTIDAR
-                </h3>
-                <p className="mt-1.5 text-sm text-zinc-500 leading-relaxed">
+                </LocalizedText></h3>
+                <p className="mt-1.5 text-sm text-zinc-500 leading-relaxed"><LocalizedText>
                   Early staging builds are accessible for Universitas Tidar course instructors (Dosen) and Penanggung Jawab (PJ) coordinators.
-                </p>
+                </LocalizedText></p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5"><LocalizedText>
                     Full Name & Title
-                  </label>
+                  </LocalizedText></label>
                   <div className="relative">
                     <User className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
                     <input
                       required
                       type="text"
-                      placeholder="e.g. Dr. Hendra Pratama, S.T., M.Eng."
+                      placeholder={t("e.g. Dr. Hendra Pratama, S.T., M.Eng.")}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full rounded-lg border border-zinc-200 bg-zinc-50/50 py-2 pl-9 pr-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-[#CF6A12] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#CF6A12]"
@@ -126,71 +128,71 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5"><LocalizedText>
                     UNTIDAR Email Address
-                  </label>
+                  </LocalizedText></label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
                     <input
                       required
                       type="email"
-                      placeholder="user@untidar.ac.id or @students.untidar.ac.id"
+                      placeholder={t("user@untidar.ac.id or @students.untidar.ac.id")}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full rounded-lg border border-zinc-200 bg-zinc-50/50 py-2 pl-9 pr-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-[#CF6A12] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#CF6A12]"
                     />
                   </div>
-                  <p className="mt-1 text-[11px] font-mono text-zinc-400">
+                  <p className="mt-1 text-[11px] font-mono text-zinc-400"><LocalizedText>
                     Must belong to UNTIDAR Google Workspace domain.
-                  </p>
+                  </LocalizedText></p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5"><LocalizedText>
                       Role / Capacity
-                    </label>
+                    </LocalizedText></label>
                     <select
                       value={formData.role}
                       onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                       className="w-full rounded-lg border border-zinc-200 bg-zinc-50/50 py-2 px-3 text-sm text-zinc-900 focus:border-[#CF6A12] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#CF6A12]"
                     >
-                      <option value="dosen">Dosen Pengampu</option>
-                      <option value="pj">PJ Kelas (Penanggung Jawab)</option>
-                      <option value="kaprodi">Koordinator / Kaprodi</option>
-                      <option value="evaluator">Tim Akademik UNTIDAR</option>
+                      <option value="dosen"><LocalizedText>Dosen Pengampu</LocalizedText></option>
+                      <option value="pj"><LocalizedText>PJ Kelas (Penanggung Jawab)</LocalizedText></option>
+                      <option value="kaprodi"><LocalizedText>Koordinator / Kaprodi</LocalizedText></option>
+                      <option value="evaluator"><LocalizedText>Tim Akademik UNTIDAR</LocalizedText></option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5"><LocalizedText>
                       Faculty (Fakultas)
-                    </label>
+                    </LocalizedText></label>
                     <div className="relative">
                       <select
                         value={formData.faculty}
                         onChange={(e) => setFormData({ ...formData, faculty: e.target.value })}
                         className="w-full rounded-lg border border-zinc-200 bg-zinc-50/50 py-2 px-3 text-sm text-zinc-900 focus:border-[#CF6A12] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#CF6A12]"
                       >
-                        <option value="Fakultas Teknik">Fakultas Teknik (FT)</option>
-                        <option value="Fakultas Ekonomi">Fakultas Ekonomi (FE)</option>
-                        <option value="FKIP">FKIP</option>
-                        <option value="Fisipol">FISIPOL</option>
-                        <option value="Faperta">FAPERTA</option>
+                        <option value="Fakultas Teknik"><LocalizedText>Fakultas Teknik (FT)</LocalizedText></option>
+                        <option value="Fakultas Ekonomi"><LocalizedText>Fakultas Ekonomi (FE)</LocalizedText></option>
+                        <option value="FKIP"><LocalizedText>FKIP</LocalizedText></option>
+                        <option value="Fisipol"><LocalizedText>FISIPOL</LocalizedText></option>
+                        <option value="Faperta"><LocalizedText>FAPERTA</LocalizedText></option>
                       </select>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-600 mb-1.5"><LocalizedText>
                     Target Course & Class (Mata Kuliah)
-                  </label>
+                  </LocalizedText></label>
                   <div className="relative">
                     <BookOpen className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
                     <input
                       type="text"
-                      placeholder="e.g. Struktur Data (Kelas 01) or Algoritma"
+                      placeholder={t("e.g. Struktur Data (Kelas 01) or Algoritma")}
                       value={formData.course}
                       onChange={(e) => setFormData({ ...formData, course: e.target.value })}
                       className="w-full rounded-lg border border-zinc-200 bg-zinc-50/50 py-2 pl-9 pr-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-[#CF6A12] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#CF6A12]"
@@ -200,18 +202,18 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
 
                 <div className="mt-6 pt-2 flex items-center justify-between">
                   <span className="text-[11px] text-zinc-400 flex items-center gap-1 font-mono">
-                    <ShieldCheck className="h-3.5 w-3.5 text-zinc-400" />
+                    <ShieldCheck className="h-3.5 w-3.5 text-zinc-400" /><LocalizedText>
                     Sent over HTTPS
-                  </span>
+                  </LocalizedText></span>
                   <div className="flex gap-2">
                     <button
                       type="button"
                       onClick={resetForm}
                       disabled={isSubmitting}
                       className="rounded-lg px-3.5 py-2 text-xs font-medium text-zinc-600 hover:bg-zinc-100 transition-colors disabled:opacity-50"
-                    >
+                    ><LocalizedText>
                       Cancel
-                    </button>
+                    </LocalizedText></button>
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -223,11 +225,11 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                           </svg>
-                          <span>Sending...</span>
+                          <span><LocalizedText>Sending...</LocalizedText></span>
                         </>
                       ) : (
                         <>
-                          <span>Submit request</span>
+                          <span><LocalizedText>Submit request</LocalizedText></span>
                           <ArrowRight className="h-3.5 w-3.5" />
                         </>
                       )}
@@ -237,7 +239,7 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
 
                 {submitError && (
                   <div className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700 font-mono">
-                    <span className="font-semibold">Error:</span> {submitError}
+                    <span className="font-semibold"><LocalizedText>Error:</LocalizedText></span> <LocalizedText>{submitError}</LocalizedText>
                   </div>
                 )}
               </form>
@@ -247,26 +249,26 @@ export function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps)
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-orange-50 text-[#CF6A12] ring-8 ring-orange-50/50">
                 <CheckCircle2 className="h-6 w-6" />
               </div>
-              <h4 className="font-serif text-2xl text-zinc-900 tracking-tight">
+              <h4 className="font-serif text-2xl text-zinc-900 tracking-tight"><LocalizedText>
                 Pilot request recorded
-              </h4>
-              <p className="mt-2 text-sm text-zinc-500 max-w-sm mx-auto leading-relaxed">
-                Thank you, <strong className="text-zinc-800">{formData.name || "Colleague"}</strong>. The UNTIDAR academic coordination team will provision your test credentials within one business day.
-              </p>
+              </LocalizedText></h4>
+              <p className="mt-2 text-sm text-zinc-500 max-w-sm mx-auto leading-relaxed"><LocalizedText>
+                Thank you, </LocalizedText><strong className="text-zinc-800"><LocalizedText>{formData.name || "Colleague"}</LocalizedText></strong><LocalizedText>. The UNTIDAR academic coordination team will provision your test credentials within one business day.
+              </LocalizedText></p>
 
               <div className="mt-6 rounded-lg bg-zinc-50 p-3 text-left border border-zinc-200/70 font-mono text-xs text-zinc-600">
-                <div className="text-zinc-400 text-[10px] uppercase tracking-wider mb-1">Assigned Verification Queue</div>
-                <div className="text-zinc-800 font-medium">UNTIDAR-PILOT-2026-F4C</div>
-                <div className="text-zinc-500 text-[11px] mt-1">{formData.email || "demo@students.untidar.ac.id"} • {formData.faculty}</div>
+                <div className="text-zinc-400 text-[10px] uppercase tracking-wider mb-1"><LocalizedText>Assigned Verification Queue</LocalizedText></div>
+                <div className="text-zinc-800 font-medium"><LocalizedText>UNTIDAR-PILOT-2026-F4C</LocalizedText></div>
+                <div className="text-zinc-500 text-[11px] mt-1"><LocalizedText>{formData.email || "demo@students.untidar.ac.id"}</LocalizedText> • <LocalizedText>{formData.faculty}</LocalizedText></div>
               </div>
 
               <div className="mt-6 flex justify-center">
                 <button
                   onClick={resetForm}
                   className="rounded-lg bg-zinc-900 px-5 py-2 text-xs font-medium text-white hover:bg-zinc-800 transition-colors"
-                >
+                ><LocalizedText>
                   Return to landing page
-                </button>
+                </LocalizedText></button>
               </div>
             </div>
           )}

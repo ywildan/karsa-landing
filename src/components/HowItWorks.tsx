@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { 
@@ -46,9 +47,9 @@ export function HowItWorks() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 mb-4"
           >
-            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase">
+            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
               03 — Workflow
-            </span>
+            </LocalizedText></span>
           </motion.div>
 
           <motion.h2
@@ -57,10 +58,10 @@ export function HowItWorks() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] tracking-tight-editorial text-zinc-950"
-          >
+          ><LocalizedText>
             Three steps from question
-            <br />
-            <span className="italic font-normal text-zinc-700">to accountable record.</span>
+            </LocalizedText><br />
+            <span className="italic font-normal text-zinc-700"><LocalizedText>to accountable record.</LocalizedText></span>
           </motion.h2>
 
           <motion.p
@@ -69,9 +70,9 @@ export function HowItWorks() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="mt-4 text-base sm:text-lg text-zinc-600 font-sans"
-          >
+          ><LocalizedText>
             Designed specifically for lecture halls at UNTIDAR. No complex menus, zero cognitive overhead.
-          </motion.p>
+          </LocalizedText></motion.p>
         </div>
 
         {/* 3-Step Grid (Horizontal Desktop / Vertical Mobile) */}
@@ -86,19 +87,19 @@ export function HowItWorks() {
             className="flex flex-col rounded-xl border border-zinc-200 bg-white p-6 shadow-xs relative"
           >
             <div className="flex items-center justify-between border-b border-zinc-100 pb-4 mb-4">
-              <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider">
+              <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider"><LocalizedText>
                 Step 01
-              </span>
-              <span className="font-mono text-[11px] text-zinc-400">Mobile PJ View</span>
+              </LocalizedText></span>
+              <span className="font-mono text-[11px] text-zinc-400"><LocalizedText>Mobile PJ View</LocalizedText></span>
             </div>
 
             <div className="mb-4">
-              <h3 className="font-serif text-2xl text-zinc-900 tracking-tight">
+              <h3 className="font-serif text-2xl text-zinc-900 tracking-tight"><LocalizedText>
                 The instructor opens Karsa
-              </h3>
-              <p className="mt-1 font-mono text-xs text-zinc-500">
+              </LocalizedText></h3>
+              <p className="mt-1 font-mono text-xs text-zinc-500"><LocalizedText>
                 Three taps from phone to point.
-              </p>
+              </LocalizedText></p>
             </div>
 
             {/* Visual: Interactive Phone Bottom Sheet Mockup */}
@@ -108,16 +109,16 @@ export function HowItWorks() {
                 <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400 pb-2 border-b border-zinc-800">
                   <div className="flex items-center gap-1.5">
                     <Smartphone className="h-3 w-3 text-[#CF6A12]" />
-                    <span>IF2204 • Kelas 02</span>
+                    <span><LocalizedText>IF2204 • Kelas 02</LocalizedText></span>
                   </div>
-                  <span>Sesi 08</span>
+                  <span><LocalizedText>Sesi 08</LocalizedText></span>
                 </div>
 
                 {/* Bottom Sheet Modal Container */}
                 <div className="mt-2.5 rounded-lg bg-zinc-800/90 p-2.5 border border-zinc-700/60">
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5"><LocalizedText>
                     1. Tap Student Name
-                  </div>
+                  </LocalizedText></div>
                   <div className="grid grid-cols-2 gap-1.5 mb-2.5">
                     {["Aditya P.", "Bima Arya", "Citra Dewi", "Dimas S."].map((student) => (
                       <button
@@ -129,14 +130,14 @@ export function HowItWorks() {
                             : "bg-zinc-700/50 text-zinc-300 hover:bg-zinc-700"
                         }`}
                       >
-                        {student}
+                        <LocalizedText>{student}</LocalizedText>
                       </button>
                     ))}
                   </div>
 
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5"><LocalizedText>
                     2. Select Participation Type
-                  </div>
+                  </LocalizedText></div>
                   <div className="grid grid-cols-1 gap-1 mb-3">
                     {[
                       { name: "Pertanyaan (1 pt)", desc: "Menanyakan konsep materi" },
@@ -152,8 +153,8 @@ export function HowItWorks() {
                             : "text-zinc-400 hover:text-zinc-200"
                         }`}
                       >
-                        <span>{cat.name}</span>
-                        <span className="text-[9px] font-mono text-zinc-500">{cat.desc}</span>
+                        <span><LocalizedText>{cat.name}</LocalizedText></span>
+                        <span className="text-[9px] font-mono text-zinc-500"><LocalizedText>{cat.desc}</LocalizedText></span>
                       </button>
                     ))}
                   </div>
@@ -170,11 +171,11 @@ export function HowItWorks() {
                     {awardedSuccess ? (
                       <>
                         <Check className="h-3.5 w-3.5" />
-                        <span>Awarded to {selectedStudent}!</span>
+                        <span><LocalizedText>Awarded to <LocalizedText></LocalizedText>{selectedStudent}</LocalizedText>!</span>
                       </>
                     ) : (
                       <>
-                        <span>Award Point Now</span>
+                        <span><LocalizedText>Award Point Now</LocalizedText></span>
                         <ArrowRight className="h-3 w-3" />
                       </>
                     )}
@@ -193,19 +194,19 @@ export function HowItWorks() {
             className="flex flex-col rounded-xl border border-zinc-200 bg-white p-6 shadow-xs relative"
           >
             <div className="flex items-center justify-between border-b border-zinc-100 pb-4 mb-4">
-              <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider">
+              <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider"><LocalizedText>
                 Step 02
-              </span>
-              <span className="font-mono text-[11px] text-zinc-400">Server Execution</span>
+              </LocalizedText></span>
+              <span className="font-mono text-[11px] text-zinc-400"><LocalizedText>Server Execution</LocalizedText></span>
             </div>
 
             <div className="mb-4">
-              <h3 className="font-serif text-2xl text-zinc-900 tracking-tight">
+              <h3 className="font-serif text-2xl text-zinc-900 tracking-tight"><LocalizedText>
                 The system validates
-              </h3>
-              <p className="mt-1 font-mono text-xs text-zinc-500">
+              </LocalizedText></h3>
+              <p className="mt-1 font-mono text-xs text-zinc-500"><LocalizedText>
                 Server-side. Every time. No exceptions.
-              </p>
+              </LocalizedText></p>
             </div>
 
             {/* Visual: Minimal Minimalist SVG/CSS Architecture Flow */}
@@ -217,9 +218,9 @@ export function HowItWorks() {
                   <div className="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-2.5">
                     <div className="flex items-center gap-2">
                       <div className="h-2 w-2 rounded-full bg-[#CF6A12]" />
-                      <span className="font-medium text-zinc-800 text-[11px]">Incoming Action Payload</span>
+                      <span className="font-medium text-zinc-800 text-[11px]"><LocalizedText>Incoming Action Payload</LocalizedText></span>
                     </div>
-                    <span className="text-[10px] text-zinc-400">POST /api/award</span>
+                    <span className="text-[10px] text-zinc-400"><LocalizedText>POST /api/award</LocalizedText></span>
                   </div>
 
                   <div className="flex justify-center text-zinc-400">
@@ -231,13 +232,13 @@ export function HowItWorks() {
                     <div className="flex items-center justify-between font-medium text-emerald-900">
                       <div className="flex items-center gap-1.5">
                         <CheckCircle className="h-3.5 w-3.5 text-emerald-600" />
-                        <span>Domain &amp; Role Guard</span>
+                        <span><LocalizedText>Domain &amp; Role Guard</LocalizedText></span>
                       </div>
-                      <span className="text-[9px] font-mono text-emerald-700">200 OK</span>
+                      <span className="text-[9px] font-mono text-emerald-700"><LocalizedText>200 OK</LocalizedText></span>
                     </div>
-                    <div className="mt-1 text-[10px] text-emerald-700">
+                    <div className="mt-1 text-[10px] text-emerald-700"><LocalizedText>
                       Verifies PJ assignment for IF2204 Kelas 02
-                    </div>
+                    </LocalizedText></div>
                   </div>
 
                   <div className="flex justify-center text-zinc-400">
@@ -249,13 +250,13 @@ export function HowItWorks() {
                     <div className="flex items-center justify-between text-[11px] text-zinc-900">
                       <div className="flex items-center gap-1.5">
                         <Layers className="h-3.5 w-3.5 text-zinc-600" />
-                        <span className="font-semibold">Audited Point Record</span>
+                        <span className="font-semibold"><LocalizedText>Audited Point Record</LocalizedText></span>
                       </div>
-                      <span className="text-[10px] font-mono text-zinc-400">0.038s</span>
+                      <span className="text-[10px] font-mono text-zinc-400"><LocalizedText>0.038s</LocalizedText></span>
                     </div>
                     <div className="mt-1 flex items-center justify-between text-[10px] text-zinc-500">
-                      <span>PJ + class context recorded</span>
-                      <span className="text-[#CF6A12] font-semibold">+2 points saved</span>
+                      <span><LocalizedText>PJ + class context recorded</LocalizedText></span>
+                      <span className="text-[#CF6A12] font-semibold"><LocalizedText>+2 points saved</LocalizedText></span>
                     </div>
                   </div>
                 </div>
@@ -273,19 +274,19 @@ export function HowItWorks() {
             className="flex flex-col rounded-xl border border-zinc-200 bg-white p-6 shadow-xs relative"
           >
             <div className="flex items-center justify-between border-b border-zinc-100 pb-4 mb-4">
-              <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider">
+              <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider"><LocalizedText>
                 Step 03
-              </span>
-              <span className="font-mono text-[11px] text-zinc-400">Student Desktop View</span>
+              </LocalizedText></span>
+              <span className="font-mono text-[11px] text-zinc-400"><LocalizedText>Student Desktop View</LocalizedText></span>
             </div>
 
             <div className="mb-4">
-              <h3 className="font-serif text-2xl text-zinc-900 tracking-tight">
+              <h3 className="font-serif text-2xl text-zinc-900 tracking-tight"><LocalizedText>
                 The student sees
-              </h3>
-              <p className="mt-1 font-mono text-xs text-zinc-500">
+              </LocalizedText></h3>
+              <p className="mt-1 font-mono text-xs text-zinc-500"><LocalizedText>
                 Real-time. Transparent. Fair.
-              </p>
+              </LocalizedText></p>
             </div>
 
             {/* Visual: Rapor Card with Animated Progress Bar */}
@@ -295,22 +296,22 @@ export function HowItWorks() {
                 {/* Top User Bar */}
                 <div className="flex items-center justify-between border-b border-zinc-100 pb-2.5 mb-2.5">
                   <div className="flex items-center gap-2">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-orange-100 text-[#CF6A12] font-mono text-xs font-bold">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-orange-100 text-[#CF6A12] font-mono text-xs font-bold"><LocalizedText>
                       AP
-                    </div>
+                    </LocalizedText></div>
                     <div>
-                      <div className="text-xs font-semibold text-zinc-900 leading-none">
+                      <div className="text-xs font-semibold text-zinc-900 leading-none"><LocalizedText>
                         Aditya Pratama N.
-                      </div>
-                      <div className="font-mono text-[10px] text-zinc-400 mt-0.5">
+                      </LocalizedText></div>
+                      <div className="font-mono text-[10px] text-zinc-400 mt-0.5"><LocalizedText>
                         NPM: 2210501001
-                      </div>
+                      </LocalizedText></div>
                     </div>
                   </div>
 
                   <div className="rounded-full bg-emerald-50 px-2 py-0.5 font-mono text-[10px] text-emerald-700 border border-emerald-200/60 flex items-center gap-1">
                     <Sparkles className="h-2.5 w-2.5" />
-                    <span>Rank #3</span>
+                    <span><LocalizedText>Rank #3</LocalizedText></span>
                   </div>
                 </div>
 
@@ -330,7 +331,7 @@ export function HowItWorks() {
                           : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
                       }`}
                     >
-                      {tab.name}
+                      <LocalizedText>{tab.name}</LocalizedText>
                     </button>
                   ))}
                 </div>
@@ -339,9 +340,9 @@ export function HowItWorks() {
                 <div className="space-y-2">
                   <div>
                     <div className="flex justify-between text-[11px] font-mono mb-1">
-                      <span className="text-zinc-600">Total Keaktifan</span>
+                      <span className="text-zinc-600"><LocalizedText>Total Keaktifan</LocalizedText></span>
                       <span className="font-semibold text-[#CF6A12]">
-                        {activeCourseTab === "sd" ? "36 / 40 pts" : activeCourseTab === "pw" ? "28 / 35 pts" : "22 / 30 pts"}
+                        <LocalizedText>{activeCourseTab === "sd" ? "36 / 40 pts" : activeCourseTab === "pw" ? "28 / 35 pts" : "22 / 30 pts"}</LocalizedText>
                       </span>
                     </div>
                     {/* Animated Progress Bar */}
@@ -361,21 +362,21 @@ export function HowItWorks() {
                   <div className="grid grid-cols-3 gap-1 pt-1.5 text-center font-mono text-[10px] text-zinc-500">
                     <div className="rounded bg-zinc-50 p-1 border border-zinc-100">
                       <div className="font-bold text-zinc-800">
-                        {activeCourseTab === "sd" ? "8" : "5"}
+                        <LocalizedText>{activeCourseTab === "sd" ? "8" : "5"}</LocalizedText>
                       </div>
-                      <div className="text-[9px] text-zinc-400">Pertanyaan</div>
+                      <div className="text-[9px] text-zinc-400"><LocalizedText>Pertanyaan</LocalizedText></div>
                     </div>
                     <div className="rounded bg-zinc-50 p-1 border border-zinc-100">
                       <div className="font-bold text-zinc-800">
-                        {activeCourseTab === "sd" ? "6" : "4"}
+                        <LocalizedText>{activeCourseTab === "sd" ? "6" : "4"}</LocalizedText>
                       </div>
-                      <div className="text-[9px] text-zinc-400">Jawaban</div>
+                      <div className="text-[9px] text-zinc-400"><LocalizedText>Jawaban</LocalizedText></div>
                     </div>
                     <div className="rounded bg-zinc-50 p-1 border border-zinc-100">
                       <div className="font-bold text-zinc-800">
-                        {activeCourseTab === "sd" ? "4" : "3"}
+                        <LocalizedText>{activeCourseTab === "sd" ? "4" : "3"}</LocalizedText>
                       </div>
-                      <div className="text-[9px] text-zinc-400">Presentasi</div>
+                      <div className="text-[9px] text-zinc-400"><LocalizedText>Presentasi</LocalizedText></div>
                     </div>
                   </div>
                 </div>

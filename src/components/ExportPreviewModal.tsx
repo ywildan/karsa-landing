@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { X, FileSpreadsheet, Shield } from "lucide-react";
 
 interface ExportPreviewModalProps {
@@ -32,16 +33,16 @@ export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps)
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-serif text-lg font-medium text-zinc-900">
+                <h3 className="font-serif text-lg font-medium text-zinc-900"><LocalizedText>
                   Karsa Excel Recap Preview
-                </h3>
-                <span className="rounded-full bg-zinc-200/80 px-2 py-0.5 font-mono text-[10px] text-zinc-700">
+                </LocalizedText></h3>
+                <span className="rounded-full bg-zinc-200/80 px-2 py-0.5 font-mono text-[10px] text-zinc-700"><LocalizedText>
                   .xlsx format
-                </span>
+                </LocalizedText></span>
               </div>
-              <p className="font-mono text-xs text-zinc-500">
+              <p className="font-mono text-xs text-zinc-500"><LocalizedText>
                 Kelas K1 • Akuntansi Perpajakan • Semester Ganjil 2026/2027
-              </p>
+              </LocalizedText></p>
             </div>
           </div>
           <button
@@ -55,13 +56,13 @@ export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps)
         {/* Content */}
         <div className="p-6">
           <div className="mb-4 flex items-center justify-between">
-            <div className="rounded-lg bg-zinc-100 px-3 py-1.5 font-mono text-xs font-medium text-zinc-700">
+            <div className="rounded-lg bg-zinc-100 px-3 py-1.5 font-mono text-xs font-medium text-zinc-700"><LocalizedText>
               Rekap poin per mata kuliah
-            </div>
+            </LocalizedText></div>
 
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
               <Shield className="h-3.5 w-3.5 text-zinc-400" />
-              <span>Admin-only export</span>
+              <span><LocalizedText>Admin-only export</LocalizedText></span>
             </div>
           </div>
 
@@ -70,24 +71,24 @@ export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps)
             <table className="w-full border-collapse text-left text-xs">
               <thead>
                 <tr className="bg-zinc-50 font-mono text-zinc-500 border-b border-zinc-200">
-                  <th className="py-2.5 px-3 font-medium">Nama Mahasiswa</th>
-                  <th className="py-2.5 px-3 font-medium">NIM</th>
-                  <th className="py-2.5 px-3 font-medium text-center">Bahasa Indonesia</th>
-                  <th className="py-2.5 px-3 font-medium text-center">Statistik</th>
-                  <th className="py-2.5 px-3 font-medium text-center">Perpajakan</th>
-                  <th className="py-2.5 px-3 font-medium text-right text-zinc-900">Total Poin</th>
+                  <th className="py-2.5 px-3 font-medium"><LocalizedText>Nama Mahasiswa</LocalizedText></th>
+                  <th className="py-2.5 px-3 font-medium"><LocalizedText>NIM</LocalizedText></th>
+                  <th className="py-2.5 px-3 font-medium text-center"><LocalizedText>Bahasa Indonesia</LocalizedText></th>
+                  <th className="py-2.5 px-3 font-medium text-center"><LocalizedText>Statistik</LocalizedText></th>
+                  <th className="py-2.5 px-3 font-medium text-center"><LocalizedText>Perpajakan</LocalizedText></th>
+                  <th className="py-2.5 px-3 font-medium text-right text-zinc-900"><LocalizedText>Total Poin</LocalizedText></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100 font-sans">
                 {sampleRows.map((row) => (
                   <tr key={row.nim} className="hover:bg-zinc-50/70 transition-colors">
-                    <td className="py-2.5 px-3 font-medium text-zinc-900">{row.name}</td>
-                    <td className="py-2.5 px-3 font-mono text-zinc-600">{row.nim}</td>
-                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.bahasa}</td>
-                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.statistik}</td>
-                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600">{row.pajak}</td>
+                    <td className="py-2.5 px-3 font-medium text-zinc-900"><LocalizedText>{row.name}</LocalizedText></td>
+                    <td className="py-2.5 px-3 font-mono text-zinc-600"><LocalizedText>{row.nim}</LocalizedText></td>
+                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600"><LocalizedText>{row.bahasa}</LocalizedText></td>
+                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600"><LocalizedText>{row.statistik}</LocalizedText></td>
+                    <td className="py-2.5 px-3 text-center font-mono text-zinc-600"><LocalizedText>{row.pajak}</LocalizedText></td>
                     <td className="py-2.5 px-3 text-right font-mono font-semibold text-zinc-900">
-                      {row.total}
+                      <LocalizedText>{row.total}</LocalizedText>
                     </td>
                   </tr>
                 ))}
@@ -96,8 +97,8 @@ export function ExportPreviewModal({ isOpen, onClose }: ExportPreviewModalProps)
           </div>
 
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-zinc-500 font-mono">
-            <span>Layout preview only — export asli dibuat dari kelas yang dipilih admin.</span>
-            <span className="rounded-md bg-zinc-100 px-2.5 py-1 text-zinc-600">Nama · NIM · Matkul · Total</span>
+            <span><LocalizedText>Layout preview only — export asli dibuat dari kelas yang dipilih admin.</LocalizedText></span>
+            <span className="rounded-md bg-zinc-100 px-2.5 py-1 text-zinc-600"><LocalizedText>Nama · NIM · Matkul · Total</LocalizedText></span>
           </div>
         </div>
       </div>

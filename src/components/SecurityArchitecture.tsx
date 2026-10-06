@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { CheckCircle2, Database, KeyRound, LockKeyhole, ShieldCheck } from "lucide-react";
 
 const gates = [
@@ -58,40 +59,40 @@ export function SecurityArchitecture() {
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <div className="mb-4 flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-widest text-[#CF6A12]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" /><LocalizedText>
               Security architecture
-            </div>
-            <h2 className="font-serif text-4xl leading-[1.04] tracking-tight-editorial sm:text-5xl lg:text-[54px]">
+            </LocalizedText></div>
+            <h2 className="font-serif text-4xl leading-[1.04] tracking-tight-editorial sm:text-5xl lg:text-[54px]"><LocalizedText>
               Trust is checked.
-              <br />
-              <span className="font-normal italic text-zinc-400">
+              </LocalizedText><br />
+              <span className="font-normal italic text-zinc-400"><LocalizedText>
                 Never assumed.
-              </span>
+              </LocalizedText></span>
             </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-400">
+            <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-400"><LocalizedText>
               A signed-in session is only the beginning. Every protected request
               must pass identity, current-role, and resource-scope checks before
               Karsa reads or changes academic data.
-            </p>
+            </LocalizedText></p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               <div className="rounded-xl border border-emerald-900/70 bg-emerald-950/30 p-4">
                 <div className="flex items-center gap-2 font-mono text-xs text-emerald-400">
-                  <CheckCircle2 className="h-4 w-4" />
+                  <CheckCircle2 className="h-4 w-4" /><LocalizedText>
                   VERIFIED
-                </div>
-                <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                </LocalizedText></div>
+                <p className="mt-2 text-xs leading-relaxed text-zinc-400"><LocalizedText>
                   Return only the data allowed for that role and resource.
-                </p>
+                </LocalizedText></p>
               </div>
               <div className="rounded-xl border border-orange-900/60 bg-orange-950/20 p-4">
                 <div className="flex items-center gap-2 font-mono text-xs text-orange-400">
-                  <LockKeyhole className="h-4 w-4" />
+                  <LockKeyhole className="h-4 w-4" /><LocalizedText>
                   UNVERIFIED
-                </div>
-                <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                </LocalizedText></div>
+                <p className="mt-2 text-xs leading-relaxed text-zinc-400"><LocalizedText>
                   Remove privileged claims and deny the protected operation.
-                </p>
+                </LocalizedText></p>
               </div>
             </div>
           </div>
@@ -99,11 +100,11 @@ export function SecurityArchitecture() {
           <div className="lg:col-span-8">
             <div className="relative rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5 shadow-2xl shadow-black/20 sm:p-7">
               <div className="flex items-center justify-between border-b border-zinc-800 pb-4 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
-                <span>Protected request / server path</span>
+                <span><LocalizedText>Protected request / server path</LocalizedText></span>
                 <span className="inline-flex items-center gap-1.5 text-emerald-500">
-                  <span className="security-status-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  <span className="security-status-dot h-1.5 w-1.5 rounded-full bg-emerald-500" /><LocalizedText>
                   Controls active
-                </span>
+                </LocalizedText></span>
               </div>
 
               <div className="relative mt-7">
@@ -124,14 +125,14 @@ export function SecurityArchitecture() {
                         >
                           <Icon className="h-4 w-4" />
                         </div>
-                        <div className="mt-4 font-mono text-[10px] text-[#CF6A12]">
-                          GATE {gate.number}
+                        <div className="mt-4 font-mono text-[10px] text-[#CF6A12]"><LocalizedText>
+                          GATE <LocalizedText></LocalizedText>{gate.number}</LocalizedText>
                         </div>
                         <h3 className="mt-1 text-sm font-semibold text-zinc-100">
-                          {gate.title}
+                          <LocalizedText>{gate.title}</LocalizedText>
                         </h3>
                         <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">
-                          {gate.description}
+                          <LocalizedText>{gate.description}</LocalizedText>
                         </p>
                       </div>
                     );
@@ -140,26 +141,26 @@ export function SecurityArchitecture() {
               </div>
 
               <div className="mt-8 border-t border-zinc-800 pt-5">
-                <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500"><LocalizedText>
                   Defense in depth
-                </div>
+                </LocalizedText></div>
                 <div className="flex flex-wrap gap-2">
                   {controls.map((control) => (
                     <span
                       key={control}
                       className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-[11px] text-zinc-400"
                     >
-                      {control}
+                      <LocalizedText>{control}</LocalizedText>
                     </span>
                   ))}
                 </div>
               </div>
             </div>
 
-            <p className="mt-4 text-xs leading-relaxed text-zinc-500">
+            <p className="mt-4 text-xs leading-relaxed text-zinc-500"><LocalizedText>
               The animation explains request order; it is not a live traffic
               monitor or a claim that any system is risk-free.
-            </p>
+            </LocalizedText></p>
           </div>
         </div>
       </div>

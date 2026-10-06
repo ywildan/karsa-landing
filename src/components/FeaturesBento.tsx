@@ -1,3 +1,4 @@
+import { LocalizedText, useLanguage } from "../i18n/LanguageContext";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { 
@@ -18,6 +19,7 @@ interface FeaturesBentoProps {
 }
 
 export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
+  const { t } = useLanguage();
   // State for privacy masking toggle in Leaderboard cell
   const [maskNames, setMaskNames] = useState(true);
 
@@ -55,9 +57,9 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 mb-4"
           >
-            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase">
+            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
               04 — System Capabilities
-            </span>
+            </LocalizedText></span>
           </motion.div>
 
           <motion.h2
@@ -66,9 +68,9 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] tracking-tight-editorial text-zinc-950"
-          >
+          ><LocalizedText>
             Engineered for classroom reality.
-          </motion.h2>
+          </LocalizedText></motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -76,9 +78,9 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="mt-4 text-base sm:text-lg text-zinc-600 font-sans"
-          >
+          ><LocalizedText>
             No generic SaaS abstractions. Every feature maps directly to Universitas Tidar academic bylaws and classroom dynamics.
-          </motion.p>
+          </LocalizedText></motion.p>
         </div>
 
         {/* Bento Grid (6 Cells) */}
@@ -94,17 +96,17 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
           >
             <div>
               <div className="flex items-center justify-between font-mono text-xs text-zinc-500 mb-3">
-                <span className="text-[#CF6A12] font-semibold">CORE INTERACTION</span>
-                <span>0.8s avg speed</span>
+                <span className="text-[#CF6A12] font-semibold"><LocalizedText>CORE INTERACTION</LocalizedText></span>
+                <span><LocalizedText>0.8s avg speed</LocalizedText></span>
               </div>
 
-              <h3 className="font-serif text-3xl text-zinc-950 tracking-tight">
+              <h3 className="font-serif text-3xl text-zinc-950 tracking-tight"><LocalizedText>
                 3-Tap Input
-              </h3>
+              </LocalizedText></h3>
 
-              <p className="mt-3 text-sm text-zinc-600 leading-relaxed font-sans">
+              <p className="mt-3 text-sm text-zinc-600 leading-relaxed font-sans"><LocalizedText>
                 Designed specifically for mobile screens in lecture halls. A PJ can award points to any student in under two seconds without looking away from the speaker.
-              </p>
+              </LocalizedText></p>
             </div>
 
             {/* Inline Interactive Mock */}
@@ -112,26 +114,26 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
               <div className="flex items-center justify-between border-b border-zinc-100 pb-2 mb-3">
                 <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-700">
                   <Smartphone className="h-3.5 w-3.5 text-[#CF6A12]" />
-                  <span>Interactive 3-Tap Test</span>
+                  <span><LocalizedText>Interactive 3-Tap Test</LocalizedText></span>
                 </div>
-                <span className="font-mono text-[10px] text-zinc-400">Step {tappedStep}/3</span>
+                <span className="font-mono text-[10px] text-zinc-400"><LocalizedText>Step <LocalizedText></LocalizedText>{tappedStep}</LocalizedText>/3</span>
               </div>
 
               <div className="space-y-2">
                 {/* Tap 1: Select Student */}
                 <div className={`p-2 rounded border transition-all ${tappedStep === 1 ? "border-[#CF6A12] bg-orange-50/40" : "border-zinc-200 bg-zinc-50 opacity-70"}`}>
-                  <div className="text-[10px] font-mono text-zinc-500 mb-1">TAP 1 • Choose student</div>
+                  <div className="text-[10px] font-mono text-zinc-500 mb-1"><LocalizedText>TAP 1 • Choose student</LocalizedText></div>
                   <button
                     onClick={() => setTappedStep(2)}
                     className="w-full text-left text-xs font-medium text-zinc-900 bg-white border border-zinc-200 rounded px-2.5 py-1 hover:border-zinc-400"
-                  >
+                  ><LocalizedText>
                     Aditya Pratama (2210501001)
-                  </button>
+                  </LocalizedText></button>
                 </div>
 
                 {/* Tap 2: Select Action */}
                 <div className={`p-2 rounded border transition-all ${tappedStep === 2 ? "border-[#CF6A12] bg-orange-50/40" : "border-zinc-200 bg-zinc-50 opacity-70"}`}>
-                  <div className="text-[10px] font-mono text-zinc-500 mb-1">TAP 2 • Select category</div>
+                  <div className="text-[10px] font-mono text-zinc-500 mb-1"><LocalizedText>TAP 2 • Select category</LocalizedText></div>
                   <div className="flex gap-1.5">
                     {["Tanya (+1)", "Jawab (+2)", "Present (+4)"].map((act, i) => (
                       <button
@@ -142,7 +144,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
                           i === 1 && tappedStep >= 2 ? "bg-zinc-900 text-white" : "bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-100"
                         }`}
                       >
-                        {act}
+                        <LocalizedText>{act}</LocalizedText>
                       </button>
                     ))}
                   </div>
@@ -150,7 +152,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
 
                 {/* Tap 3: Confirm */}
                 <div className={`p-2 rounded border transition-all ${tappedStep === 3 ? "border-[#CF6A12] bg-orange-50/40" : "border-zinc-200 bg-zinc-50 opacity-70"}`}>
-                  <div className="text-[10px] font-mono text-zinc-500 mb-1">TAP 3 • Commit to ledger</div>
+                  <div className="text-[10px] font-mono text-zinc-500 mb-1"><LocalizedText>TAP 3 • Commit to ledger</LocalizedText></div>
                   <button
                     disabled={tappedStep < 3}
                     onClick={() => {
@@ -168,7 +170,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
                         : "bg-zinc-100 text-zinc-400 cursor-not-allowed"
                     }`}
                   >
-                    {demoPointAwarded ? "✓ Points Recorded in 0.04s!" : "Confirm & Award"}
+                    <LocalizedText>{demoPointAwarded ? "✓ Points Recorded in 0.04s!" : "Confirm & Award"}</LocalizedText>
                   </button>
                 </div>
               </div>
@@ -177,9 +179,9 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
                 <button
                   onClick={() => { setTappedStep(1); setDemoPointAwarded(false); }}
                   className="font-mono text-[10px] text-zinc-400 hover:text-zinc-600 underline"
-                >
+                ><LocalizedText>
                   Reset simulator
-                </button>
+                </LocalizedText></button>
               </div>
             </div>
           </motion.div>
@@ -195,33 +197,33 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center justify-between font-mono text-xs text-zinc-500 mb-2">
                 <span className="text-emerald-700 font-semibold flex items-center gap-1">
-                  <ShieldCheck className="h-3.5 w-3.5" /> PRIVACY BY DESIGN
-                </span>
+                  <ShieldCheck className="h-3.5 w-3.5" /><LocalizedText> PRIVACY BY DESIGN
+                </LocalizedText></span>
                 <button
                   onClick={() => setMaskNames(!maskNames)}
                   className="inline-flex items-center gap-1 text-[11px] font-mono text-[#CF6A12] hover:underline"
                 >
                   {maskNames ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
-                  <span>{maskNames ? "Masking ON" : "Masking OFF"}</span>
+                  <span><LocalizedText>{maskNames ? "Masking ON" : "Masking OFF"}</LocalizedText></span>
                 </button>
               </div>
 
-              <h3 className="font-serif text-2xl sm:text-3xl text-zinc-950 tracking-tight">
+              <h3 className="font-serif text-2xl sm:text-3xl text-zinc-950 tracking-tight"><LocalizedText>
                 Class-scoped leaderboard
-              </h3>
+              </LocalizedText></h3>
 
-              <p className="mt-2 text-sm text-zinc-600 leading-relaxed font-sans max-w-xl">
+              <p className="mt-2 text-sm text-zinc-600 leading-relaxed font-sans max-w-xl"><LocalizedText>
                 Every student sees only their class. Names masked for privacy to maintain peer encouragement without individual exposure.
-              </p>
+              </LocalizedText></p>
             </div>
 
             {/* Masked Leaderboard Preview Table */}
             <div className="mt-5 rounded-lg border border-zinc-200 bg-zinc-50/60 overflow-hidden font-mono text-xs">
               <div className="grid grid-cols-12 bg-zinc-100/90 py-2 px-3 text-[10px] text-zinc-500 uppercase tracking-wider font-semibold border-b border-zinc-200">
-                <div className="col-span-2">Rank</div>
-                <div className="col-span-6">Student ID / Display</div>
-                <div className="col-span-2 text-center">Interactions</div>
-                <div className="col-span-2 text-right">Points</div>
+                <div className="col-span-2"><LocalizedText>Rank</LocalizedText></div>
+                <div className="col-span-6"><LocalizedText>Student ID / Display</LocalizedText></div>
+                <div className="col-span-2 text-center"><LocalizedText>Interactions</LocalizedText></div>
+                <div className="col-span-2 text-right"><LocalizedText>Points</LocalizedText></div>
               </div>
 
               <div className="divide-y divide-zinc-100">
@@ -232,17 +234,17 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
                 ].map((row, idx) => (
                   <div key={row.rank} className="grid grid-cols-12 py-2 px-3 items-center hover:bg-white transition-colors">
                     <div className="col-span-2 font-bold text-zinc-900">
-                      {row.rank}
+                      <LocalizedText>{row.rank}</LocalizedText>
                     </div>
                     <div className="col-span-6 flex items-center gap-2">
-                      <span className="font-medium text-zinc-900">{row.name}</span>
-                      <span className="text-[10px] text-zinc-400">({row.npm})</span>
+                      <span className="font-medium text-zinc-900"><LocalizedText>{row.name}</LocalizedText></span>
+                      <span className="text-[10px] text-zinc-400">(<LocalizedText>{row.npm}</LocalizedText>)</span>
                       {idx === 1 && (
-                        <span className="rounded bg-orange-100 text-[#CF6A12] px-1 py-0.2 text-[9px]">You</span>
+                        <span className="rounded bg-orange-100 text-[#CF6A12] px-1 py-0.2 text-[9px]"><LocalizedText>You</LocalizedText></span>
                       )}
                     </div>
-                    <div className="col-span-2 text-center text-zinc-600">{row.count}</div>
-                    <div className="col-span-2 text-right font-semibold text-[#CF6A12]">{row.pts} pts</div>
+                    <div className="col-span-2 text-center text-zinc-600"><LocalizedText>{row.count}</LocalizedText></div>
+                    <div className="col-span-2 text-right font-semibold text-[#CF6A12]"><LocalizedText>{row.pts}<LocalizedText></LocalizedText> pts</LocalizedText></div>
                   </div>
                 ))}
               </div>
@@ -260,16 +262,16 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
                 <Users className="h-3.5 w-3.5 text-[#CF6A12]" />
-                <span>ROLE BOUNDARIES</span>
+                <span><LocalizedText>ROLE BOUNDARIES</LocalizedText></span>
               </div>
 
-              <h3 className="font-serif text-2xl text-zinc-950 tracking-tight">
+              <h3 className="font-serif text-2xl text-zinc-950 tracking-tight"><LocalizedText>
                 Multi-role
-              </h3>
+              </LocalizedText></h3>
 
-              <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans">
+              <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans"><LocalizedText>
                 PJ. Student. One system.
-              </p>
+              </LocalizedText></p>
             </div>
 
             {/* Interactive Role Pills */}
@@ -283,7 +285,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
                       activeRole === r ? "bg-white text-zinc-900 font-medium shadow-2xs" : "text-zinc-600 hover:text-zinc-900"
                     }`}
                   >
-                    {r}
+                    <LocalizedText>{r}</LocalizedText>
                   </button>
                 ))}
               </div>
@@ -291,14 +293,14 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
               <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-3 font-mono text-xs text-zinc-600">
                 {activeRole === "pj" && (
                   <div>
-                    <div className="font-semibold text-zinc-900">PJ Penanggung Jawab</div>
-                    <p className="mt-0.5 text-[11px] text-zinc-500">Fast classroom awarding access locked to assigned class only.</p>
+                    <div className="font-semibold text-zinc-900"><LocalizedText>PJ Penanggung Jawab</LocalizedText></div>
+                    <p className="mt-0.5 text-[11px] text-zinc-500"><LocalizedText>Fast classroom awarding access locked to assigned class only.</LocalizedText></p>
                   </div>
                 )}
                 {activeRole === "student" && (
                   <div>
-                    <div className="font-semibold text-zinc-900">Student Self-Audit</div>
-                    <p className="mt-0.5 text-[11px] text-zinc-500">Personal rapor, score breakdown, masked class leaderboard.</p>
+                    <div className="font-semibold text-zinc-900"><LocalizedText>Student Self-Audit</LocalizedText></div>
+                    <p className="mt-0.5 text-[11px] text-zinc-500"><LocalizedText>Personal rapor, score breakdown, masked class leaderboard.</LocalizedText></p>
                   </div>
                 )}
               </div>
@@ -316,34 +318,34 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
                 <FileSpreadsheet className="h-3.5 w-3.5 text-emerald-700" />
-                <span>ACADEMIC RECAP</span>
+                <span><LocalizedText>ACADEMIC RECAP</LocalizedText></span>
               </div>
 
-              <h3 className="font-serif text-2xl text-zinc-950 tracking-tight">
+              <h3 className="font-serif text-2xl text-zinc-950 tracking-tight"><LocalizedText>
                 Excel export
-              </h3>
+              </LocalizedText></h3>
 
-              <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans">
+              <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans"><LocalizedText>
                 Per class. Per semester. One click.
-              </p>
+              </LocalizedText></p>
             </div>
 
             <div className="mt-5">
               <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-3 font-mono text-xs">
                 <div className="flex items-center justify-between text-zinc-700">
-                  <span>KARSA_REKAP_2026.xlsx</span>
-                  <span className="text-emerald-700 font-semibold">READY</span>
+                  <span><LocalizedText>KARSA_REKAP_2026.xlsx</LocalizedText></span>
+                  <span className="text-emerald-700 font-semibold"><LocalizedText>READY</LocalizedText></span>
                 </div>
-                <div className="mt-1 text-[11px] text-zinc-500">
+                <div className="mt-1 text-[11px] text-zinc-500"><LocalizedText>
                   Structured recap for review and follow-up by the academic administrator.
-                </div>
+                </LocalizedText></div>
               </div>
 
               <button
                 onClick={onOpenExportPreview}
                 className="mt-3 w-full inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-200 bg-white py-1.5 font-sans text-xs font-medium text-zinc-800 hover:bg-zinc-50 transition-colors shadow-2xs"
               >
-                <span>View Export Layout Preview</span>
+                <span><LocalizedText>View Export Layout Preview</LocalizedText></span>
                 <span className="text-zinc-400">↗</span>
               </button>
             </div>
@@ -360,30 +362,30 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
                 <Lock className="h-3.5 w-3.5 text-[#CF6A12]" />
-                <span>GOOGLE OAUTH</span>
+                <span><LocalizedText>GOOGLE OAUTH</LocalizedText></span>
               </div>
 
-              <h3 className="font-serif text-2xl sm:text-3xl text-zinc-950 tracking-tight">
+              <h3 className="font-serif text-2xl sm:text-3xl text-zinc-950 tracking-tight"><LocalizedText>
                 Domain-locked auth
-              </h3>
+              </LocalizedText></h3>
 
-              <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans">
+              <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans"><LocalizedText>
                 Only @students.untidar.ac.id and @untidar.ac.id can sign in. Outside accounts are rejected at the OAuth gateway before session creation.
-              </p>
+              </LocalizedText></p>
             </div>
 
             {/* Email Validator Simulator */}
             <div className="mt-5 rounded-lg border border-zinc-200 bg-zinc-50/80 p-3.5 font-mono text-xs">
-              <div className="text-[10px] uppercase text-zinc-500 tracking-wider mb-1.5">
+              <div className="text-[10px] uppercase text-zinc-500 tracking-wider mb-1.5"><LocalizedText>
                 Test Domain Validation Gateway
-              </div>
+              </LocalizedText></div>
               <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="text"
                   value={testEmail}
                   onChange={(e) => setTestEmail(e.target.value)}
                   className="flex-1 rounded-md border border-zinc-200 bg-white px-3 py-1.5 text-xs text-zinc-900 focus:outline-none focus:border-[#CF6A12]"
-                  placeholder="Enter email to test SSO lock..."
+                  placeholder={t("Enter email to test SSO lock...")}
                 />
                 <div className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold ${
                   isEmailValid ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"
@@ -391,12 +393,12 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
                   {isEmailValid ? (
                     <>
                       <CheckCircle2 className="h-3.5 w-3.5" />
-                      <span>Access Granted</span>
+                      <span><LocalizedText>Access Granted</LocalizedText></span>
                     </>
                   ) : (
                     <>
                       <AlertCircle className="h-3.5 w-3.5" />
-                      <span>403 Access Denied</span>
+                      <span><LocalizedText>403 Access Denied</LocalizedText></span>
                     </>
                   )}
                 </div>
@@ -415,26 +417,26 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
                 <DatabaseZap className="h-3.5 w-3.5 text-[#CF6A12]" />
-                <span>AUDITABLE HISTORY</span>
+                <span><LocalizedText>AUDITABLE HISTORY</LocalizedText></span>
               </div>
 
-              <h3 className="font-serif text-2xl text-zinc-950 tracking-tight">
+              <h3 className="font-serif text-2xl text-zinc-950 tracking-tight"><LocalizedText>
                 Zero paper
-              </h3>
+              </LocalizedText></h3>
 
-              <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans">
+              <p className="mt-1 text-sm text-zinc-600 leading-relaxed font-sans"><LocalizedText>
                 Every important change, traceable.
-              </p>
+              </LocalizedText></p>
             </div>
 
             <div className="mt-5 rounded-lg border border-zinc-200 bg-white p-3 font-mono text-xs">
               <div className="flex items-center justify-between text-zinc-700 text-[11px]">
-                <span>Ledger Integrity</span>
-                <span className="text-emerald-700 font-bold">Snapshot-backed</span>
+                <span><LocalizedText>Ledger Integrity</LocalizedText></span>
+                <span className="text-emerald-700 font-bold"><LocalizedText>Snapshot-backed</LocalizedText></span>
               </div>
-              <div className="mt-1.5 text-[10px] text-zinc-400">
+              <div className="mt-1.5 text-[10px] text-zinc-400"><LocalizedText>
                 Point activity records timestamp, PJ identity, class context, and an audit snapshot for important changes.
-              </div>
+              </LocalizedText></div>
             </div>
           </motion.div>
 

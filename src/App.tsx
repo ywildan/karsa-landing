@@ -1,3 +1,4 @@
+import { LocalizedText } from "./i18n/LanguageContext";
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
@@ -16,7 +17,7 @@ export default function App() {
         <Route
           path="/download"
           element={
-            <Suspense fallback={<div className="min-h-screen bg-[#FAFAFA] p-8 text-sm text-zinc-500">Memuat halaman unduhan...</div>}>
+            <Suspense fallback={<div className="min-h-screen bg-[#FAFAFA] p-8 text-sm text-zinc-500"><LocalizedText>Memuat halaman unduhan...</LocalizedText></div>}>
               <DownloadPage />
             </Suspense>
           }

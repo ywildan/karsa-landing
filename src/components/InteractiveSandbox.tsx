@@ -1,3 +1,4 @@
+import { LocalizedText, useLanguage } from "../i18n/LanguageContext";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -32,6 +33,7 @@ interface AuditLog {
 }
 
 export function InteractiveSandbox() {
+  const { t } = useLanguage();
   const initialStudents: StudentRecord[] = [
     { id: "1", name: "Gita Maharani", maskedName: "G*** Maharani", npm: "2210501007", questions: 6, answers: 7, presentations: 4, totalPoints: 36 },
     { id: "2", name: "Aditya Pratama", maskedName: "A*** Pratama", npm: "2210501001", questions: 7, answers: 5, presentations: 3, totalPoints: 29 },
@@ -132,9 +134,9 @@ export function InteractiveSandbox() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="flex items-center gap-2 mb-3"
             >
-              <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase">
+              <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
                 Interactive System Simulator
-              </span>
+              </LocalizedText></span>
             </motion.div>
 
             <motion.h2
@@ -143,9 +145,9 @@ export function InteractiveSandbox() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight-editorial text-white"
-            >
+            ><LocalizedText>
               Experience the live interaction.
-            </motion.h2>
+            </LocalizedText></motion.h2>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -153,9 +155,9 @@ export function InteractiveSandbox() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="mt-2 text-sm sm:text-base text-zinc-400 font-sans max-w-xl"
-            >
+            ><LocalizedText>
               Tap an activity below as the course PJ. Watch the live ledger update and student ranking recalculate in real-time.
-            </motion.p>
+            </LocalizedText></motion.p>
           </div>
 
           {/* Tab Switcher & Reset */}
@@ -170,7 +172,7 @@ export function InteractiveSandbox() {
                 }`}
               >
                 <Smartphone className="h-3.5 w-3.5" />
-                <span>PJ Input (Mobile)</span>
+                <span><LocalizedText>PJ Input (Mobile)</LocalizedText></span>
               </button>
               <button
                 onClick={() => setActiveTab("student-desktop")}
@@ -181,15 +183,15 @@ export function InteractiveSandbox() {
                 }`}
               >
                 <Monitor className="h-3.5 w-3.5" />
-                <span>Student Rapor (Desktop)</span>
+                <span><LocalizedText>Student Rapor (Desktop)</LocalizedText></span>
               </button>
             </div>
 
             <button
               onClick={resetSandbox}
-              title="Reset simulator values"
+              title={t("Reset simulator values")}
               className="rounded-lg border border-zinc-800 bg-zinc-900 p-2 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
-              aria-label="Reset sandbox"
+              aria-label={t("Reset sandbox")}
             >
               <RotateCcw className="h-4 w-4" />
             </button>
@@ -205,22 +207,22 @@ export function InteractiveSandbox() {
             {/* Header of Simulated App */}
             <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-6">
               <div className="flex items-center gap-3">
-                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#CF6A12] font-serif font-bold text-white text-sm">
+                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#CF6A12] font-serif font-bold text-white text-sm"><LocalizedText>
                   K
-                </div>
+                </LocalizedText></div>
                 <div>
-                  <div className="font-mono text-xs font-semibold text-zinc-200">
+                  <div className="font-mono text-xs font-semibold text-zinc-200"><LocalizedText>
                     IF2204 • Struktur Data (Kelas 02)
-                  </div>
-                  <div className="font-mono text-[10px] text-zinc-500">
+                  </LocalizedText></div>
+                  <div className="font-mono text-[10px] text-zinc-500"><LocalizedText>
                     Universitas Tidar • Ruang Kuliah T.04
-                  </div>
+                  </LocalizedText></div>
                 </div>
               </div>
 
               <div className="flex items-center gap-1.5 font-mono text-[11px] text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-1 rounded-full">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>SSO Session Active</span>
+                <span><LocalizedText>SSO Session Active</LocalizedText></span>
               </div>
             </div>
 
@@ -235,9 +237,9 @@ export function InteractiveSandbox() {
                 >
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-300" />
-                    <span>{awardFeedback}</span>
+                    <span><LocalizedText>{awardFeedback}</LocalizedText></span>
                   </div>
-                  <span className="text-[10px] text-emerald-300">Logged in 0.038s</span>
+                  <span className="text-[10px] text-emerald-300"><LocalizedText>Logged in 0.038s</LocalizedText></span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -246,9 +248,9 @@ export function InteractiveSandbox() {
             {activeTab === "pj-mobile" && (
               <div className="space-y-6">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2"><LocalizedText>
                     1. Select Active Student in Class
-                  </label>
+                  </LocalizedText></label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {students.map((s) => (
                       <button
@@ -261,12 +263,12 @@ export function InteractiveSandbox() {
                         }`}
                       >
                         <div>
-                          <div className="text-sm font-medium text-zinc-200">{s.name}</div>
-                          <div className="font-mono text-[11px] text-zinc-500">NPM {s.npm}</div>
+                          <div className="text-sm font-medium text-zinc-200"><LocalizedText>{s.name}</LocalizedText></div>
+                          <div className="font-mono text-[11px] text-zinc-500"><LocalizedText>NPM <LocalizedText></LocalizedText>{s.npm}</LocalizedText></div>
                         </div>
                         <div className="text-right font-mono">
-                          <div className="text-sm font-semibold text-[#CF6A12]">{s.totalPoints} pts</div>
-                          <div className="text-[10px] text-zinc-500">Rank #{students.findIndex((st) => st.id === s.id) + 1}</div>
+                          <div className="text-sm font-semibold text-[#CF6A12]"><LocalizedText>{s.totalPoints}<LocalizedText></LocalizedText> pts</LocalizedText></div>
+                          <div className="text-[10px] text-zinc-500"><LocalizedText>Rank #<LocalizedText></LocalizedText>{students.findIndex((st) => st.id === s.id) + 1}</LocalizedText></div>
                         </div>
                       </button>
                     ))}
@@ -274,24 +276,24 @@ export function InteractiveSandbox() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2"><LocalizedText>
                     2. Tap Point Category to Award
-                  </label>
+                  </LocalizedText></label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     <button
                       onClick={() => awardPoints("Pertanyaan (Tanya)", 1)}
                       className="group flex flex-col items-start p-3.5 rounded-xl border border-zinc-800 bg-zinc-950 hover:border-[#CF6A12] hover:bg-orange-950/20 transition-all text-left"
                     >
                       <div className="flex items-center justify-between w-full font-mono mb-1">
-                        <span className="text-xs text-zinc-400 group-hover:text-zinc-200">Pertanyaan</span>
-                        <span className="text-xs font-bold text-[#CF6A12]">+1 pt</span>
+                        <span className="text-xs text-zinc-400 group-hover:text-zinc-200"><LocalizedText>Pertanyaan</LocalizedText></span>
+                        <span className="text-xs font-bold text-[#CF6A12]"><LocalizedText>+1 pt</LocalizedText></span>
                       </div>
-                      <p className="text-[11px] text-zinc-500 font-sans">
+                      <p className="text-[11px] text-zinc-500 font-sans"><LocalizedText>
                         Mengajukan pertanyaan berbobot saat materi kuliah
-                      </p>
+                      </LocalizedText></p>
                       <div className="mt-3 flex items-center gap-1 font-mono text-[10px] text-zinc-400">
-                        <Plus className="h-3 w-3 text-[#CF6A12]" /> Tap to Award
-                      </div>
+                        <Plus className="h-3 w-3 text-[#CF6A12]" /><LocalizedText> Tap to Award
+                      </LocalizedText></div>
                     </button>
 
                     <button
@@ -299,15 +301,15 @@ export function InteractiveSandbox() {
                       className="group flex flex-col items-start p-3.5 rounded-xl border border-zinc-800 bg-zinc-950 hover:border-[#CF6A12] hover:bg-orange-950/20 transition-all text-left"
                     >
                       <div className="flex items-center justify-between w-full font-mono mb-1">
-                        <span className="text-xs text-zinc-400 group-hover:text-zinc-200">Jawaban</span>
-                        <span className="text-xs font-bold text-[#CF6A12]">+2 pts</span>
+                        <span className="text-xs text-zinc-400 group-hover:text-zinc-200"><LocalizedText>Jawaban</LocalizedText></span>
+                        <span className="text-xs font-bold text-[#CF6A12]"><LocalizedText>+2 pts</LocalizedText></span>
                       </div>
-                      <p className="text-[11px] text-zinc-500 font-sans">
+                      <p className="text-[11px] text-zinc-500 font-sans"><LocalizedText>
                         Menjawab tantangan soal studi kasus dosen
-                      </p>
+                      </LocalizedText></p>
                       <div className="mt-3 flex items-center gap-1 font-mono text-[10px] text-zinc-400">
-                        <Plus className="h-3 w-3 text-[#CF6A12]" /> Tap to Award
-                      </div>
+                        <Plus className="h-3 w-3 text-[#CF6A12]" /><LocalizedText> Tap to Award
+                      </LocalizedText></div>
                     </button>
 
                     <button
@@ -315,15 +317,15 @@ export function InteractiveSandbox() {
                       className="group flex flex-col items-start p-3.5 rounded-xl border border-zinc-800 bg-zinc-950 hover:border-[#CF6A12] hover:bg-orange-950/20 transition-all text-left"
                     >
                       <div className="flex items-center justify-between w-full font-mono mb-1">
-                        <span className="text-xs text-zinc-400 group-hover:text-zinc-200">Presentasi</span>
-                        <span className="text-xs font-bold text-[#CF6A12]">+4 pts</span>
+                        <span className="text-xs text-zinc-400 group-hover:text-zinc-200"><LocalizedText>Presentasi</LocalizedText></span>
+                        <span className="text-xs font-bold text-[#CF6A12]"><LocalizedText>+4 pts</LocalizedText></span>
                       </div>
-                      <p className="text-[11px] text-zinc-500 font-sans">
+                      <p className="text-[11px] text-zinc-500 font-sans"><LocalizedText>
                         Pemaparan hasil riset atau tugas kelompok
-                      </p>
+                      </LocalizedText></p>
                       <div className="mt-3 flex items-center gap-1 font-mono text-[10px] text-zinc-400">
-                        <Plus className="h-3 w-3 text-[#CF6A12]" /> Tap to Award
-                      </div>
+                        <Plus className="h-3 w-3 text-[#CF6A12]" /><LocalizedText> Tap to Award
+                      </LocalizedText></div>
                     </button>
                   </div>
                 </div>
@@ -337,20 +339,20 @@ export function InteractiveSandbox() {
                   <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-4">
                     <div>
                       <div className="text-base font-semibold text-zinc-100">
-                        {currentSelectedStudent.name}
+                        <LocalizedText>{currentSelectedStudent.name}</LocalizedText>
                       </div>
-                      <div className="font-mono text-xs text-zinc-500">
-                        NPM: {currentSelectedStudent.npm} • Teknik Informatika UNTIDAR
-                      </div>
+                      <div className="font-mono text-xs text-zinc-500"><LocalizedText>
+                        NPM: <LocalizedText></LocalizedText>{currentSelectedStudent.npm}<LocalizedText></LocalizedText> • Teknik Informatika UNTIDAR
+                      </LocalizedText></div>
                     </div>
 
                     <div className="text-right">
                       <div className="font-mono text-2xl font-bold text-[#CF6A12]">
-                        {currentSelectedStudent.totalPoints} pts
-                      </div>
+                        <LocalizedText>{currentSelectedStudent.totalPoints}<LocalizedText></LocalizedText> pts
+                      </LocalizedText></div>
                       <div className="font-mono text-xs text-emerald-400 flex items-center justify-end gap-1">
                         <Award className="h-3.5 w-3.5" />
-                        <span>Class Rank #{currentRank} of {students.length}</span>
+                        <span><LocalizedText>Class Rank #<LocalizedText></LocalizedText>{currentRank}<LocalizedText></LocalizedText> of <LocalizedText></LocalizedText>{students.length}</LocalizedText></span>
                       </div>
                     </div>
                   </div>
@@ -359,8 +361,8 @@ export function InteractiveSandbox() {
                   <div className="space-y-3">
                     <div>
                       <div className="flex justify-between font-mono text-xs text-zinc-400 mb-1">
-                        <span>Target Keaktifan Semester (40 pts)</span>
-                        <span className="text-zinc-200">{Math.round((currentSelectedStudent.totalPoints / 40) * 100)}%</span>
+                        <span><LocalizedText>Target Keaktifan Semester (40 pts)</LocalizedText></span>
+                        <span className="text-zinc-200"><LocalizedText>{Math.round((currentSelectedStudent.totalPoints / 40) * 100)}</LocalizedText>%</span>
                       </div>
                       <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
                         <div
@@ -372,16 +374,16 @@ export function InteractiveSandbox() {
 
                     <div className="grid grid-cols-3 gap-3 pt-2 font-mono text-xs text-center">
                       <div className="rounded-lg bg-zinc-900 border border-zinc-800 p-2.5">
-                        <div className="text-base font-bold text-zinc-200">{currentSelectedStudent.questions}</div>
-                        <div className="text-[11px] text-zinc-500">Pertanyaan (1pt)</div>
+                        <div className="text-base font-bold text-zinc-200"><LocalizedText>{currentSelectedStudent.questions}</LocalizedText></div>
+                        <div className="text-[11px] text-zinc-500"><LocalizedText>Pertanyaan (1pt)</LocalizedText></div>
                       </div>
                       <div className="rounded-lg bg-zinc-900 border border-zinc-800 p-2.5">
-                        <div className="text-base font-bold text-zinc-200">{currentSelectedStudent.answers}</div>
-                        <div className="text-[11px] text-zinc-500">Jawaban (2pt)</div>
+                        <div className="text-base font-bold text-zinc-200"><LocalizedText>{currentSelectedStudent.answers}</LocalizedText></div>
+                        <div className="text-[11px] text-zinc-500"><LocalizedText>Jawaban (2pt)</LocalizedText></div>
                       </div>
                       <div className="rounded-lg bg-zinc-900 border border-zinc-800 p-2.5">
-                        <div className="text-base font-bold text-zinc-200">{currentSelectedStudent.presentations}</div>
-                        <div className="text-[11px] text-zinc-500">Presentasi (4pt)</div>
+                        <div className="text-base font-bold text-zinc-200"><LocalizedText>{currentSelectedStudent.presentations}</LocalizedText></div>
+                        <div className="text-[11px] text-zinc-500"><LocalizedText>Presentasi (4pt)</LocalizedText></div>
                       </div>
                     </div>
                   </div>
@@ -399,9 +401,9 @@ export function InteractiveSandbox() {
               <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-3">
                 <div className="flex items-center gap-2 text-zinc-300 font-semibold">
                   <History className="h-4 w-4 text-[#CF6A12]" />
-                  <span>Real-Time Audit Ledger</span>
+                  <span><LocalizedText>Real-Time Audit Ledger</LocalizedText></span>
                 </div>
-                <span className="text-[10px] text-zinc-500 uppercase">Audit Snapshot</span>
+                <span className="text-[10px] text-zinc-500 uppercase"><LocalizedText>Audit Snapshot</LocalizedText></span>
               </div>
 
               <div className="space-y-2.5">
@@ -411,14 +413,14 @@ export function InteractiveSandbox() {
                     className="rounded-lg border border-zinc-800/80 bg-zinc-950/70 p-2.5 flex items-start justify-between"
                   >
                     <div>
-                      <div className="text-zinc-200 font-medium">{log.studentName}</div>
+                      <div className="text-zinc-200 font-medium"><LocalizedText>{log.studentName}</LocalizedText></div>
                       <div className="text-[11px] text-zinc-500 mt-0.5">
-                        {log.category} • <span className="text-zinc-400">{log.reference}</span>
+                        <LocalizedText>{log.category}</LocalizedText> • <span className="text-zinc-400"><LocalizedText>{log.reference}</LocalizedText></span>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-semibold text-[#CF6A12]">+{log.points} pt</div>
-                      <div className="text-[10px] text-zinc-500">{log.time}</div>
+                      <div className="font-semibold text-[#CF6A12]">+<LocalizedText>{log.points}<LocalizedText></LocalizedText> pt</LocalizedText></div>
+                      <div className="text-[10px] text-zinc-500"><LocalizedText>{log.time}</LocalizedText></div>
                     </div>
                   </div>
                 ))}
@@ -429,11 +431,11 @@ export function InteractiveSandbox() {
             <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/30 p-4 font-mono text-xs text-zinc-400">
               <div className="flex items-center gap-2 text-zinc-300 mb-1 font-medium">
                 <Sparkles className="h-3.5 w-3.5 text-[#CF6A12]" />
-                <span>Academic Review Workflow</span>
+                <span><LocalizedText>Academic Review Workflow</LocalizedText></span>
               </div>
-              <p className="text-[11px] text-zinc-500 leading-relaxed font-sans">
+              <p className="text-[11px] text-zinc-500 leading-relaxed font-sans"><LocalizedText>
                 Activity records remain available for class and semester review. Any use in official grading remains subject to the lecturer and university&apos;s approved process.
-              </p>
+              </LocalizedText></p>
             </div>
 
           </div>

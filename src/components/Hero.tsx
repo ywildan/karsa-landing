@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { useState, useEffect } from "react";
 import {
   motion,
@@ -96,28 +97,28 @@ export function Hero() {
             {/* Top Monospace Label */}
             <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1 font-mono text-xs uppercase tracking-widest text-zinc-600 shadow-2xs">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" /><LocalizedText>
                 KARSA / INDEPENDENT PILOT / 2026
-              </span>
+              </LocalizedText></span>
             </motion.div>
 
             {/* Headline */}
             <motion.h1
               variants={itemVariants}
               className="font-serif text-5xl sm:text-7xl lg:text-[88px] xl:text-[98px] leading-[0.95] tracking-tight-editorial text-zinc-950"
-            >
+            ><LocalizedText>
               Every act of learning
-              <br />
-              <span className="italic font-normal text-zinc-800">deserves a record.</span>
+              </LocalizedText><br />
+              <span className="italic font-normal text-zinc-800"><LocalizedText>deserves a record.</LocalizedText></span>
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p
               variants={itemVariants}
               className="mt-6 sm:mt-8 text-lg sm:text-xl text-zinc-600 leading-relaxed max-w-[540px] font-normal"
-            >
+            ><LocalizedText>
               Karsa is an independent classroom-participation pilot designed for the UNTIDAR environment. It gives students, PJ, and administrators one accountable record instead of scattered paper notes.
-            </motion.p>
+            </LocalizedText></motion.p>
 
             {/* CTAs */}
             <motion.div
@@ -130,7 +131,7 @@ export function Hero() {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2.5 rounded-lg bg-[#CF6A12] px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-[#B85B0D] hover:shadow hover:scale-[1.01] active:scale-[0.99]"
               >
-                <span>Sign in with Google</span>
+                <span><LocalizedText>Sign in with Google</LocalizedText></span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
 
@@ -138,7 +139,7 @@ export function Hero() {
                 href="#problem"
                 className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-5 py-3.5 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 hover:text-zinc-900 active:scale-[0.99]"
               >
-                <span>Read the story</span>
+                <span><LocalizedText>Read the story</LocalizedText></span>
                 <span className="text-zinc-400">↓</span>
               </a>
             </motion.div>
@@ -149,7 +150,7 @@ export function Hero() {
               className="mt-6 flex items-center gap-2 text-xs font-mono text-zinc-500"
             >
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
-              <span>Strictly restricted to @students.untidar.ac.id and @untidar.ac.id</span>
+              <span><LocalizedText>Strictly restricted to @students.untidar.ac.id and @untidar.ac.id</LocalizedText></span>
             </motion.div>
           </motion.div>
 
@@ -157,9 +158,9 @@ export function Hero() {
           <div className="lg:col-span-5 relative flex items-center justify-center min-h-[380px] lg:min-h-[500px]">
             {/* Giant "K" watermark */}
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none overflow-hidden">
-              <span className="font-serif text-[280px] sm:text-[360px] lg:text-[420px] font-normal leading-none text-zinc-900/[0.04] translate-y-4">
+              <span className="font-serif text-[280px] sm:text-[360px] lg:text-[420px] font-normal leading-none text-zinc-900/[0.04] translate-y-4"><LocalizedText>
                 K
-              </span>
+              </LocalizedText></span>
             </div>
 
             {/* Floating UI Fragments */}
@@ -179,21 +180,21 @@ export function Hero() {
                       +2
                     </div>
                     <div>
-                      <div className="text-xs font-semibold text-zinc-900">
+                      <div className="text-xs font-semibold text-zinc-900"><LocalizedText>
                         Pertanyaan Kritis
-                      </div>
-                      <div className="font-mono text-[11px] text-zinc-500">
+                      </LocalizedText></div>
+                      <div className="font-mono text-[11px] text-zinc-500"><LocalizedText>
                         Pemrograman Web II • Kelas 02
-                      </div>
+                      </LocalizedText></div>
                     </div>
                   </div>
-                  <span className="rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[10px] text-emerald-700 border border-emerald-200/60">
+                  <span className="rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[10px] text-emerald-700 border border-emerald-200/60"><LocalizedText>
                     Verified
-                  </span>
+                  </LocalizedText></span>
                 </div>
                 <div className="mt-3 flex items-center justify-between border-t border-zinc-100 pt-2 text-[11px] font-mono text-zinc-400">
-                  <span>PJ: Dimas Setiawan</span>
-                  <span>10:42:15 WIB</span>
+                  <span><LocalizedText>PJ: Dimas Setiawan</LocalizedText></span>
+                  <span><LocalizedText>10:42:15 WIB</LocalizedText></span>
                 </div>
               </motion.div>
 
@@ -212,21 +213,21 @@ export function Hero() {
                     </div>
                     <div>
                       <div className="text-xs font-medium text-zinc-900 flex items-center gap-1.5">
-                        <span>A*** Pratama</span>
-                        <span className="rounded bg-zinc-100 px-1 font-mono text-[10px] text-zinc-500">Masked</span>
+                        <span><LocalizedText>A*** Pratama</LocalizedText></span>
+                        <span className="rounded bg-zinc-100 px-1 font-mono text-[10px] text-zinc-500"><LocalizedText>Masked</LocalizedText></span>
                       </div>
-                      <div className="font-mono text-[11px] text-zinc-500">
+                      <div className="font-mono text-[11px] text-zinc-500"><LocalizedText>
                         Top 5% in Class 02
-                      </div>
+                      </LocalizedText></div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-mono text-sm font-semibold text-[#CF6A12]">
+                    <div className="font-mono text-sm font-semibold text-[#CF6A12]"><LocalizedText>
                       24 pts
-                    </div>
-                    <div className="text-[10px] text-zinc-400 font-mono">
+                    </LocalizedText></div>
+                    <div className="text-[10px] text-zinc-400 font-mono"><LocalizedText>
                       8 interactions
-                    </div>
+                    </LocalizedText></div>
                   </div>
                 </div>
 
@@ -247,13 +248,13 @@ export function Hero() {
                 <div className="flex items-center justify-between font-mono text-xs">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-emerald-400" />
-                    <span className="text-zinc-200">Server Guard Validated</span>
+                    <span className="text-zinc-200"><LocalizedText>Server Guard Validated</LocalizedText></span>
                   </div>
-                  <span className="text-zinc-400 text-[10px]">SERVER AUTHZ</span>
+                  <span className="text-zinc-400 text-[10px]"><LocalizedText>SERVER AUTHZ</LocalizedText></span>
                 </div>
                 <div className="mt-2 text-[11px] font-mono text-zinc-400 flex items-center justify-between border-t border-zinc-800 pt-2">
-                  <span>Authorization: current role</span>
-                  <span className="text-emerald-400 font-medium">Fail-closed</span>
+                  <span><LocalizedText>Authorization: current role</LocalizedText></span>
+                  <span className="text-emerald-400 font-medium"><LocalizedText>Fail-closed</LocalizedText></span>
                 </div>
               </motion.div>
 
@@ -265,7 +266,7 @@ export function Hero() {
                 className="flex items-center justify-center gap-2 text-[11px] font-mono text-zinc-400 pt-1"
               >
                 <Sparkles className="h-3 w-3 text-[#CF6A12]" />
-                <span>Scoped access • Auditable changes</span>
+                <span><LocalizedText>Scoped access • Auditable changes</LocalizedText></span>
               </motion.div>
 
             </div>

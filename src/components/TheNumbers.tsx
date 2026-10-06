@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { motion } from "framer-motion";
 
 export function TheNumbers() {
@@ -45,9 +46,9 @@ export function TheNumbers() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 mb-3"
           >
-            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase">
+            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
               Operational Precision
-            </span>
+            </LocalizedText></span>
           </motion.div>
 
           <motion.h2
@@ -56,9 +57,9 @@ export function TheNumbers() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight-editorial text-white"
-          >
+          ><LocalizedText>
             Security facts, not vanity metrics.
-          </motion.h2>
+          </LocalizedText></motion.h2>
         </div>
 
         {/* 3 Numbers Grid with Thin Dividers */}
@@ -75,18 +76,18 @@ export function TheNumbers() {
               <div>
                 {/* Big Number */}
                 <div className="font-serif text-7xl sm:text-8xl lg:text-9xl font-normal text-white leading-none tracking-tight">
-                  {stat.number}
+                  <LocalizedText>{stat.number}</LocalizedText>
                 </div>
 
                 {/* Exact Label */}
                 <div className="mt-4 font-mono text-sm sm:text-base uppercase tracking-wider text-[#CF6A12] font-medium">
-                  {stat.label}
+                  <LocalizedText>{stat.label}</LocalizedText>
                 </div>
               </div>
 
               {/* Sub-description */}
               <p className="mt-6 text-sm text-zinc-400 font-sans leading-relaxed">
-                {stat.sub}
+                <LocalizedText>{stat.sub}</LocalizedText>
               </p>
             </motion.div>
           ))}
@@ -94,9 +95,9 @@ export function TheNumbers() {
 
         {/* Note below */}
         <div className="mt-8 text-center sm:text-left">
-          <span className="font-mono text-xs text-zinc-500">
+          <span className="font-mono text-xs text-zinc-500"><LocalizedText>
             Current implementation values. Institutional policies may refine retention before formal adoption.
-          </span>
+          </LocalizedText></span>
         </div>
 
       </div>

@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
@@ -12,37 +13,37 @@ export function Footer() {
           {/* Column 1: Brand & Tagline (5 cols) */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-baseline gap-2">
-              <span className="font-serif text-3xl font-medium tracking-tight text-zinc-950">
+              <span className="font-serif text-3xl font-medium tracking-tight text-zinc-950"><LocalizedText>
                 karsa
-              </span>
-              <span className="font-mono text-[11px] tracking-widest text-[#CF6A12] uppercase">
+              </LocalizedText></span>
+              <span className="font-mono text-[11px] tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
                 UNTIDAR
-              </span>
+              </LocalizedText></span>
             </div>
 
             <div className="space-y-1">
-              <p className="font-serif text-lg text-zinc-800 italic">
+              <p className="font-serif text-lg text-zinc-800 italic"><LocalizedText>
                 &ldquo;Every karsa, one point.&rdquo;
-              </p>
-              <p className="font-mono text-xs text-zinc-400">
+              </LocalizedText></p>
+              <p className="font-mono text-xs text-zinc-400"><LocalizedText>
                 Setiap karsa, satu poin.
-              </p>
+              </LocalizedText></p>
             </div>
 
-            <p className="text-xs text-zinc-500 leading-relaxed max-w-sm">
+            <p className="text-xs text-zinc-500 leading-relaxed max-w-sm"><LocalizedText>
               The purpose-built classroom participation ledger for Universitas Tidar. Designed to foster transparent active learning across engineering, economics, education, social sciences, and agriculture faculties.
-            </p>
+            </LocalizedText></p>
           </div>
 
           {/* Column 2: Links (4 cols) */}
           <div className="md:col-span-4">
-            <h4 className="font-mono text-xs uppercase tracking-wider text-zinc-900 font-semibold mb-4">
+            <h4 className="font-mono text-xs uppercase tracking-wider text-zinc-900 font-semibold mb-4"><LocalizedText>
               Resources & Architecture
-            </h4>
+            </LocalizedText></h4>
             <ul className="space-y-2.5 text-xs text-zinc-600">
               <li>
-                <Link to="/download" className="inline-flex items-center gap-1 hover:text-[#CF6A12] transition-colors">
-                  Download Karsa Mobile <ArrowUpRight className="h-3 w-3" />
+                <Link to="/download" className="inline-flex items-center gap-1 hover:text-[#CF6A12] transition-colors"><LocalizedText>
+                  Download Karsa Mobile </LocalizedText><ArrowUpRight className="h-3 w-3" />
                 </Link>
               </li>
               <li>
@@ -52,7 +53,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 hover:text-zinc-950 transition-colors"
                 >
-                  <span>Student & PJ Login</span>
+                  <span><LocalizedText>Student & PJ Login</LocalizedText></span>
                   <ArrowUpRight className="h-3 w-3 text-zinc-400" />
                 </a>
               </li>
@@ -60,25 +61,25 @@ export function Footer() {
                 <a
                   href="#workflow"
                   className="hover:text-zinc-950 transition-colors"
-                >
+                ><LocalizedText>
                   System Architecture & Validation Flow
-                </a>
+                </LocalizedText></a>
               </li>
               <li>
                 <a
                   href="#capabilities"
                   className="hover:text-zinc-950 transition-colors"
-                >
+                ><LocalizedText>
                   Classroom Capabilities & Privacy
-                </a>
+                </LocalizedText></a>
               </li>
               <li>
                 <a
                   href="#status"
                   className="hover:text-zinc-950 transition-colors"
-                >
+                ><LocalizedText>
                   Fase 5 Roadmap & Changelog
-                </a>
+                </LocalizedText></a>
               </li>
               <li>
                 <a
@@ -87,7 +88,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 hover:text-zinc-950 transition-colors"
                 >
-                  <span>Universitas Tidar Official Portal</span>
+                  <span><LocalizedText>Universitas Tidar Official Portal</LocalizedText></span>
                   <ArrowUpRight className="h-3 w-3 text-zinc-400" />
                 </a>
               </li>
@@ -96,20 +97,20 @@ export function Footer() {
 
           {/* Column 3: Institutional Stamp (3 cols) */}
           <div className="md:col-span-3 space-y-3 font-mono text-xs text-zinc-500">
-            <h4 className="uppercase tracking-wider text-zinc-900 font-semibold">
+            <h4 className="uppercase tracking-wider text-zinc-900 font-semibold"><LocalizedText>
               Academic Context
-            </h4>
+            </LocalizedText></h4>
             <div>
-              <div className="font-medium text-zinc-800">Universitas Tidar</div>
-              <div className="text-[11px] text-zinc-500 mt-0.5">
+              <div className="font-medium text-zinc-800"><LocalizedText>Universitas Tidar</LocalizedText></div>
+              <div className="text-[11px] text-zinc-500 mt-0.5"><LocalizedText>
                 Designed independently for classroom participation workflows in the UNTIDAR environment. Not yet an official university service.
-              </div>
+              </LocalizedText></div>
             </div>
 
             <div className="pt-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-2.5 py-1 text-[10px] text-zinc-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                <span>Independent Pilot • Fase 5</span>
+                <span><LocalizedText>Independent Pilot • Fase 5</LocalizedText></span>
               </span>
             </div>
           </div>
@@ -118,9 +119,9 @@ export function Footer() {
 
         {/* Bottom Bar: Copyright & Privacy */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-400">
-          <div>
+          <div><LocalizedText>
             © 2026 Karsa. Independent project for the UNTIDAR environment.
-          </div>
+          </LocalizedText></div>
           <Link
             to="/privacy"
             className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 px-3 py-1 text-zinc-600 hover:text-[#CF6A12] hover:border-[#CF6A12] transition-colors"
@@ -128,7 +129,7 @@ export function Footer() {
             <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
-            <span>Privasi & Keamanan</span>
+            <span><LocalizedText>Privasi & Keamanan</LocalizedText></span>
           </Link>
         </div>
 

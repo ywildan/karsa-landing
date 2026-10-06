@@ -1,3 +1,4 @@
+import { LocalizedText } from "../i18n/LanguageContext";
 import { motion } from "framer-motion";
 import { AlertCircle, FileX, History, EyeOff } from "lucide-react";
 
@@ -46,30 +47,30 @@ export function TheProblem() {
             className="lg:col-span-5"
           >
             <div className="flex items-center gap-2 mb-6">
-              <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase">
+              <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
                 01 — The Problem
-              </span>
+              </LocalizedText></span>
             </div>
 
-            <h2 className="font-serif text-4xl sm:text-5xl lg:text-[54px] leading-[1.05] tracking-tight-editorial text-white">
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-[54px] leading-[1.05] tracking-tight-editorial text-white"><LocalizedText>
               Points recorded on paper
-              <br />
-              <span className="italic text-zinc-400">are points lost.</span>
+              </LocalizedText><br />
+              <span className="italic text-zinc-400"><LocalizedText>are points lost.</LocalizedText></span>
             </h2>
 
-            <p className="mt-6 text-base text-zinc-400 leading-relaxed font-sans max-w-sm">
+            <p className="mt-6 text-base text-zinc-400 leading-relaxed font-sans max-w-sm"><LocalizedText>
               In classroom workflows, informal tally sheets make participation difficult to verify, review, and carry consistently into an academic recap.
-            </p>
+            </LocalizedText></p>
 
             {/* Micro audit callout */}
             <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 font-mono text-xs text-zinc-400">
               <div className="flex items-center gap-2 text-zinc-300 mb-1 font-medium">
                 <AlertCircle className="h-4 w-4 text-[#CF6A12]" />
-                <span>The Traditional Ledger Gap</span>
+                <span><LocalizedText>The Traditional Ledger Gap</LocalizedText></span>
               </div>
-              <p className="text-[11px] leading-relaxed text-zinc-500">
+              <p className="text-[11px] leading-relaxed text-zinc-500"><LocalizedText>
                 The core risk is not paper itself. It is a record that cannot be checked by the student, scoped by role, or traced when a correction is needed.
-              </p>
+              </LocalizedText></p>
             </div>
           </motion.div>
 
@@ -89,11 +90,11 @@ export function TheProblem() {
 
                 <div className="flex items-center gap-2 mb-2 font-mono text-[11px] uppercase tracking-wider text-zinc-500">
                   <para.icon className="h-3.5 w-3.5 text-zinc-400 group-hover:text-[#CF6A12] transition-colors" />
-                  <span>{para.tag}</span>
+                  <span><LocalizedText>{para.tag}</LocalizedText></span>
                 </div>
 
                 <p className="text-lg sm:text-xl text-zinc-300 leading-relaxed font-sans max-w-[480px]">
-                  {para.text}
+                  <LocalizedText>{para.text}</LocalizedText>
                 </p>
               </motion.div>
             ))}
