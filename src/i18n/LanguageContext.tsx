@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { translations } from "./translations";
 
 export type Language = "en" | "id";
-const storageKey = "karsa-language";
 
 function translate(text: string, language: Language): string {
   const normalized = text.replace(/\s+/g, " ").trim();
@@ -31,22 +30,11 @@ const LanguageContext = createContext<{
 } | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    try {
-      return localStorage.getItem(storageKey) === "id" ? "id" : "en";
-    } catch {
-      return "en";
-    }
-  });
+  const [language, setLanguage] = useState<Language>("en");
   const { pathname } = useLocation();
 
   useEffect(() => {
     document.documentElement.lang = language;
-    try {
-      localStorage.setItem(storageKey, language);
-    } catch {
-      // The current session can still switch language when storage is unavailable.
-    }
     const title = pathname === "/download"
       ? { en: "Download Karsa Mobile — Karsa", id: "Unduh Karsa Mobile — Karsa" }
       : pathname === "/privacy"

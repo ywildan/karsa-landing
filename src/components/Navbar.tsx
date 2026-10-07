@@ -2,7 +2,6 @@ import { LanguageToggle } from "./LanguageToggle";
 import { LocalizedText, useLanguage } from "../i18n/LanguageContext";
 import { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
 
 interface NavbarProps {
   onRequestAccess: () => void;
@@ -93,9 +92,9 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
             ><LocalizedText>
               Status
             </LocalizedText></a>
-            <Link to="/download" className="transition-colors hover:text-[#CF6A12]"><LocalizedText>
+            <button type="button" disabled className="cursor-not-allowed text-zinc-400"><LocalizedText>
               Download app
-            </LocalizedText></Link>
+            </LocalizedText></button>
           </nav>
 
           {/* Action CTAs */}
@@ -180,13 +179,13 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
             ><LocalizedText>
               Development Status
             </LocalizedText></a>
-            <Link
-              to="/download"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block rounded-md px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
+            <button
+              type="button"
+              disabled
+              className="block w-full cursor-not-allowed rounded-md px-3 py-2 text-left text-sm text-zinc-400"
             ><LocalizedText>
               Download Karsa Mobile
-            </LocalizedText></Link>
+            </LocalizedText></button>
             <div className="pt-2 border-t border-zinc-100 flex flex-col gap-2">
               <button
                 onClick={() => {

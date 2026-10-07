@@ -42,9 +42,9 @@ export function Footer() {
             </LocalizedText></h4>
             <ul className="space-y-2.5 text-xs text-zinc-600">
               <li>
-                <Link to="/download" className="inline-flex items-center gap-1 hover:text-[#CF6A12] transition-colors"><LocalizedText>
-                  Download Karsa Mobile </LocalizedText><ArrowUpRight className="h-3 w-3" />
-                </Link>
+                <button type="button" disabled className="inline-flex cursor-not-allowed items-center gap-1 text-zinc-400"><LocalizedText>
+                  Download Karsa Mobile </LocalizedText>
+                </button>
               </li>
               <li>
                 <a
