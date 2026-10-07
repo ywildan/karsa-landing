@@ -1,5 +1,17 @@
 // Both original languages resolve to the same localized copy.
 export const translations: Record<string, { en: string; id: string }> = {
+  "Coming soon.": {
+    en: "Coming soon.",
+    id: "Segera hadir.",
+  },
+  "We’re preparing Karsa Mobile for its public release. Downloads will be available here when it’s ready.": {
+    en: "We’re preparing Karsa Mobile for its public release. Downloads will be available here when it’s ready.",
+    id: "Kami sedang menyiapkan Karsa Mobile untuk rilis publik. Unduhan akan tersedia di sini saat aplikasinya siap.",
+  },
+  "Back to home": {
+    en: "Back to home",
+    id: "Kembali ke beranda",
+  },
   "Loading download page...": {
     "en": "Loading download page...",
     "id": "Memuat halaman unduhan..."

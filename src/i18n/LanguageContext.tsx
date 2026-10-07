@@ -36,7 +36,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = language;
     const title = pathname === "/download"
-      ? { en: "Download Karsa Mobile — Karsa", id: "Unduh Karsa Mobile — Karsa" }
+      ? { en: "Karsa Mobile — Coming Soon", id: "Karsa Mobile — Segera Hadir" }
       : pathname === "/privacy"
         ? { en: "Privacy & Security — Karsa", id: "Privasi & Keamanan — Karsa" }
         : { en: "Karsa — Student Activity Tracking System | Universitas Tidar", id: "Karsa — Sistem Pencatatan Keaktifan Mahasiswa | Universitas Tidar" };
