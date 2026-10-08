@@ -1,12 +1,18 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { translations } from "./translations";
+import { planTranslations } from "./translations-plan";
+
+const allTranslations: Record<string, { en: string; id: string }> = {
+  ...translations,
+  ...planTranslations,
+};
 
 export type Language = "en" | "id";
 
 function translate(text: string, language: Language): string {
   const normalized = text.replace(/\s+/g, " ").trim();
-  const entry = translations[normalized];
+  const entry = allTranslations[normalized];
   if (entry) {
     const leading = text.match(/^\s*/)?.[0] ?? "";
     const trailing = text.match(/\s*$/)?.[0] ?? "";
