@@ -48,9 +48,9 @@ export const planTranslations: Record<string, { en: string; id: string }> = {
     en: "Rp 15.000",
     id: "Rp 15.000",
   },
-  "per semester (±6 months)": {
-    en: "per semester (±6 months)",
-    id: "per semester (±6 bulan)",
+  "per month": {
+    en: "per month",
+    id: "per bulan",
   },
   "Rp 20.000": {
     en: "Rp 20.000",
@@ -108,9 +108,9 @@ export const planTranslations: Record<string, { en: string; id: string }> = {
     en: "Activated within 24 hours",
     id: "Diaktifkan maks. 24 jam",
   },
-  "Your account will be upgraded to Premium for one semester after payment is confirmed.": {
-    en: "Your account will be upgraded to Premium for one semester after payment is confirmed.",
-    id: "Akunmu akan di-upgrade ke Premium untuk satu semester setelah pembayaran dikonfirmasi.",
+  "Your account will be upgraded to Premium for one month after payment is confirmed.": {
+    en: "Your account will be upgraded to Premium for one month after payment is confirmed.",
+    id: "Akunmu akan di-upgrade ke Premium untuk satu bulan setelah pembayaran dikonfirmasi.",
   },
   "Frequently asked questions": {
     en: "Frequently asked questions",
@@ -132,13 +132,13 @@ export const planTranslations: Record<string, { en: string; id: string }> = {
     en: "Free web search quota (3x) resets on the 1st of each month. Premium quota (3x/day) resets every midnight (WIB).",
     id: "Kuota web search gratis (3x) di-reset tiap tanggal 1. Kuota premium (3x/hari) di-reset tiap tengah malam (WIB).",
   },
-  "Is Premium per semester?": {
-    en: "Is Premium per semester?",
-    id: "Apakah Premium per semester?",
+  "Is Premium billed monthly?": {
+    en: "Is Premium billed monthly?",
+    id: "Apakah Premium bulanan?",
   },
-  "Yes — one payment covers about 6 months. The Rp 15.000 price is an introductory price for our first faculty.": {
-    en: "Yes — one payment covers about 6 months. The Rp 15.000 price is an introductory price for our first faculty.",
-    id: "Ya — sekali bayar untuk sekitar 6 bulan. Harga Rp 15.000 adalah harga perkenalan untuk fakultas pertama kami.",
+  "Yes — Premium is billed monthly. The Rp 15.000 price is an introductory price for our first faculty.": {
+    en: "Yes — Premium is billed monthly. The Rp 15.000 price is an introductory price for our first faculty.",
+    id: "Ya — Premium ditagih bulanan. Harga Rp 15.000 adalah harga perkenalan untuk fakultas pertama kami.",
   },
   "Can I get a refund?": {
     en: "Can I get a refund?",
@@ -148,9 +148,9 @@ export const planTranslations: Record<string, { en: string; id: string }> = {
     en: "Contact us within 7 days of payment if Premium was never activated or is not working for you.",
     id: "Hubungi kami dalam 7 hari setelah pembayaran jika Premium tidak aktif atau tidak berfungsi.",
   },
-  "Prices and quotas may change as the pilot grows. Active Premium users keep their current terms until the semester ends.": {
-    en: "Prices and quotas may change as the pilot grows. Active Premium users keep their current terms until the semester ends.",
-    id: "Harga dan kuota dapat berubah seiring berkembangnya pilot. Pengguna Premium aktif tetap memakai ketentuan saat ini sampai semester berakhir.",
+  "Prices and quotas may change as the pilot grows. Active Premium users keep their current terms until the current billing period ends.": {
+    en: "Prices and quotas may change as the pilot grows. Active Premium users keep their current terms until the current billing period ends.",
+    id: "Harga dan kuota dapat berubah seiring berkembangnya pilot. Pengguna Premium aktif tetap memakai ketentuan saat ini sampai periode tagihan berjalan berakhir.",
   },
   "AI summaries": {
     en: "AI summaries",

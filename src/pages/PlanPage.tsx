@@ -228,9 +228,9 @@ const FAQS = [
       "Free web search quota (3x) resets on the 1st of each month. Premium quota (3x/day) resets every midnight (WIB).",
   },
   {
-    question: "Is Premium per semester?",
+    question: "Is Premium billed monthly?",
     answer:
-      "Yes — one payment covers about 6 months. The Rp 15.000 price is an introductory price for our first faculty.",
+      "Yes — Premium is billed monthly. The Rp 15.000 price is an introductory price for our first faculty.",
   },
   {
     question: "Can I get a refund?",
@@ -399,7 +399,7 @@ export default function PlanPage() {
                   <TierCard
                     name="Premium"
                     price="Rp 15.000"
-                    priceNote="per semester (±6 months)"
+                    priceNote="per month"
                     originalPrice="Rp 20.000"
                     badge="Introductory price"
                     highlighted
@@ -459,7 +459,7 @@ export default function PlanPage() {
                 <Step
                   number="3"
                   title="Activated within 24 hours"
-                  description="Your account will be upgraded to Premium for one semester after payment is confirmed."
+                  description="Your account will be upgraded to Premium for one month after payment is confirmed."
                 />
               </div>
             </div>
@@ -473,7 +473,7 @@ export default function PlanPage() {
               className="mx-auto mt-16 max-w-3xl text-center text-xs leading-relaxed text-zinc-500"
             >
               <LocalizedText>
-                Prices and quotas may change as the pilot grows. Active Premium users keep their current terms until the semester ends.
+                Prices and quotas may change as the pilot grows. Active Premium users keep their current terms until the current billing period ends.
               </LocalizedText>
             </motion.p>
 
