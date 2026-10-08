@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Lenis from "lenis";
 import {
+  AnimatePresence,
   motion,
   useMotionTemplate,
   useMotionValue,
@@ -16,6 +17,7 @@ import {
   Globe,
   Mail,
   MessageCircle,
+  Plus,
   Sparkles,
 } from "lucide-react";
 import { LanguageToggle } from "../components/LanguageToggle";
@@ -156,24 +158,106 @@ function Step({ number, title, description }: { number: string; title: string; d
   );
 }
 
-function FaqItem({ question, answer }: { question: string; answer: string }) {
+function FaqItem({
+  question,
+  answer,
+  open,
+  onToggle,
+}: {
+  question: string;
+  answer: string;
+  open: boolean;
+  onToggle: () => void;
+}) {
   return (
-    <motion.details
+    <motion.div
       {...revealProps()}
-      className="group rounded-xl border border-zinc-200 bg-white px-5 py-4 transition-colors open:border-[#CF6A12]/40 open:shadow-[0_4px_24px_-8px_rgba(207,106,18,0.25)]"
+      className={`rounded-xl border bg-white px-5 transition-all duration-300 ${
+        open
+          ? "border-[#CF6A12]/40 py-4 shadow-[0_4px_24px_-8px_rgba(207,106,18,0.25)]"
+          : "border-zinc-200 py-4 hover:border-zinc-300"
+      }`}
     >
-      <summary className="cursor-pointer list-none text-sm font-medium text-zinc-900 [&::-webkit-details-marker]:hidden">
-        <LocalizedText>{question}</LocalizedText>
-      </summary>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="mt-2 text-sm leading-relaxed text-zinc-600"
+      <button
+        onClick={onToggle}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-4 text-left"
       >
-        <LocalizedText>{answer}</LocalizedText>
-      </motion.p>
-    </motion.details>
+        <span className="text-sm font-medium text-zinc-900">
+          <LocalizedText>{question}</LocalizedText>
+        </span>
+        <motion.span
+          animate={{ rotate: open ? 45 : 0 }}
+          transition={{ duration: 0.3, ease: EASE }}
+          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors ${
+            open ? "bg-[#CF6A12] text-white" : "bg-zinc-100 text-zinc-500"
+          }`}
+        >
+          <Plus className="h-4 w-4" />
+        </motion.span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="answer"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: EASE }}
+            className="overflow-hidden"
+          >
+            <p className="pt-2 text-sm leading-relaxed text-zinc-600">
+              <LocalizedText>{answer}</LocalizedText>
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+const FAQS = [
+  {
+    question: "What is web search in Teman Baca?",
+    answer:
+      "Tap the globe icon in Teman Baca chat and the AI will also search the web for the latest information — useful for topics that change, like regulations. Answers include tappable source links.",
+  },
+  {
+    question: "When does the quota reset?",
+    answer:
+      "Free web search quota (3x) resets on the 1st of each month. Premium quota (3x/day) resets every midnight (WIB).",
+  },
+  {
+    question: "Is Premium per semester?",
+    answer:
+      "Yes — one payment covers about 6 months. The Rp 15.000 price is an introductory price for our first faculty.",
+  },
+  {
+    question: "Can I get a refund?",
+    answer:
+      "Contact us within 7 days of payment if Premium was never activated or is not working for you.",
+  },
+];
+
+function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  return (
+    <div className="mx-auto mt-20 max-w-3xl sm:mt-24">
+      <motion.h2 {...revealProps()} className="font-serif text-3xl tracking-tight text-zinc-950 sm:text-4xl">
+        <LocalizedText>Frequently asked questions</LocalizedText>
+      </motion.h2>
+      <div className="mt-8 space-y-3">
+        {FAQS.map((faq, i) => (
+          <FaqItem
+            key={faq.question}
+            question={faq.question}
+            answer={faq.answer}
+            open={openIndex === i}
+            onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -381,29 +465,7 @@ export default function PlanPage() {
             </div>
 
             {/* FAQ */}
-            <div className="mx-auto mt-20 max-w-3xl sm:mt-24">
-              <motion.h2 {...revealProps()} className="font-serif text-3xl tracking-tight text-zinc-950 sm:text-4xl">
-                <LocalizedText>Frequently asked questions</LocalizedText>
-              </motion.h2>
-              <div className="mt-8 space-y-3">
-                <FaqItem
-                  question="What is web search in Teman Baca?"
-                  answer="Tap the globe icon in Teman Baca chat and the AI will also search the web for the latest information — useful for topics that change, like regulations. Answers include tappable source links."
-                />
-                <FaqItem
-                  question="When does the quota reset?"
-                  answer="Free web search quota (3x) resets on the 1st of each month. Premium quota (3x/day) resets every midnight (WIB)."
-                />
-                <FaqItem
-                  question="Is Premium per semester?"
-                  answer="Yes — one payment covers about 6 months. The Rp 15.000 price is an introductory price for our first faculty."
-                />
-                <FaqItem
-                  question="Can I get a refund?"
-                  answer="Contact us within 7 days of payment if Premium was never activated or is not working for you."
-                />
-              </div>
-            </div>
+            <FaqSection />
 
             {/* Footnote */}
             <motion.p
