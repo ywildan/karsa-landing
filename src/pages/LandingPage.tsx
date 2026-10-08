@@ -53,7 +53,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-zinc-900 selection:bg-[#CF6A12] selection:text-white font-sans antialiased">
-      <Navbar onRequestAccess={() => setRequestModalOpen(true)} />
+      <Navbar />
 
       <main>
         <Hero />

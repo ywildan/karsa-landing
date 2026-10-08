@@ -1,12 +1,18 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { translations } from "./translations";
+import { planTranslations } from "./translations-plan";
+
+const allTranslations: Record<string, { en: string; id: string }> = {
+  ...translations,
+  ...planTranslations,
+};
 
 export type Language = "en" | "id";
 
 function translate(text: string, language: Language): string {
   const normalized = text.replace(/\s+/g, " ").trim();
-  const entry = translations[normalized];
+  const entry = allTranslations[normalized];
   if (entry) {
     const leading = text.match(/^\s*/)?.[0] ?? "";
     const trailing = text.match(/\s*$/)?.[0] ?? "";
@@ -39,7 +45,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       ? { en: "Karsa Mobile — Coming Soon", id: "Karsa Mobile — Segera Hadir" }
       : pathname === "/privacy"
         ? { en: "Privacy & Security — Karsa", id: "Privasi & Keamanan — Karsa" }
-        : { en: "Karsa — Student Activity Tracking System | Universitas Tidar", id: "Karsa — Sistem Pencatatan Keaktifan Mahasiswa | Universitas Tidar" };
+        : pathname === "/paket"
+          ? { en: "Plans & Pricing — Karsa", id: "Paket & Harga — Karsa" }
+          : { en: "Karsa — Student Activity Tracking System | Universitas Tidar", id: "Karsa — Sistem Pencatatan Keaktifan Mahasiswa | Universitas Tidar" };
     document.title = title[language];
     const description = document.querySelector('meta[name="description"]');
     description?.setAttribute("content", language === "en"
