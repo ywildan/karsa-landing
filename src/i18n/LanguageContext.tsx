@@ -39,7 +39,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       ? { en: "Karsa Mobile — Coming Soon", id: "Karsa Mobile — Segera Hadir" }
       : pathname === "/privacy"
         ? { en: "Privacy & Security — Karsa", id: "Privasi & Keamanan — Karsa" }
-        : { en: "Karsa — Student Activity Tracking System | Universitas Tidar", id: "Karsa — Sistem Pencatatan Keaktifan Mahasiswa | Universitas Tidar" };
+        : pathname === "/paket"
+          ? { en: "Plans & Pricing — Karsa", id: "Paket & Harga — Karsa" }
+          : { en: "Karsa — Student Activity Tracking System | Universitas Tidar", id: "Karsa — Sistem Pencatatan Keaktifan Mahasiswa | Universitas Tidar" };
     document.title = title[language];
     const description = document.querySelector('meta[name="description"]');
     description?.setAttribute("content", language === "en"

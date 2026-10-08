@@ -1,13 +1,10 @@
 import { LanguageToggle } from "./LanguageToggle";
 import { LocalizedText, useLanguage } from "../i18n/LanguageContext";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
-interface NavbarProps {
-  onRequestAccess: () => void;
-}
-
-export function Navbar({ onRequestAccess }: NavbarProps) {
+export function Navbar() {
   const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -100,12 +97,12 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
           {/* Action CTAs */}
           <div className="flex items-center gap-2 sm:gap-3">
             <LanguageToggle />
-            <button
-              onClick={onRequestAccess}
+            <Link
+              to="/paket"
               className="hidden sm:inline-flex items-center rounded-lg border border-zinc-200 bg-white/50 px-3.5 py-1.5 text-xs font-medium text-zinc-800 transition-colors hover:bg-zinc-100 hover:border-zinc-300 active:scale-[0.99]"
             ><LocalizedText>
-              Request access
-            </LocalizedText></button>
+              Paket
+            </LocalizedText></Link>
 
             <a
               href="https://www.sikarsa.id/login"
@@ -187,15 +184,13 @@ export function Navbar({ onRequestAccess }: NavbarProps) {
               Download Karsa Mobile
             </LocalizedText></button>
             <div className="pt-2 border-t border-zinc-100 flex flex-col gap-2">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onRequestAccess();
-                }}
+              <Link
+                to="/paket"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-left rounded-md px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
               ><LocalizedText>
-                Request Pilot Access
-              </LocalizedText></button>
+                Paket
+              </LocalizedText></Link>
             </div>
           </div>
         )}
