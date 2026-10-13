@@ -12,7 +12,6 @@ import { RoadmapStatus } from "@/components/RoadmapStatus";
 import { InteractiveSandbox } from "@/components/InteractiveSandbox";
 import { CtaSection } from "@/components/CtaSection";
 import { Footer } from "@/components/Footer";
-import { SectionBlend } from "@/components/fx/SectionBlend";
 import { RequestAccessModal } from "@/components/RequestAccessModal";
 import { ExportPreviewModal } from "@/components/ExportPreviewModal";
 
@@ -71,19 +70,13 @@ export default function LandingPage() {
       <main>
         <Hero />
         <TheProblem />
-        <SectionBlend from="#0A0A0A" to="#FFFFFF" />
         <TheIdea />
         <HowItWorks />
-        <SectionBlend from="#FAFAFA" to="#0A0A0A" />
         <SecurityArchitecture />
         <InteractiveSandbox />
-        <SectionBlend from="#09090B" to="#FFFFFF" />
         <FeaturesBento onOpenExportPreview={() => setExportModalOpen(true)} />
-        <SectionBlend from="#FFFFFF" to="#0A0A0A" />
         <TheNumbers />
-        <SectionBlend from="#0A0A0A" to="#FFFFFF" />
         <RoadmapStatus />
-        <SectionBlend from="#FFFFFF" to="#0A0A0A" />
         <CtaSection onRequestAccess={() => setRequestModalOpen(true)} />
       </main>
 
