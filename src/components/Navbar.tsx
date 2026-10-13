@@ -63,11 +63,11 @@ export function Navbar() {
           className={`rounded-2xl border transition-all duration-300 ${
             theme === "dark"
               ? scrolled
-                ? "border-white/10 bg-[#0A0A0A]/88 shadow-[0_18px_44px_-16px_rgba(10,10,10,0.55)] backdrop-blur-xl"
-                : "border-white/[0.07] bg-[#0A0A0A]/60 backdrop-blur-md"
+                ? "border-white/10 bg-[linear-gradient(120deg,rgba(12,10,9,0.90),rgba(43,26,13,0.86)_58%,rgba(84,45,15,0.82))] shadow-[0_18px_44px_-16px_rgba(10,10,10,0.55)] backdrop-blur-xl"
+                : "border-white/[0.07] bg-[linear-gradient(120deg,rgba(12,10,9,0.66),rgba(43,26,13,0.60)_58%,rgba(84,45,15,0.55))] backdrop-blur-md"
               : scrolled
-                ? "border-zinc-900/[0.08] bg-white/75 shadow-[0_18px_44px_-16px_rgba(10,10,10,0.28)] backdrop-blur-xl"
-                : "border-zinc-900/[0.06] bg-white/60 backdrop-blur-md"
+                ? "border-zinc-900/[0.08] bg-[linear-gradient(120deg,rgba(255,255,255,0.85),rgba(251,244,238,0.80)_58%,rgba(243,226,205,0.78))] shadow-[0_18px_44px_-16px_rgba(10,10,10,0.28)] backdrop-blur-xl"
+                : "border-zinc-900/[0.06] bg-[linear-gradient(120deg,rgba(255,255,255,0.68),rgba(251,244,238,0.62)_58%,rgba(243,226,205,0.58))] backdrop-blur-md"
           }`}
         >
           <div className="flex h-14 items-center justify-between px-3 sm:px-4">
