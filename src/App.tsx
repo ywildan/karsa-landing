@@ -4,8 +4,14 @@ import PrivacyPage from "./pages/PrivacyPage";
 import PlanPage from "./pages/PlanPage";
 import DownloadComingSoonPage from "./pages/DownloadComingSoonPage";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { useEffect } from "react";
+import { initFastScrollTracking } from "./components/fx/fastScroll";
 
 export default function App() {
+  useEffect(() => {
+    initFastScrollTracking();
+  }, []);
+
   return (
     <>
       <ScrollToTop />
