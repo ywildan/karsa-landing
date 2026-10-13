@@ -1,14 +1,15 @@
 import { LocalizedText } from "../i18n/LanguageContext";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  Smartphone, 
-  CheckCircle, 
-  ArrowRight, 
-  Check, 
-  Sparkles, 
+import {
+  Smartphone,
+  CheckCircle,
+  ArrowRight,
+  Check,
+  Sparkles,
   Layers
 } from "lucide-react";
+import { Reveal } from "./fx/Reveal";
 
 export function HowItWorks() {
   // Step 1 Interactive State
@@ -26,7 +27,7 @@ export function HowItWorks() {
 
   return (
     <section id="workflow" className="relative bg-[#FAFAFA] py-24 sm:py-32 border-b border-zinc-200/60 overflow-hidden">
-      
+
       {/* Background Subtle Lines */}
       <div className="pointer-events-none absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-full w-full grid grid-cols-12 gap-8 border-x border-zinc-200/40 opacity-30">
@@ -36,8 +37,14 @@ export function HowItWorks() {
         </div>
       </div>
 
+      {/* Soft orange glow and a light 3D floor under the stage */}
+      <div aria-hidden="true" className="pointer-events-none absolute -top-32 left-1/3 h-96 w-96 rounded-full glow-orange opacity-40" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 -bottom-40 h-80 overflow-hidden perspective-1200 opacity-60">
+        <div className="floor-3d-light absolute inset-x-[-10%] top-0 h-[440px]" />
+      </div>
+
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="max-w-3xl mb-16 sm:mb-20">
           <motion.div
@@ -47,7 +54,8 @@ export function HowItWorks() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 mb-4"
           >
-            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
+            <span aria-hidden="true" className="h-px w-8 bg-[#CF6A12]" />
+            <span className="font-mono text-[11px] font-medium tracking-[0.2em] text-[#CF6A12] uppercase"><LocalizedText>
               03 — Workflow
             </LocalizedText></span>
           </motion.div>
@@ -75,17 +83,17 @@ export function HowItWorks() {
           </LocalizedText></motion.p>
         </div>
 
-        {/* 3-Step Grid (Horizontal Desktop / Vertical Mobile) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          
+        {/* 3-Step Grid on a shared 3D stage (Horizontal Desktop / Vertical Mobile).
+            The interactive panels are never tilted, so clicking stays stable;
+            depth comes from static layered backdrop panels behind each card. */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 items-stretch perspective-1600">
+
           {/* ──────────────── STEP 01 ──────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col rounded-xl border border-zinc-200 bg-white p-6 shadow-xs relative"
-          >
+          <div className="relative preserve-3d">
+            <div aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-4 rotate-[1.25deg] rounded-3xl border border-[#CF6A12]/15 bg-[#FBF4EE]" />
+            <div aria-hidden="true" className="absolute inset-0 -translate-x-2 translate-y-2 -rotate-[1.25deg] rounded-3xl border border-zinc-200/70 bg-white depth-sm" />
+            <Reveal delay={0.1} className="relative h-full">
+              <div className="relative flex h-full flex-col rounded-3xl border border-zinc-200 bg-white p-6 depth-lg transition-transform duration-300 hover:-translate-y-1.5">
             <div className="flex items-center justify-between border-b border-zinc-100 pb-4 mb-4">
               <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider"><LocalizedText>
                 Step 01
@@ -104,7 +112,7 @@ export function HowItWorks() {
 
             {/* Visual: Interactive Phone Bottom Sheet Mockup */}
             <div className="mt-auto pt-3">
-              <div className="rounded-xl border border-zinc-200/90 bg-zinc-900 p-3 text-white shadow-inner">
+              <div className="rounded-xl border border-zinc-200/90 bg-zinc-900 p-3 text-white shadow-inner depth-dark">
                 {/* Simulated Phone Bar */}
                 <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400 pb-2 border-b border-zinc-800">
                   <div className="flex items-center gap-1.5">
@@ -183,16 +191,16 @@ export function HowItWorks() {
                 </div>
               </div>
             </div>
-          </motion.div>
+              </div>
+            </Reveal>
+          </div>
 
           {/* ──────────────── STEP 02 ──────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col rounded-xl border border-zinc-200 bg-white p-6 shadow-xs relative"
-          >
+          <div className="relative preserve-3d">
+            <div aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-4 rotate-[1.25deg] rounded-3xl border border-[#CF6A12]/15 bg-[#FBF4EE]" />
+            <div aria-hidden="true" className="absolute inset-0 -translate-x-2 translate-y-2 -rotate-[1.25deg] rounded-3xl border border-zinc-200/70 bg-white depth-sm" />
+            <Reveal delay={0.2} className="relative h-full">
+              <div className="relative flex h-full flex-col rounded-3xl border border-zinc-200 bg-white p-6 depth-md transition-transform duration-300 hover:-translate-y-1.5">
             <div className="flex items-center justify-between border-b border-zinc-100 pb-4 mb-4">
               <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider"><LocalizedText>
                 Step 02
@@ -211,8 +219,8 @@ export function HowItWorks() {
 
             {/* Visual: Minimal Minimalist SVG/CSS Architecture Flow */}
             <div className="mt-auto pt-3">
-              <div className="rounded-xl border border-zinc-200/90 bg-zinc-50 p-4 font-mono text-xs">
-                
+              <div className="rounded-xl border border-zinc-200/90 bg-zinc-50 p-4 font-mono text-xs depth-sm">
+
                 <div className="space-y-2.5">
                   {/* Flow Item 1 */}
                   <div className="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-2.5">
@@ -263,16 +271,16 @@ export function HowItWorks() {
 
               </div>
             </div>
-          </motion.div>
+              </div>
+            </Reveal>
+          </div>
 
           {/* ──────────────── STEP 03 ──────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col rounded-xl border border-zinc-200 bg-white p-6 shadow-xs relative"
-          >
+          <div className="relative preserve-3d">
+            <div aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-4 rotate-[1.25deg] rounded-3xl border border-[#CF6A12]/15 bg-[#FBF4EE]" />
+            <div aria-hidden="true" className="absolute inset-0 -translate-x-2 translate-y-2 -rotate-[1.25deg] rounded-3xl border border-zinc-200/70 bg-white depth-sm" />
+            <Reveal delay={0.3} className="relative h-full">
+              <div className="relative flex h-full flex-col rounded-3xl border border-zinc-200 bg-white p-6 depth-md transition-transform duration-300 hover:-translate-y-1.5">
             <div className="flex items-center justify-between border-b border-zinc-100 pb-4 mb-4">
               <span className="font-mono text-xs font-semibold text-[#CF6A12] uppercase tracking-wider"><LocalizedText>
                 Step 03
@@ -291,8 +299,8 @@ export function HowItWorks() {
 
             {/* Visual: Rapor Card with Animated Progress Bar */}
             <div className="mt-auto pt-3">
-              <div className="rounded-xl border border-zinc-200/90 bg-white p-3.5 font-sans shadow-2xs">
-                
+              <div className="rounded-xl border border-zinc-200/90 bg-white p-3.5 font-sans shadow-2xs depth-sm">
+
                 {/* Top User Bar */}
                 <div className="flex items-center justify-between border-b border-zinc-100 pb-2.5 mb-2.5">
                   <div className="flex items-center gap-2">
@@ -383,7 +391,9 @@ export function HowItWorks() {
 
               </div>
             </div>
-          </motion.div>
+              </div>
+            </Reveal>
+          </div>
 
         </div>
       </div>
