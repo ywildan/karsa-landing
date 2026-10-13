@@ -3,6 +3,7 @@ import { LocalizedText, useLanguage } from "../i18n/LanguageContext";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { isFastScrolling } from "./fx/fastScroll";
 
 export function Navbar() {
   const { t } = useLanguage();
@@ -28,13 +29,17 @@ export function Navbar() {
     let raf = 0;
     const detect = () => {
       raf = 0;
+      if (isFastScrolling()) return; // keep the settled theme mid-fling; no strobing
       const el = document.elementFromPoint(Math.floor(window.innerWidth / 2), 92);
       const host = el instanceof Element ? el.closest("[data-nav-theme]") : null;
       const next = host?.getAttribute("data-nav-theme");
       if (next === "dark" || next === "light") setTheme(next);
     };
+    let settle = 0;
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(detect);
+      window.clearTimeout(settle);
+      settle = window.setTimeout(detect, 200);
     };
     detect();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -43,6 +48,7 @@ export function Navbar() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
+      window.clearTimeout(settle);
     };
   }, []);
 

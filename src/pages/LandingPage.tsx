@@ -45,10 +45,22 @@ export default function LandingPage() {
     const targetId = window.location.hash.slice(1);
     if (!targetId) return;
 
-    const frameId = requestAnimationFrame(() => {
-      document.getElementById(targetId)?.scrollIntoView();
-    });
-    return () => cancelAnimationFrame(frameId);
+    const jump = () => {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "instant" as ScrollBehavior });
+    };
+    const frameId = requestAnimationFrame(jump);
+    // Webfont swaps can shift the target after first paint; re-anchor once
+    // fonts settle, unless the user has already scrolled away themselves.
+    let cancelled = false;
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      document.fonts.ready.then(() => {
+        if (!cancelled && Math.abs(window.scrollY - (document.getElementById(targetId)?.offsetTop ?? 0)) < window.innerHeight) jump();
+      });
+    }
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frameId);
+    };
   }, []);
 
   return (
