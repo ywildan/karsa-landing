@@ -22,7 +22,7 @@ export function TheNumbers() {
   ];
 
   return (
-    <section className="relative bg-[#0A0A0A] text-white py-24 sm:py-32 overflow-hidden">
+    <section data-nav-theme="dark" className="relative bg-[#0A0A0A] text-white py-24 sm:py-32 overflow-hidden">
       {/* Editorial top and bottom border lines */}
       <div className="absolute inset-x-0 top-0 h-px bg-zinc-800" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-zinc-800" />
@@ -76,9 +76,9 @@ export function TheNumbers() {
         {/* 3 stat blocks fanned in perspective, flattening on hover */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 perspective-1200">
           {stats.map((stat, idx) => (
-            <Reveal key={stat.label} delay={idx * 0.15} className="preserve-3d">
+            <Reveal key={stat.label} delay={idx * 0.15}>
               <div
-                className={`group relative h-full overflow-hidden rounded-3xl glass-dark depth-dark px-6 py-12 sm:px-8 md:py-16 flex flex-col justify-between transition-transform duration-500 hover:[transform:rotateY(0deg)] ${
+                className={`group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.05] depth-dark px-6 py-12 sm:px-8 md:py-16 flex flex-col justify-between transition-transform duration-500 hover:[transform:rotateY(0deg)] ${
                   idx === 0
                     ? "md:[transform:rotateY(-6deg)]"
                     : idx === 2
