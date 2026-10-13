@@ -1,6 +1,6 @@
 import { LocalizedText } from "../i18n/LanguageContext";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Check, Clock, Calendar, ChevronRight } from "lucide-react";
 
 export function RoadmapStatus() {
@@ -115,10 +115,22 @@ export function RoadmapStatus() {
 
           {/* Right Column (7 Cols) - Vertical Timeline with 3D Cards */}
           <div className="perspective-1200 lg:col-span-7">
-            <div className="relative pl-6 sm:pl-8 space-y-8">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-120px" }}
+              className="relative pl-6 sm:pl-8 space-y-8"
+            >
               {/* Spine: base track + orange progress */}
               <div aria-hidden="true" className="absolute left-0 top-0 h-full w-px bg-zinc-200" />
-              <div aria-hidden="true" className="absolute -left-[1px] top-0 h-[72%] w-[3px] rounded-full bg-gradient-to-b from-[#CF6A12] via-[#CF6A12] to-[#CF6A12]/30" />
+              <motion.div
+                aria-hidden="true"
+                variants={{
+                  hidden: { scaleY: 0 },
+                  visible: { scaleY: 1, transition: { duration: 1.5, ease: [0.65, 0, 0.35, 1] } },
+                }}
+                className="absolute -left-[1px] top-0 h-[72%] w-[3px] origin-top rounded-full bg-gradient-to-b from-[#CF6A12] via-[#CF6A12] to-[#CF6A12]/30"
+              />
 
               {timelineItems.map((item, idx) => {
                 const isSelected = selectedMilestone === item.id;
@@ -126,10 +138,11 @@ export function RoadmapStatus() {
                 return (
                   <motion.div
                     key={item.phase}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    variants={{
+                      hidden: { opacity: 0, y: 18 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    transition={{ duration: 0.55, delay: 0.05 + idx * 0.38, ease: [0.22, 1, 0.36, 1] }}
                     onClick={() => setSelectedMilestone(isSelected ? null : item.id)}
                     className="preserve-3d relative cursor-pointer group"
                   >
@@ -153,7 +166,7 @@ export function RoadmapStatus() {
                     </div>
 
                     {/* Content Box */}
-                    <div className={`rounded-2xl border p-5 transition-all duration-300 ${
+                    <div className={`rounded-2xl border p-5 transition-all duration-300 ${item.status === "launch" ? "opacity-75 saturate-[0.65] " : ""}${
                       isSelected
                         ? "depth-lg border-zinc-300 bg-[#FAFAFA] -translate-y-0.5"
                         : "depth-sm border-zinc-200/80 bg-white hover:border-zinc-300 hover:bg-zinc-50/50 hover:-translate-y-0.5"
@@ -188,13 +201,17 @@ export function RoadmapStatus() {
                       </p>
 
                       {/* Expandable deliverables on click */}
+                      <AnimatePresence initial={false}>
                       {isSelected && (
                         <motion.div
+                          key="deliverables"
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
-                          transition={{ duration: 0.3 }}
-                          className="depth-sm mt-4 rounded-xl border border-zinc-200/70 bg-white p-4"
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
                         >
+                        <div className="depth-sm mt-4 rounded-xl border border-zinc-200/70 bg-white p-4">
                           <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider mb-2"><LocalizedText>
                             Key Deliverables & Specifications:
                           </LocalizedText></div>
@@ -206,15 +223,17 @@ export function RoadmapStatus() {
                               </li>
                             ))}
                           </ul>
+                        </div>
                         </motion.div>
                       )}
+                      </AnimatePresence>
                     </div>
 
                   </motion.div>
                 );
               })}
 
-            </div>
+            </motion.div>
           </div>
 
         </div>
