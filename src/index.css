@@ -12,6 +12,7 @@
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
+/* ============ legacy animations (SecurityArchitecture) ============ */
 @keyframes security-flow {
   0%, 10% {
     opacity: 0.25;
@@ -61,15 +62,96 @@
   animation: security-status 2s var(--ease-in-out) infinite;
 }
 
+/* ============ 3D design system (rebuild 2026-10-13) ============ */
+.perspective-800 { perspective: 800px; }
+.perspective-1200 { perspective: 1200px; }
+.perspective-1600 { perspective: 1600px; }
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+
+/* Isometric grid floor, laid flat in 3D space */
+.floor-3d {
+  background-image:
+    linear-gradient(rgba(207, 106, 18, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(207, 106, 18, 0.16) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: rotateX(64deg);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 62%, transparent 96%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 62%, transparent 96%);
+}
+
+.floor-3d-light {
+  background-image:
+    linear-gradient(rgba(10, 10, 10, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: rotateX(64deg);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, transparent, black 22%, black 60%, transparent 95%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 22%, black 60%, transparent 95%);
+}
+
+/* Fine dot backdrops */
+.dot-grid-dark {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+.dot-grid-light {
+  background-image: radial-gradient(rgba(10, 10, 10, 0.07) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Layered depth shadows */
+.depth-sm { box-shadow: 0 1px 2px rgba(10,10,10,.05), 0 10px 30px -12px rgba(10,10,10,.18); }
+.depth-md { box-shadow: 0 2px 4px rgba(10,10,10,.05), 0 24px 48px -16px rgba(10,10,10,.25), 0 4px 12px -4px rgba(207,106,18,.08); }
+.depth-lg { box-shadow: 0 4px 8px rgba(10,10,10,.06), 0 40px 80px -24px rgba(10,10,10,.38), 0 12px 28px -12px rgba(207,106,18,.14); }
+.depth-dark { box-shadow: 0 2px 6px rgba(0,0,0,.4), 0 32px 64px -20px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.06), 0 18px 40px -18px rgba(207,106,18,.25); }
+
+/* Glass surfaces */
+.glass-light { background: rgba(255,255,255,.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.glass-dark { background: rgba(255,255,255,.05); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+
+/* Orange glow used sparingly behind 3D stages */
+.glow-orange {
+  background: radial-gradient(closest-side, rgba(207,106,18,.34), rgba(207,106,18,.10) 55%, transparent 75%);
+  filter: blur(10px);
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(-6px); }
+  50% { transform: translateY(8px); }
+}
+@keyframes float-y-soft {
+  0%, 100% { transform: translateY(-3px); }
+  50% { transform: translateY(5px); }
+}
+@keyframes spin-slower {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-float { animation: float-y 7s ease-in-out infinite; }
+.animate-float-soft { animation: float-y-soft 6s ease-in-out infinite; }
+.animate-spin-slower { animation: spin-slower 46s linear infinite; }
+.animate-marquee { animation: marquee-x 36s linear infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   .security-flow-line {
     animation: none;
     opacity: 0.7;
     transform: scaleX(1);
   }
-
   .security-gate-signal,
-  .security-status-dot {
+  .security-status-dot,
+  .animate-float,
+  .animate-float-soft,
+  .animate-spin-slower,
+  .animate-marquee {
     animation: none;
     opacity: 1;
     transform: none;
