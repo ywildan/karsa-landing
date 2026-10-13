@@ -37,7 +37,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
   const isEmailValid = testEmail.endsWith("@students.untidar.ac.id") || testEmail.endsWith("@untidar.ac.id");
 
   return (
-    <section id="capabilities" className="relative bg-white py-24 sm:py-32 border-b border-zinc-200/60 overflow-hidden">
+    <section data-nav-theme="light" id="capabilities" className="relative bg-white py-24 sm:py-32 border-b border-zinc-200/60 overflow-hidden">
 
       {/* Editorial Guide Lines */}
       <div className="pointer-events-none absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +58,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 mb-4"
           >
             <span className="font-mono text-[11px] font-medium tracking-[0.2em] text-[#CF6A12] uppercase"><LocalizedText>
@@ -67,20 +67,20 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] tracking-tight-editorial text-zinc-950"
           ><LocalizedText>
             Engineered for classroom reality.
           </LocalizedText></motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="mt-4 text-base sm:text-lg text-zinc-600 font-sans"
           ><LocalizedText>
             No generic SaaS abstractions. Every feature maps directly to Universitas Tidar academic bylaws and classroom dynamics.
@@ -92,10 +92,10 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
 
           {/* ──────────────── CELL 1 (Big Cell, Top-Left, Spans 2 Rows on Desktop) ──────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="depth-lg lg:row-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-[#FAFAFA] p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
@@ -192,10 +192,10 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
 
           {/* ──────────────── CELL 2 (Wide Cell, Top-Right, Spans 2 Columns on Desktop) ──────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="depth-md lg:col-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
@@ -257,10 +257,10 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
 
           {/* ──────────────── CELL 3 (Small Cell: Multi-role) ──────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="depth-md flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
@@ -313,10 +313,10 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
 
           {/* ──────────────── CELL 4 (Small Cell: Excel Export) ──────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="depth-md flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
@@ -357,10 +357,10 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
 
           {/* ──────────────── CELL 5 (Wide Cell, Bottom, Spans 2 Columns on Desktop) ──────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="depth-md lg:col-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
@@ -413,10 +413,10 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
           {/* ──────────────── CELL 6 (Small Cell, Bottom-Right: Zero Paper — non-interactive, Tilt) ──────────────── */}
           <Tilt max={5} className="h-full">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="depth-md flex h-full flex-col justify-between rounded-xl border border-zinc-200 bg-[#FAFAFA] p-6 hover:border-zinc-300 transition-colors"
           >
             <div>
