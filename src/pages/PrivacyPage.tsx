@@ -51,12 +51,13 @@ function PrivacyNav() {
   const { t } = useLanguage();
   return (
     <nav className="fixed left-8 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
-      <div className="space-y-1.5 rounded-xl border border-zinc-200 bg-white/90 p-3 shadow-sm backdrop-blur-sm">
+      <div className="depth-md glass-light space-y-1 rounded-2xl border border-zinc-200/80 p-3">
+        <div aria-hidden="true" className="mx-2 mb-2 h-0.5 rounded-full bg-gradient-to-r from-[#CF6A12] to-transparent" />
         {sections.map((section) => (
           <a
             key={section.id}
             href={`#${section.id}`}
-            className="block rounded px-2 py-1 font-mono text-[11px] text-zinc-500 transition-colors hover:bg-zinc-50 hover:text-[#CF6A12]"
+            className="block rounded-lg px-2.5 py-1.5 font-mono text-[11px] text-zinc-500 transition-colors hover:bg-[#FBF4EE] hover:text-[#CF6A12]"
           >
             <LocalizedText>{section.label}</LocalizedText>
           </a>
@@ -101,25 +102,28 @@ function PrivacySection({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className={`scroll-mt-24 rounded-2xl border p-6 sm:p-8 ${
+      className={`scroll-mt-24 rounded-3xl border p-6 sm:p-10 ${
         dark
-          ? "border-zinc-800 bg-zinc-950 text-white"
-          : "border-zinc-200 bg-white text-zinc-900"
+          ? "depth-dark relative overflow-hidden border-zinc-800 bg-[#0A0A0A] text-white"
+          : "depth-sm border-zinc-200 bg-white text-zinc-900"
       }`}
     >
-      <div className="mb-4 flex items-center gap-3">
-        <div
-          className={`flex h-10 w-10 items-center justify-center rounded-lg ${
-            dark ? "bg-[#CF6A12]" : "bg-orange-50 text-[#CF6A12]"
-          }`}
-        >
-          <Icon className="h-5 w-5" />
+      {dark && <div aria-hidden="true" className="dot-grid-dark pointer-events-none absolute inset-0 opacity-40" />}
+      <div className="relative">
+        <div className="mb-5 flex items-center gap-3.5">
+          <div
+            className={`depth-sm flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${
+              dark ? "bg-[#CF6A12] text-white" : "bg-[#FBF4EE] text-[#CF6A12]"
+            }`}
+          >
+            <Icon className="h-5 w-5" />
+          </div>
+          <h2 className="font-serif text-2xl tracking-tight sm:text-3xl">
+            <LocalizedText>{title}</LocalizedText>
+          </h2>
         </div>
-        <h2 className="font-serif text-2xl tracking-tight sm:text-3xl">
-          <LocalizedText>{title}</LocalizedText>
-        </h2>
+        <div className="space-y-4 text-sm leading-7 sm:text-[15px]"><LocalizedText>{children}</LocalizedText></div>
       </div>
-      <div className="space-y-4 text-sm leading-relaxed"><LocalizedText>{children}</LocalizedText></div>
     </motion.section>
   );
 }
@@ -128,7 +132,7 @@ function BulletItem({ children }: { children: React.ReactNode }) {
   const { t } = useLanguage();
   return (
     <div className="flex items-start gap-2.5">
-      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+      <CheckCircle className="mt-1.5 h-4 w-4 shrink-0 text-emerald-500" />
       <span className="text-zinc-600"><LocalizedText>{children}</LocalizedText></span>
     </div>
   );
@@ -137,12 +141,14 @@ function BulletItem({ children }: { children: React.ReactNode }) {
 function RoleCard({ title, children }: { title: string; children: React.ReactNode }) {
   const { t } = useLanguage();
   return (
-    <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+    <div className="depth-sm rounded-2xl border border-zinc-200/80 bg-zinc-50 p-4 sm:p-5">
       <div className="mb-2 flex items-center gap-2">
-        <Users className="h-4 w-4 text-[#CF6A12]" />
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#FBF4EE]">
+          <Users className="h-4 w-4 text-[#CF6A12]" />
+        </span>
         <span className="font-semibold text-zinc-900"><LocalizedText>{title}</LocalizedText></span>
       </div>
-      <p className="text-xs text-zinc-600"><LocalizedText>{children}</LocalizedText></p>
+      <p className="text-xs leading-relaxed text-zinc-600"><LocalizedText>{children}</LocalizedText></p>
     </div>
   );
 }
@@ -150,9 +156,9 @@ function RoleCard({ title, children }: { title: string; children: React.ReactNod
 function ProviderCard({ title, children }: { title: string; children: React.ReactNode }) {
   const { t } = useLanguage();
   return (
-    <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+    <div className="depth-sm rounded-2xl border border-zinc-200/80 bg-zinc-50 p-4 sm:p-5">
       <div className="mb-1 text-sm font-semibold text-zinc-900"><LocalizedText>{title}</LocalizedText></div>
-      <p className="text-xs text-zinc-600"><LocalizedText>{children}</LocalizedText></p>
+      <p className="text-xs leading-relaxed text-zinc-600"><LocalizedText>{children}</LocalizedText></p>
     </div>
   );
 }
@@ -183,9 +189,9 @@ export default function PrivacyPage() {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] font-sans text-zinc-900 antialiased selection:bg-[#CF6A12] selection:text-white">
-      <header className="sticky top-0 z-40 border-b border-zinc-200/80 bg-white/85 backdrop-blur-md">
+      <header className="glass-light sticky top-0 z-40 border-b border-zinc-200/80">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-14 items-center justify-between">
+          <div className="flex h-16 items-center justify-between">
             <Link
               to="/"
               className="flex items-center gap-2 text-sm text-zinc-600 transition-colors hover:text-zinc-900"
@@ -208,14 +214,15 @@ export default function PrivacyPage() {
 
       <PrivacyNav />
 
-      <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <main className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div aria-hidden="true" className="dot-grid-light pointer-events-none absolute inset-x-0 top-0 -z-0 h-72" />
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="mb-12 text-center sm:mb-16"
+          className="relative mb-12 text-center sm:mb-16"
         >
-          <div className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1 font-mono text-xs uppercase tracking-widest text-zinc-600">
+          <div className="depth-sm mb-6 inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-600">
             <span className="h-1.5 w-1.5 rounded-full bg-[#CF6A12]" /><LocalizedText>
             Privasi & Keamanan
           </LocalizedText></div>
@@ -226,17 +233,17 @@ export default function PrivacyPage() {
               Keamanan yang terukur.
             </LocalizedText></span>
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600 sm:text-lg"><LocalizedText>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg"><LocalizedText>
             Halaman ini menjelaskan data yang diproses Karsa, alasan
             pemrosesannya, kontrol keamanan yang aktif, dan batasan yang perlu
             diketahui pengguna.
           </LocalizedText></p>
-          <p className="mt-4 font-mono text-xs text-zinc-400"><LocalizedText>
+          <p className="mt-5 font-mono text-xs text-zinc-400"><LocalizedText>
             Terakhir diperbarui: <LocalizedText></LocalizedText>{LAST_UPDATED}</LocalizedText>
           </p>
         </motion.div>
 
-        <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed text-amber-900">
+        <div className="depth-sm relative mb-8 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-relaxed text-amber-900">
           <strong><LocalizedText>Status layanan:</LocalizedText></strong><LocalizedText> Karsa saat ini merupakan proyek dan
           pilot independen untuk lingkungan Universitas Tidar. Karsa belum
           mewakili kebijakan resmi universitas sampai memperoleh persetujuan dan
@@ -248,7 +255,7 @@ export default function PrivacyPage() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="space-y-6"
+          className="relative space-y-6 sm:space-y-8"
         >
           <PrivacySection id="data" index={0} icon={Database} title={t("Data yang Diproses")}>
             <p><LocalizedText>
@@ -310,7 +317,7 @@ export default function PrivacyPage() {
                 dan penanganan insiden.
               </LocalizedText></BulletItem>
             </div>
-            <div className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-900"><LocalizedText>
+            <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-xs leading-relaxed text-emerald-900"><LocalizedText>
               Karsa tidak menggunakan data akademik untuk iklan, penjualan data,
               atau profiling komersial.
             </LocalizedText></div>
@@ -322,7 +329,7 @@ export default function PrivacyPage() {
               database. Menyembunyikan tombol di antarmuka bukan satu-satunya
               pengamanan.
             </LocalizedText></p>
-            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <RoleCard title={t("Mahasiswa")}><LocalizedText>
                 Melihat rapor sendiri serta leaderboard dan mata kuliah dalam
                 kelasnya. Tidak dapat mengubah data akademik.
@@ -336,7 +343,7 @@ export default function PrivacyPage() {
                 dan rekap melalui dashboard web.
               </LocalizedText></RoleCard>
             </div>
-            <p className="mt-3 text-xs text-zinc-500"><LocalizedText>
+            <p className="mt-3 text-xs leading-relaxed text-zinc-500"><LocalizedText>
               Jika role tidak dapat diverifikasi karena gangguan database, hak
               admin, PJ, dan akses berbasis kelas dicabut sementara secara
               fail-closed sampai verifikasi berhasil kembali.
@@ -453,7 +460,7 @@ export default function PrivacyPage() {
                 Melaporkan dugaan penyalahgunaan akun atau insiden keamanan.
               </LocalizedText></BulletItem>
             </div>
-            <p className="mt-4 text-xs text-zinc-500"><LocalizedText>
+            <p className="mt-4 text-xs leading-relaxed text-zinc-500"><LocalizedText>
               Identitas pemohon perlu diverifikasi sebelum permintaan terkait
               data diproses. Waktu penyelesaian bergantung pada jenis permintaan
               dan koordinasi dengan pihak akademik terkait.
@@ -465,7 +472,7 @@ export default function PrivacyPage() {
               Karsa menggunakan layanan berikut untuk menjalankan produk. Setiap
               penyedia memproses data sesuai fungsi teknisnya masing-masing.
             </LocalizedText></p>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <ProviderCard title={t("Vercel")}><LocalizedText>
                 Hosting landing page, web, dan API Karsa; juga menyediakan HTTPS,
                 deployment, firewall platform, dan observability request.
@@ -525,12 +532,12 @@ export default function PrivacyPage() {
                   </div>
                   <div>
                     <div className="text-sm font-medium text-white"><LocalizedText>{title}</LocalizedText></div>
-                    <div className="text-xs text-zinc-400"><LocalizedText>{description}</LocalizedText></div>
+                    <div className="text-xs leading-relaxed text-zinc-400"><LocalizedText>{description}</LocalizedText></div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="mt-5 rounded-lg border border-zinc-800 bg-zinc-900 p-4 text-xs text-zinc-400"><LocalizedText>
+            <div className="mt-5 rounded-xl border border-zinc-800 bg-zinc-900 p-4 text-xs leading-relaxed text-zinc-400"><LocalizedText>
               Pendekatan Karsa mengacu pada prinsip pembatasan tujuan,
               minimisasi data, akurasi, keamanan, transparansi, dan retensi yang
               proporsional dalam UU Nomor 27 Tahun 2022 tentang Pelindungan Data
@@ -543,15 +550,15 @@ export default function PrivacyPage() {
               Untuk pertanyaan, permintaan terkait data, atau laporan dugaan
               insiden keamanan, hubungi pengelola Karsa:
             </LocalizedText></p>
-            <div className="mt-4 rounded-xl border border-zinc-200 bg-zinc-50 p-5">
+            <div className="depth-sm mt-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-5 sm:p-6">
               <a
                 href="mailto:yuwiaffa@gmail.com"
                 className="mb-2 flex items-center gap-3 font-semibold text-zinc-900 transition-colors hover:text-[#CF6A12]"
               >
-                <Mail className="h-5 w-5 text-[#CF6A12]" />
+                <Mail className="h-5 w-5 shrink-0 text-[#CF6A12]" />
                 <span><LocalizedText>yuwiaffa@gmail.com</LocalizedText></span>
               </a>
-              <p className="mb-3 text-xs text-zinc-500"><LocalizedText>
+              <p className="mb-3 text-xs leading-relaxed text-zinc-500"><LocalizedText>
                 Sertakan jenis permintaan dan informasi secukupnya. Jangan
                 mengirim password, token, atau credential melalui email.
               </LocalizedText></p>
@@ -563,7 +570,7 @@ export default function PrivacyPage() {
                   "Dugaan penyalahgunaan akun atau insiden keamanan",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-2 text-xs text-zinc-600">
-                    <ChevronRight className="h-3 w-3 text-[#CF6A12]" />
+                    <ChevronRight className="h-3 w-3 shrink-0 text-[#CF6A12]" />
                     <span><LocalizedText>{item}</LocalizedText></span>
                   </div>
                 ))}
