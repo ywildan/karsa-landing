@@ -21,9 +21,7 @@ export default function DownloadComingSoonPage() {
           <Link to="/" className="font-serif text-2xl font-medium tracking-tight text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#CF6A12]">
             karsa
           </Link>
-          <div className="rounded-lg bg-white/[0.92]">
-            <LanguageToggle />
-          </div>
+          <LanguageToggle variant="dark" />
         </div>
       </header>
 

@@ -133,9 +133,7 @@ export function Navbar() {
 
             {/* Action CTAs */}
             <div className="flex items-center gap-2 sm:gap-2.5">
-              <div className={`rounded-lg ${theme === "dark" ? "bg-white/[0.92]" : "bg-white shadow-sm ring-1 ring-zinc-900/10"}`}>
-                <LanguageToggle />
-              </div>
+              <LanguageToggle variant={theme} />
               <Link
                 to="/paket"
                 className={`hidden sm:inline-flex items-center rounded-lg border px-3.5 py-2 text-xs font-medium transition-colors active:scale-[0.99] ${theme === "dark" ? "border-white/15 bg-white/[0.04] text-zinc-100 hover:bg-white/10 hover:border-white/25" : "border-zinc-900/10 bg-zinc-900/[0.03] text-zinc-800 hover:bg-zinc-900/[0.06] hover:border-zinc-900/20"}`}

@@ -7,7 +7,8 @@ const languages: { value: Language; label: string }[] = [
   { value: "id", label: "Bahasa Indonesia" },
 ];
 
-export function LanguageToggle() {
+export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dark" }) {
+  const dark = variant === "dark";
   const { language, setLanguage, t } = useLanguage();
   const [open, setOpen] = useState(false);
   const panelId = useId();
@@ -50,11 +51,11 @@ export function LanguageToggle() {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((previous) => !previous)}
-        className={`inline-flex min-h-10 items-center justify-center gap-1.5 rounded-lg px-2 font-mono text-[11px] font-medium tracking-wide transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CF6A12] ${open ? "bg-[#CF6A12]/[0.07] text-[#CF6A12]" : "text-zinc-500 hover:bg-zinc-100/70 hover:text-zinc-900"}`}
+        className={`inline-flex min-h-10 items-center justify-center gap-1.5 rounded-lg px-2 font-mono text-[11px] font-medium tracking-wide transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CF6A12] ${open ? "bg-[#CF6A12]/[0.07] text-[#CF6A12]" : dark ? "text-zinc-300 hover:bg-white/10 hover:text-white" : "text-zinc-500 hover:bg-zinc-100/70 hover:text-zinc-900"}`}
       >
         <Globe2 className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
         <span>{language.toUpperCase()}</span>
-        <ChevronDown className={`h-3 w-3 text-zinc-400 transition-transform duration-150 motion-reduce:transition-none ${open ? "rotate-180" : ""}`} aria-hidden="true" />
+        <ChevronDown className={`h-3 w-3 transition-transform duration-150 motion-reduce:transition-none ${dark ? "text-zinc-500" : "text-zinc-400"} ${open ? "rotate-180" : ""}`} aria-hidden="true" />
       </button>
 
       {open && (
@@ -62,9 +63,9 @@ export function LanguageToggle() {
           id={panelId}
           role="group"
           aria-label={t("Language")}
-          className="absolute right-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-xl border border-zinc-200/80 bg-white p-1.5 shadow-[0_4px_8px_-4px_rgba(24,24,27,0.08),0_12px_32px_-8px_rgba(24,24,27,0.14)]"
+          className={`absolute right-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-xl border p-1.5 ${dark ? "border-white/10 bg-[#161616] shadow-[0_4px_8px_-4px_rgba(0,0,0,0.5),0_12px_32px_-8px_rgba(0,0,0,0.65)]" : "border-zinc-200/80 bg-white shadow-[0_4px_8px_-4px_rgba(24,24,27,0.08),0_12px_32px_-8px_rgba(24,24,27,0.14)]"}`}
         >
-          <div className="px-3 pb-2 pt-2 font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-400">
+          <div className={`px-3 pb-2 pt-2 font-mono text-[9px] uppercase tracking-[0.15em] ${dark ? "text-zinc-500" : "text-zinc-400"}`}>
             {t("Language")}
           </div>
           {languages.map(({ value, label }) => (
@@ -79,7 +80,7 @@ export function LanguageToggle() {
                 setOpen(false);
                 triggerRef.current?.focus();
               }}
-              className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-lg px-3 text-left font-sans text-xs transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#CF6A12] ${language === value ? "bg-[#CF6A12]/[0.06] font-medium text-[#CF6A12]" : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"}`}
+              className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-lg px-3 text-left font-sans text-xs transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#CF6A12] ${language === value ? "bg-[#CF6A12]/[0.06] font-medium text-[#CF6A12]" : dark ? "text-zinc-300 hover:bg-white/[0.06] hover:text-white" : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"}`}
             >
               <span>{label}</span>
               {language === value && <Check className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden="true" />}
