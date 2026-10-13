@@ -89,44 +89,44 @@ export function Navbar() {
             </div>
 
             {/* Desktop Nav Items */}
-            <nav className={`hidden xl:flex items-center gap-5 text-xs font-medium transition-colors ${theme === "dark" ? "text-zinc-300" : "text-zinc-600"}`}>
+            <nav className={`hidden xl:flex items-center gap-1 text-xs font-medium transition-colors ${theme === "dark" ? "text-zinc-300" : "text-zinc-600"}`}>
               <a
                 href="#problem"
-                className={`transition-colors ${theme === "dark" ? "hover:text-white" : "hover:text-zinc-950"}`}
+                className={`group relative rounded-full px-3 py-1.5 transition-all duration-200 ${theme === "dark" ? "hover:bg-white/10 hover:text-white" : "hover:bg-zinc-900/[0.06] hover:text-zinc-950"}`}
               ><LocalizedText>
                 Problem
-              </LocalizedText></a>
+              </LocalizedText><span aria-hidden="true" className="absolute inset-x-3 bottom-[3px] h-[2px] origin-left scale-x-0 rounded-full bg-[#CF6A12] transition-transform duration-300 ease-out group-hover:scale-x-100" /></a>
               <a
                 href="#idea"
-                className={`transition-colors ${theme === "dark" ? "hover:text-white" : "hover:text-zinc-950"}`}
+                className={`group relative rounded-full px-3 py-1.5 transition-all duration-200 ${theme === "dark" ? "hover:bg-white/10 hover:text-white" : "hover:bg-zinc-900/[0.06] hover:text-zinc-950"}`}
               ><LocalizedText>
                 The Idea
-              </LocalizedText></a>
+              </LocalizedText><span aria-hidden="true" className="absolute inset-x-3 bottom-[3px] h-[2px] origin-left scale-x-0 rounded-full bg-[#CF6A12] transition-transform duration-300 ease-out group-hover:scale-x-100" /></a>
               <a
                 href="#workflow"
-                className={`transition-colors ${theme === "dark" ? "hover:text-white" : "hover:text-zinc-950"}`}
+                className={`group relative rounded-full px-3 py-1.5 transition-all duration-200 ${theme === "dark" ? "hover:bg-white/10 hover:text-white" : "hover:bg-zinc-900/[0.06] hover:text-zinc-950"}`}
               ><LocalizedText>
                 Workflow
-              </LocalizedText></a>
+              </LocalizedText><span aria-hidden="true" className="absolute inset-x-3 bottom-[3px] h-[2px] origin-left scale-x-0 rounded-full bg-[#CF6A12] transition-transform duration-300 ease-out group-hover:scale-x-100" /></a>
               <a
                 href="#capabilities"
-                className={`transition-colors ${theme === "dark" ? "hover:text-white" : "hover:text-zinc-950"}`}
+                className={`group relative rounded-full px-3 py-1.5 transition-all duration-200 ${theme === "dark" ? "hover:bg-white/10 hover:text-white" : "hover:bg-zinc-900/[0.06] hover:text-zinc-950"}`}
               ><LocalizedText>
                 Capabilities
-              </LocalizedText></a>
+              </LocalizedText><span aria-hidden="true" className="absolute inset-x-3 bottom-[3px] h-[2px] origin-left scale-x-0 rounded-full bg-[#CF6A12] transition-transform duration-300 ease-out group-hover:scale-x-100" /></a>
               <a
                 href="#security"
-                className={`transition-colors ${theme === "dark" ? "hover:text-white" : "hover:text-zinc-950"}`}
+                className={`group relative rounded-full px-3 py-1.5 transition-all duration-200 ${theme === "dark" ? "hover:bg-white/10 hover:text-white" : "hover:bg-zinc-900/[0.06] hover:text-zinc-950"}`}
               ><LocalizedText>
                 Security
-              </LocalizedText></a>
+              </LocalizedText><span aria-hidden="true" className="absolute inset-x-3 bottom-[3px] h-[2px] origin-left scale-x-0 rounded-full bg-[#CF6A12] transition-transform duration-300 ease-out group-hover:scale-x-100" /></a>
               <a
                 href="#status"
-                className={`transition-colors ${theme === "dark" ? "hover:text-white" : "hover:text-zinc-950"}`}
+                className={`group relative rounded-full px-3 py-1.5 transition-all duration-200 ${theme === "dark" ? "hover:bg-white/10 hover:text-white" : "hover:bg-zinc-900/[0.06] hover:text-zinc-950"}`}
               ><LocalizedText>
                 Status
-              </LocalizedText></a>
-              <button type="button" disabled className={`cursor-not-allowed ${theme === "dark" ? "text-zinc-500" : "text-zinc-400"}`}><LocalizedText>
+              </LocalizedText><span aria-hidden="true" className="absolute inset-x-3 bottom-[3px] h-[2px] origin-left scale-x-0 rounded-full bg-[#CF6A12] transition-transform duration-300 ease-out group-hover:scale-x-100" /></a>
+              <button type="button" disabled className={`cursor-not-allowed rounded-full px-3 py-1.5 ${theme === "dark" ? "text-zinc-500" : "text-zinc-400"}`}><LocalizedText>
                 Download app
               </LocalizedText></button>
             </nav>
