@@ -45,9 +45,6 @@ export function Navbar() {
                 <span className="font-serif text-2xl font-medium tracking-tight text-white"><LocalizedText>
                   karsa
                 </LocalizedText></span>
-                <span className="font-mono text-[10px] tracking-widest text-[#CF6A12] uppercase hidden sm:inline"><LocalizedText>
-                  UNTIDAR
-                </LocalizedText></span>
               </a>
 
               <div className="hidden lg:flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-2.5 py-0.5 text-[11px] font-mono text-zinc-300">

@@ -204,9 +204,6 @@ export default function PrivacyPage() {
               <span className="font-serif text-xl font-medium text-zinc-950"><LocalizedText>
                 karsa
               </LocalizedText></span>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-400"><LocalizedText>
-                UNTIDAR
-              </LocalizedText></span>
             </div>
           </div>
         </div>
