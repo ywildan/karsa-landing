@@ -1,16 +1,17 @@
 import { LocalizedText, useLanguage } from "../i18n/LanguageContext";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Smartphone, 
-  Monitor, 
-  Plus, 
-  History, 
-  Sparkles, 
-  Award, 
+import {
+  Smartphone,
+  Monitor,
+  Plus,
+  History,
+  Sparkles,
+  Award,
   RotateCcw,
   CheckCircle2
 } from "lucide-react";
+import { Reveal } from "./fx/Reveal";
 
 interface StudentRecord {
   id: string;
@@ -113,7 +114,7 @@ export function InteractiveSandbox() {
 
   return (
     <section className="relative bg-zinc-950 text-white py-24 sm:py-32 overflow-hidden border-b border-zinc-800">
-      
+
       {/* Editorial Grid Lines */}
       <div className="pointer-events-none absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-full w-full grid grid-cols-12 gap-8 border-x border-zinc-800/40 opacity-30">
@@ -123,7 +124,7 @@ export function InteractiveSandbox() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
@@ -134,7 +135,7 @@ export function InteractiveSandbox() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="flex items-center gap-2 mb-3"
             >
-              <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
+              <span className="font-mono text-[11px] font-medium tracking-[0.2em] text-[#CF6A12] uppercase"><LocalizedText>
                 Interactive System Simulator
               </LocalizedText></span>
             </motion.div>
@@ -198,12 +199,29 @@ export function InteractiveSandbox() {
           </div>
         </div>
 
+        {/* 3D App Window Stage */}
+        <div className="perspective-1200 relative">
+          {/* Layered rotated backdrops */}
+          <div aria-hidden="true" className="absolute inset-0 translate-x-4 translate-y-5 rotate-[1.6deg] rounded-[28px] border border-[#CF6A12]/25 bg-[#CF6A12]/10" />
+          <div aria-hidden="true" className="absolute inset-0 -translate-x-3 translate-y-2 -rotate-[1.1deg] rounded-[28px] border border-zinc-800 bg-zinc-900/60" />
+          <div aria-hidden="true" className="glow-orange pointer-events-none absolute -inset-12 opacity-50" />
+
+          <Reveal className="relative">
+            <div className="depth-lg relative overflow-hidden rounded-[28px] border border-zinc-800 bg-zinc-950/95">
+              {/* Window chrome (decorative) */}
+              <div aria-hidden="true" className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-900/80 px-5 py-3.5">
+                <span className="h-3 w-3 rounded-full bg-[#CF6A12]" />
+                <span className="h-3 w-3 rounded-full bg-zinc-600" />
+                <span className="h-3 w-3 rounded-full bg-zinc-700" />
+              </div>
+
+              <div className="p-4 sm:p-6 lg:p-8">
         {/* Live Simulator Body */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Main Simulated Panel (7 Cols) */}
-          <div className="lg:col-span-7 rounded-2xl border border-zinc-800 bg-zinc-900/90 p-6 shadow-2xl relative">
-            
+          <div className="depth-dark lg:col-span-7 rounded-2xl border border-zinc-800 bg-zinc-900/90 p-6 relative">
+
             {/* Header of Simulated App */}
             <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-6">
               <div className="flex items-center gap-3">
@@ -395,9 +413,9 @@ export function InteractiveSandbox() {
 
           {/* Right Column: Live Audit Ledger (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
-            
+
             {/* Live Audit Log Card */}
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 font-mono text-xs">
+            <div className="depth-dark rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 font-mono text-xs">
               <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-3">
                 <div className="flex items-center gap-2 text-zinc-300 font-semibold">
                   <History className="h-4 w-4 text-[#CF6A12]" />
@@ -410,7 +428,7 @@ export function InteractiveSandbox() {
                 {auditLogs.map((log) => (
                   <div
                     key={log.id}
-                    className="rounded-lg border border-zinc-800/80 bg-zinc-950/70 p-2.5 flex items-start justify-between"
+                    className="depth-sm rounded-lg border border-zinc-800/80 bg-zinc-950/70 p-2.5 flex items-start justify-between transition-transform duration-300 hover:-translate-y-0.5"
                   >
                     <div>
                       <div className="text-zinc-200 font-medium"><LocalizedText>{log.studentName}</LocalizedText></div>
@@ -428,7 +446,7 @@ export function InteractiveSandbox() {
             </div>
 
             {/* Academic workflow note */}
-            <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/30 p-4 font-mono text-xs text-zinc-400">
+            <div className="depth-sm rounded-2xl border border-zinc-800/80 bg-zinc-900/30 p-4 font-mono text-xs text-zinc-400">
               <div className="flex items-center gap-2 text-zinc-300 mb-1 font-medium">
                 <Sparkles className="h-3.5 w-3.5 text-[#CF6A12]" />
                 <span><LocalizedText>Academic Review Workflow</LocalizedText></span>
@@ -440,6 +458,10 @@ export function InteractiveSandbox() {
 
           </div>
 
+        </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
 
       </div>

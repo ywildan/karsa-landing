@@ -1,18 +1,19 @@
 import { LocalizedText, useLanguage } from "../i18n/LanguageContext";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  Lock, 
-  FileSpreadsheet, 
-  Users, 
-  ShieldCheck, 
-  Eye, 
-  EyeOff, 
-  Smartphone, 
+import {
+  Lock,
+  FileSpreadsheet,
+  Users,
+  ShieldCheck,
+  Eye,
+  EyeOff,
+  Smartphone,
   DatabaseZap,
   CheckCircle2,
   AlertCircle
 } from "lucide-react";
+import { Tilt } from "./fx/Tilt";
 
 interface FeaturesBentoProps {
   onOpenExportPreview: () => void;
@@ -37,7 +38,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
 
   return (
     <section id="capabilities" className="relative bg-white py-24 sm:py-32 border-b border-zinc-200/60 overflow-hidden">
-      
+
       {/* Editorial Guide Lines */}
       <div className="pointer-events-none absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-full w-full grid grid-cols-12 gap-8 border-x border-zinc-200/40 opacity-30">
@@ -46,8 +47,11 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
         </div>
       </div>
 
+      {/* 3D floor backdrop */}
+      <div aria-hidden="true" className="floor-3d-light pointer-events-none absolute -bottom-16 left-0 right-0 h-64 opacity-70" />
+
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="max-w-3xl mb-16 sm:mb-20">
           <motion.div
@@ -57,7 +61,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 mb-4"
           >
-            <span className="font-mono text-xs font-medium tracking-widest text-[#CF6A12] uppercase"><LocalizedText>
+            <span className="font-mono text-[11px] font-medium tracking-[0.2em] text-[#CF6A12] uppercase"><LocalizedText>
               04 — System Capabilities
             </LocalizedText></span>
           </motion.div>
@@ -84,15 +88,15 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
         </div>
 
         {/* Bento Grid (6 Cells) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-          
+        <div className="perspective-1200 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+
           {/* ──────────────── CELL 1 (Big Cell, Top-Left, Spans 2 Rows on Desktop) ──────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:row-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-[#FAFAFA] p-6 hover:border-zinc-300 transition-colors"
+            className="depth-lg lg:row-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-[#FAFAFA] p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center justify-between font-mono text-xs text-zinc-500 mb-3">
@@ -110,7 +114,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             </div>
 
             {/* Inline Interactive Mock */}
-            <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-4 shadow-2xs">
+            <div className="depth-md mt-6 rounded-xl border border-zinc-200 bg-white p-4">
               <div className="flex items-center justify-between border-b border-zinc-100 pb-2 mb-3">
                 <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-700">
                   <Smartphone className="h-3.5 w-3.5 text-[#CF6A12]" />
@@ -192,7 +196,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-colors"
+            className="depth-md lg:col-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center justify-between font-mono text-xs text-zinc-500 mb-2">
@@ -218,7 +222,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             </div>
 
             {/* Masked Leaderboard Preview Table */}
-            <div className="mt-5 rounded-lg border border-zinc-200 bg-zinc-50/60 overflow-hidden font-mono text-xs">
+            <div className="depth-sm mt-5 rounded-lg border border-zinc-200 bg-zinc-50/60 overflow-hidden font-mono text-xs">
               <div className="grid grid-cols-12 bg-zinc-100/90 py-2 px-3 text-[10px] text-zinc-500 uppercase tracking-wider font-semibold border-b border-zinc-200">
                 <div className="col-span-2"><LocalizedText>Rank</LocalizedText></div>
                 <div className="col-span-6"><LocalizedText>Student ID / Display</LocalizedText></div>
@@ -257,7 +261,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-colors"
+            className="depth-md flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
@@ -276,7 +280,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
 
             {/* Interactive Role Pills */}
             <div className="mt-5 space-y-2">
-              <div className="flex rounded-lg bg-zinc-100 p-1 font-mono text-[11px]">
+              <div className="depth-sm flex rounded-lg bg-zinc-100 p-1 font-mono text-[11px]">
                 {(["pj", "student"] as const).map((r) => (
                   <button
                     key={r}
@@ -313,7 +317,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-colors"
+            className="depth-md flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
@@ -331,7 +335,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             </div>
 
             <div className="mt-5">
-              <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-3 font-mono text-xs">
+              <div className="depth-sm rounded-lg border border-zinc-200 bg-zinc-50 p-3 font-mono text-xs">
                 <div className="flex items-center justify-between text-zinc-700">
                   <span><LocalizedText>KARSA_REKAP_2026.xlsx</LocalizedText></span>
                   <span className="text-emerald-700 font-semibold"><LocalizedText>READY</LocalizedText></span>
@@ -357,7 +361,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-colors"
+            className="depth-md lg:col-span-2 flex flex-col justify-between rounded-xl border border-zinc-200 bg-white p-6 hover:border-zinc-300 transition-all duration-300 hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
@@ -375,7 +379,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             </div>
 
             {/* Email Validator Simulator */}
-            <div className="mt-5 rounded-lg border border-zinc-200 bg-zinc-50/80 p-3.5 font-mono text-xs">
+            <div className="depth-sm mt-5 rounded-lg border border-zinc-200 bg-zinc-50/80 p-3.5 font-mono text-xs">
               <div className="text-[10px] uppercase text-zinc-500 tracking-wider mb-1.5"><LocalizedText>
                 Test Domain Validation Gateway
               </LocalizedText></div>
@@ -406,13 +410,14 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
             </div>
           </motion.div>
 
-          {/* ──────────────── CELL 6 (Small Cell, Bottom-Right: Zero Paper) ──────────────── */}
+          {/* ──────────────── CELL 6 (Small Cell, Bottom-Right: Zero Paper — non-interactive, Tilt) ──────────────── */}
+          <Tilt max={5} className="h-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col justify-between rounded-xl border border-zinc-200 bg-[#FAFAFA] p-6 hover:border-zinc-300 transition-colors"
+            className="depth-md flex h-full flex-col justify-between rounded-xl border border-zinc-200 bg-[#FAFAFA] p-6 hover:border-zinc-300 transition-colors"
           >
             <div>
               <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 mb-2">
@@ -429,7 +434,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
               </LocalizedText></p>
             </div>
 
-            <div className="mt-5 rounded-lg border border-zinc-200 bg-white p-3 font-mono text-xs">
+            <div className="depth-sm mt-5 rounded-lg border border-zinc-200 bg-white p-3 font-mono text-xs">
               <div className="flex items-center justify-between text-zinc-700 text-[11px]">
                 <span><LocalizedText>Ledger Integrity</LocalizedText></span>
                 <span className="text-emerald-700 font-bold"><LocalizedText>Snapshot-backed</LocalizedText></span>
@@ -439,6 +444,7 @@ export function FeaturesBento({ onOpenExportPreview }: FeaturesBentoProps) {
               </LocalizedText></div>
             </div>
           </motion.div>
+          </Tilt>
 
         </div>
       </div>
