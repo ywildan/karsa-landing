@@ -46,6 +46,7 @@ export function SecurityArchitecture() {
   return (
     <section
       id="security"
+      data-nav-theme="dark"
       className="relative overflow-hidden border-b border-zinc-800 bg-[#0A0A0A] py-24 text-white sm:py-32"
     >
       <div className="pointer-events-none absolute inset-0 mx-auto max-w-7xl px-4 opacity-30 sm:px-6 lg:px-8">

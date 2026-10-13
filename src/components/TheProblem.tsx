@@ -24,7 +24,7 @@ export function TheProblem() {
   ];
 
   return (
-    <section id="problem" className="relative bg-[#0A0A0A] text-white py-24 sm:py-32 overflow-hidden">
+    <section data-nav-theme="dark" id="problem" className="relative bg-[#0A0A0A] text-white py-24 sm:py-32 overflow-hidden">
       {/* Subtle top and bottom hairline borders */}
       <div className="absolute inset-x-0 top-0 h-px bg-zinc-800" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-zinc-800" />

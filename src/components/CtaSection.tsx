@@ -9,7 +9,7 @@ interface CtaSectionProps {
 
 export function CtaSection({ onRequestAccess }: CtaSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-[#0A0A0A] py-28 text-white sm:py-36">
+    <section data-nav-theme="dark" className="relative overflow-hidden bg-[#0A0A0A] py-28 text-white sm:py-36">
       {/* 3D backdrop */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <Scene3D className="absolute left-1/2 top-1/2 h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 opacity-45" density={480} />

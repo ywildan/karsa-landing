@@ -5,7 +5,7 @@ import { Reveal } from "./fx/Reveal";
 
 export function TheIdea() {
   return (
-    <section id="idea" className="relative bg-white py-24 sm:py-32 border-b border-zinc-200/60 overflow-hidden">
+    <section data-nav-theme="light" id="idea" className="relative bg-white py-24 sm:py-32 border-b border-zinc-200/60 overflow-hidden">
       {/* Dot-grid backdrop with a soft orange glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 dot-grid-light opacity-60" />
       <div aria-hidden="true" className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full glow-orange opacity-50" />

@@ -113,7 +113,7 @@ export function InteractiveSandbox() {
   const currentRank = students.findIndex((s) => s.id === selectedStudentId) + 1;
 
   return (
-    <section className="relative bg-zinc-950 text-white py-24 sm:py-32 overflow-hidden border-b border-zinc-800">
+    <section data-nav-theme="dark" className="relative bg-zinc-950 text-white py-24 sm:py-32 overflow-hidden border-b border-zinc-800">
 
       {/* Editorial Grid Lines */}
       <div className="pointer-events-none absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -37,7 +37,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#0A0A0A] pt-32 pb-20 text-white lg:pt-36 lg:pb-24">
+    <section data-nav-theme="dark" className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#0A0A0A] pt-32 pb-20 text-white lg:pt-36 lg:pb-24">
       {/* 3D backdrop: canvas point sphere, dot grid, glow, isometric floor */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="dot-grid-dark absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_38%,black,transparent)]" />

@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#0A0A0A] border-t border-white/[0.07] text-zinc-400 font-sans py-16 lg:py-20">
+    <footer data-nav-theme="dark" className="relative overflow-hidden bg-[#0A0A0A] border-t border-white/[0.07] text-zinc-400 font-sans py-16 lg:py-20">
       <div className="dot-grid-dark pointer-events-none absolute inset-0 opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent_70%)]" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 

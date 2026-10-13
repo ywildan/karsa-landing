@@ -26,7 +26,7 @@ export function HowItWorks() {
   };
 
   return (
-    <section id="workflow" className="relative bg-[#FAFAFA] py-24 sm:py-32 border-b border-zinc-200/60 overflow-hidden">
+    <section data-nav-theme="light" id="workflow" className="relative bg-[#FAFAFA] py-24 sm:py-32 border-b border-zinc-200/60 overflow-hidden">
 
       {/* Background Subtle Lines */}
       <div className="pointer-events-none absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
